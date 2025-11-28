@@ -40,6 +40,150 @@ $log = function (string $text) use ($prefix): void {
 $multiply = fn (int $n) => $n * $factor;
 ```
 
+## 与 JavaScript 对比
+
+如果你熟悉 JavaScript，理解 PHP 闭包的关键差异：
+
+### 语法对比
+
+**JavaScript**：
+```javascript
+// 箭头函数（自动捕获外部变量）
+const factor = 10;
+const multiply = (n) => n * factor;
+
+// 普通函数（需要手动捕获）
+const multiply2 = function(n) {
+    return n * factor;  // 自动捕获外部变量
+};
+```
+
+**PHP**：
+```php
+// 箭头函数（PHP 7.4+，自动按值捕获）
+$factor = 10;
+$multiply = fn(int $n) => $n * $factor;
+
+// 匿名函数（需要 use 关键字）
+$multiply2 = function(int $n) use ($factor): int {
+    return $n * $factor;  // 必须使用 use 捕获
+};
+```
+
+### 变量捕获对比
+
+| 特性 | JavaScript | PHP |
+| :--- | :--------- | :-- |
+| 箭头函数捕获 | 自动捕获外部变量 | 自动按值捕获（PHP 7.4+） |
+| 普通函数捕获 | 自动捕获外部变量 | 必须使用 `use` 关键字 |
+| 按引用捕获 | 默认按引用 | 使用 `use (&$var)` |
+| 修改外部变量 | 可以修改（非 const） | 按值捕获不能修改，按引用可以 |
+
+**示例对比**：
+
+```javascript
+// JavaScript：箭头函数自动捕获
+let count = 0;
+const increment = () => {
+    count++;  // 可以修改外部变量
+    return count;
+};
+increment();  // count 变为 1
+```
+
+```php
+// PHP：箭头函数按值捕获，不能修改外部变量
+$count = 0;
+$increment = fn() => ++$count;  // 错误：不能修改外部变量
+
+// 需要使用匿名函数 + use(&$count)
+$increment = function() use (&$count): int {
+    $count++;  // 按引用捕获，可以修改
+    return $count;
+};
+$increment();  // $count 变为 1
+```
+
+### 闭包作用域对比
+
+**JavaScript**：
+```javascript
+// 闭包可以访问外部作用域的变量
+function createCounter() {
+    let count = 0;
+    return () => {
+        count++;
+        return count;
+    };
+}
+
+const counter = createCounter();
+counter();  // 1
+counter();  // 2
+```
+
+**PHP**：
+```php
+// PHP 闭包需要显式使用 use 捕获
+function createCounter(): Closure {
+    $count = 0;
+    return function() use (&$count): int {
+        $count++;
+        return $count;
+    };
+}
+
+$counter = createCounter();
+$counter();  // 1
+$counter();  // 2
+```
+
+### 回调函数对比
+
+**JavaScript**：
+```javascript
+// 数组方法
+const numbers = [1, 2, 3];
+const doubled = numbers.map(x => x * 2);
+const evens = numbers.filter(x => x % 2 === 0);
+
+// 事件监听
+button.addEventListener('click', () => {
+    console.log('clicked');
+});
+```
+
+**PHP**：
+```php
+// 数组函数（需要将数组作为参数）
+$numbers = [1, 2, 3];
+$doubled = array_map(fn($x) => $x * 2, $numbers);
+$evens = array_filter($numbers, fn($x) => $x % 2 === 0);
+
+// 事件系统（框架中常见）
+$dispatcher->listen('user.created', function($user) {
+    echo "User created: {$user->name}\n";
+});
+```
+
+### 关键差异总结
+
+1. **变量捕获**：
+   - JavaScript：闭包自动捕获外部变量
+   - PHP：必须使用 `use` 关键字显式捕获
+
+2. **修改外部变量**：
+   - JavaScript：箭头函数可以修改外部变量（如果变量不是 const）
+   - PHP：箭头函数按值捕获，不能修改；需要使用 `use (&$var)` 按引用捕获
+
+3. **语法**：
+   - JavaScript：`(arg) => expression` 或 `function() { ... }`
+   - PHP：`fn($arg) => expression` 或 `function() use ($var) { ... }`
+
+4. **this 绑定**：
+   - JavaScript：箭头函数不绑定 `this`，普通函数绑定 `this`
+   - PHP：闭包可以使用 `$this`（在类中），但需要 `use ($this)`
+
 ## 闭包与面向对象
 
 - PHP 提供 `Closure` 类，可使用以下方法：

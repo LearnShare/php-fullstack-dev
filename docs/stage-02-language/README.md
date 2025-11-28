@@ -21,6 +21,8 @@
 17. [`chapter-17-errors`](chapter-17-errors/README.md)：错误、异常与 Throwable。
 18. [`chapter-18-standards`](chapter-18-standards/README.md)：代码规范、PHPDoc 与 PSR。
 19. [`chapter-19-summary`](chapter-19-summary/README.md)：阶段总结与练习指引。
+20. [`chapter-20-php-versions`](chapter-20-php-versions/README.md)：PHP 8.2-8.5 版本新特性。
+21. [`chapter-21-debugging`](chapter-21-debugging/README.md)：常见错误与调试技巧。
 
 完成阶段二后，你将具备：
 

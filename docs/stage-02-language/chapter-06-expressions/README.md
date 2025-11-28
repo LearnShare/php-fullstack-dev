@@ -69,6 +69,55 @@ $status = $user->active ? 'Active' : 'Inactive';
 $email = $input['email'] ?? fn () => throw new InvalidArgumentException('Email required');
 ```
 
+## 管道操作符（PHP 8.5+）
+
+- **语法**：`表达式 |> 函数(...)`
+- 将表达式的结果作为参数传递给下一个函数，简化函数调用链。
+
+```php
+<?php
+declare(strict_types=1);
+
+// PHP 8.5+ 管道操作符
+$result = "Hello World"
+    |> htmlentities(...)
+    |> str_split(...)
+    |> fn($x) => array_map(strtoupper(...), $x)
+    |> fn($x) => array_filter($x, fn($v) => $v !== 'O');
+
+// 等价于传统写法
+$result = array_filter(
+    array_map(
+        strtoupper(...),
+        str_split(htmlentities("Hello World"))
+    ),
+    fn($v) => $v !== 'O'
+);
+```
+
+### 管道操作符的优势
+
+```php
+<?php
+declare(strict_types=1);
+
+// 传统写法（嵌套深，难以阅读）
+$result = array_map(
+    fn($x) => $x * 2,
+    array_filter(
+        array_map('strlen', explode(' ', 'hello world php')),
+        fn($x) => $x > 4
+    )
+);
+
+// PHP 8.5+ 管道写法（清晰易读）
+$result = 'hello world php'
+    |> explode(' ', ...)
+    |> fn($x) => array_map('strlen', $x)
+    |> fn($x) => array_filter($x, fn($v) => $v > 4)
+    |> fn($x) => array_map(fn($v) => $v * 2, $x);
+```
+
 ## `match` 表达式（PHP 8）
 
 - 更安全的 `switch` 替代者，比较使用严格模式。

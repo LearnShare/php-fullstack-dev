@@ -2,8 +2,69 @@
 
 ## Composer
 
-- 作用：依赖管理、自动加载生成、发布私有包，是现代 PHP 项目的“包管理器”。
+- 作用：依赖管理、自动加载生成、发布私有包，是现代 PHP 项目的"包管理器"。
 - 安装：访问 [getcomposer.org](https://getcomposer.org)，下载 `composer.phar` 并移动到 PATH；Windows 用户运行官方安装器即可。
+
+### 与 npm 对比
+
+如果你熟悉 Node.js 的 npm，Composer 是 PHP 的包管理器，功能类似：
+
+| 功能 | npm (Node.js) | Composer (PHP) |
+| :--- | :------------ | :------------- |
+| 包管理 | `npm install` | `composer install` |
+| 添加依赖 | `npm install package` | `composer require package` |
+| 移除依赖 | `npm uninstall package` | `composer remove package` |
+| 更新依赖 | `npm update` | `composer update` |
+| 配置文件 | `package.json` | `composer.json` |
+| 锁定文件 | `package-lock.json` | `composer.lock` |
+| 依赖目录 | `node_modules/` | `vendor/` |
+| 脚本命令 | `npm run script` | `composer run-script script` |
+| 全局安装 | `npm install -g` | `composer global require` |
+
+**关键差异**：
+
+1. **自动加载**：
+   - npm：需要手动 `require()` 或 `import`
+   - Composer：自动生成 `vendor/autoload.php`，自动加载类
+
+2. **命名空间**：
+   - npm：使用模块路径（`require('./module')`）
+   - Composer：使用命名空间（`use Vendor\Package\Class`）
+
+3. **版本约束**：
+   - npm：`^1.0.0`、`~1.0.0`、`>=1.0.0`
+   - Composer：`^1.0`、`~1.0`、`>=1.0`（语义相同）
+
+**示例对比**：
+
+```javascript
+// npm/Node.js
+// package.json
+{
+  "dependencies": {
+    "express": "^4.18.0"
+  }
+}
+
+// 使用
+const express = require('express');
+const app = express();
+```
+
+```php
+// Composer/PHP
+// composer.json
+{
+  "require": {
+    "monolog/monolog": "^3.0"
+  }
+}
+
+// 使用（自动加载）
+require 'vendor/autoload.php';
+use Monolog\Logger;
+$logger = new Logger('app');
+```
 - 关键指令：
   - `composer init`：创建 `composer.json`，引导式填写包名、版本、PSR-4 命名空间。
   - `composer install --no-dev`：生产环境安装依赖。
@@ -19,6 +80,7 @@
   }
   ```
 - 镜像：国内网络可通过 `composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/` 加速；如需恢复官方源，执行 `composer config -g --unset repos.packagist`.
+- 安全审计：使用 `composer audit` 检查依赖包的安全漏洞（Composer 2.4+）。
 - 新手练习：创建 `hello-composer` 目录，执行 `composer init`，添加 `psr-4` 自动加载，编写 `src/Greeter.php` 并通过 `vendor/bin/phpunit` 运行第一条测试。
 
 ### Composer 常用命令速查
@@ -54,6 +116,7 @@
 - **示例**：
   ```bash
   composer require pestphp/pest --dev
+  composer require phpunit/phpunit:^11.0 --dev
   ```
 
 #### `composer remove`
@@ -82,6 +145,17 @@
   ```bash
   composer config -g repos.packagist composer https://mirrors.aliyun.com/composer/
   ```
+
+#### `composer audit`
+
+- **语法**：`composer audit [--format=json]`
+- **说明**：检查已安装依赖包的安全漏洞（Composer 2.4+）。
+- **示例**：
+  ```bash
+  composer audit
+  composer audit --format=json
+  ```
+- **建议**：在 CI/CD 流程中集成 `composer audit`，及时发现依赖漏洞。
 
 ## IDE 与扩展
 

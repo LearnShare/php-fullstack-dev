@@ -7,6 +7,9 @@
 2. [`chapter-02-mysql`](chapter-02-mysql/README.md)：通过 Docker 与本地安装方案搭建 MySQL 8，并熟悉 GUI/CLI 工具。
 3. [`chapter-03-toolchain`](chapter-03-toolchain/README.md)：配置 Composer、IDE、Git、容器与自动化脚本，形成统一工具链。
 4. [`chapter-04-config-debug`](chapter-04-config-debug/README.md)：掌握 php.ini、扩展安装、Xdebug 调试与配置差异排查。
+5. [`chapter-05-web-architecture`](chapter-05-web-architecture/README.md)：PHP 执行模式与 Web 架构（Nginx + PHP-FPM 工作原理、Shared Nothing 架构）。
+6. [`chapter-06-runtime`](chapter-06-runtime/README.md)：现代 PHP 运行时与新生态（RoadRunner、FrankenPHP、OpenSwoole、Laravel Octane）。
+7. [`chapter-07-workers`](chapter-07-workers/README.md)：Worker、协程、Event Loop（Worker 模式、协程、PHP 8 Fibers）。
 
 完成本阶段后，你将具备：
 

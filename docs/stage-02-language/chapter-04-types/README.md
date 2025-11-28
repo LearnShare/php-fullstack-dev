@@ -121,6 +121,162 @@ $sum = array_reduce($numbers, fn ($carry, $n) => $carry + $n, 0);
 - PHP 8 支持联合类型：`function handle(int|string $id)`.
 - `mixed` 类型表示可以接受所有类型，慎用。
 
+## 与 TypeScript 对比
+
+如果你熟悉 TypeScript，理解 PHP 类型系统的关键差异：
+
+### 类型声明对比
+
+**TypeScript**：
+```typescript
+// 函数类型声明
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+// 变量类型声明
+let name: string = 'Alice';
+let age: number = 30;
+let active: boolean = true;
+```
+
+**PHP**：
+```php
+// 函数类型声明（PHP 7.0+）
+function add(int $a, int $b): int {
+    return $a + $b;
+}
+
+// 变量类型声明（PHP 7.4+）
+$name = 'Alice';  // 类型推断
+$age = 30;        // 类型推断
+
+// 属性类型声明（PHP 7.4+）
+class User {
+    public string $name;
+    public int $age;
+    public bool $active;
+}
+```
+
+### 类型系统差异
+
+| 特性 | TypeScript | PHP |
+| :--- | :--------- | :-- |
+| 编译时检查 | 是（编译时） | 否（运行时） |
+| 类型推断 | 是 | 是（PHP 8.0+） |
+| 联合类型 | `number \| string` | `int\|string` (PHP 8.0+) |
+| 交叉类型 | `A & B` | 不支持 |
+| 泛型 | 支持 | 不支持（但可通过 PHPDoc） |
+| 可选属性 | `name?: string` | `?string $name` |
+| 只读属性 | `readonly name: string` | `readonly string $name` (PHP 8.1+) |
+
+### 联合类型对比
+
+**TypeScript**：
+```typescript
+function handle(id: number | string): void {
+    if (typeof id === 'number') {
+        console.log('Number:', id);
+    } else {
+        console.log('String:', id);
+    }
+}
+```
+
+**PHP**：
+```php
+function handle(int|string $id): void {
+    if (is_int($id)) {
+        echo "Number: {$id}\n";
+    } else {
+        echo "String: {$id}\n";
+    }
+}
+```
+
+### 可选参数对比
+
+**TypeScript**：
+```typescript
+function greet(name: string, title?: string): string {
+    return title ? `${title} ${name}` : name;
+}
+```
+
+**PHP**：
+```php
+function greet(string $name, ?string $title = null): string {
+    return $title !== null ? "{$title} {$name}" : $name;
+}
+```
+
+### 类型守卫对比
+
+**TypeScript**：
+```typescript
+function process(value: number | string): number {
+    if (typeof value === 'string') {
+        return parseInt(value, 10);
+    }
+    return value;  // TypeScript 知道这里是 number
+}
+```
+
+**PHP**：
+```php
+function process(int|string $value): int {
+    if (is_string($value)) {
+        return (int) $value;
+    }
+    return $value;  // PHP 8.0+ 类型系统知道这里是 int
+}
+```
+
+### 严格模式对比
+
+**TypeScript**：
+```typescript
+// tsconfig.json
+{
+  "strict": true,
+  "noImplicitAny": true
+}
+```
+
+**PHP**：
+```php
+<?php
+declare(strict_types=1);  // 文件级别严格模式
+
+// 严格模式下：
+// - 类型必须完全匹配
+// - 不允许隐式类型转换
+// - 必须显式类型转换
+```
+
+### 关键差异总结
+
+1. **检查时机**：
+   - TypeScript：编译时检查（静态类型）
+   - PHP：运行时检查（动态类型 + 类型声明）
+
+2. **类型推断**：
+   - TypeScript：强大的类型推断
+   - PHP：有限的类型推断（PHP 8.0+）
+
+3. **泛型支持**：
+   - TypeScript：原生支持泛型
+   - PHP：不支持，但可通过 PHPDoc 注释
+
+4. **可选属性**：
+   - TypeScript：`name?: string`
+   - PHP：`?string $name` 或 `string $name = null`
+
+5. **类型守卫**：
+   - TypeScript：`typeof`、`instanceof`、自定义类型守卫
+   - PHP：`is_*()` 函数、`instanceof`
+
 ## JSON 与数组互转
 
 - `json_encode($data, JSON_UNESCAPED_UNICODE)`：编码为 JSON。
