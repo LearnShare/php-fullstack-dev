@@ -1,7 +1,7 @@
 ---
-@author: Gemini, ChatGPT
-@createdAt: 2025-11-28
-@version: 2.0
+author: Gemini, ChatGPT
+createdAt: 2025-11-28
+version: 2.0
 ---
 
 # PHP + MySQL 全栈开发指南
