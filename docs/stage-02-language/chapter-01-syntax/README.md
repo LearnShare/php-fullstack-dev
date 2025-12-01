@@ -6,95 +6,30 @@
 - 熟悉语句、分号、缩进、注释的最佳实践，养成良好代码风格。
 - 为后续模块化、自动加载奠定一致的代码结构。
 
-## 文件结构与编码
+## 章节内容
 
-- **起始标签**：永远使用标准 `<?php`，避免 `<?`（短标签）或 `<?=`（仅在输出时使用）。
-- **字符编码**：统一 UTF-8 无 BOM。可以通过 VS Code 右下角编码指示器或 `file -I` 命令检查。
-- **严格类型**：在文件第二行声明 `declare(strict_types=1);`，可防止隐式类型转换带来的隐患。
-- **命名空间**：从阶段三开始会大量使用，此处提前展示：`namespace App\Examples;`。
+本章分为六个独立小节，每节提供详细的概念解释、语法说明、参数列表和完整示例：
 
-### 关键语法速查
+1. **[第一个 PHP 程序：Hello World](section-01-hello-world.md)**：创建并执行第一个 PHP 程序，了解 CLI 和 Web 两种执行方式。
+2. **[文件结构与编码](section-02-file-structure.md)**：PHP 起始标签、UTF-8 编码、严格类型声明、命名空间基础。
+3. **[语句与注释](section-03-statements-comments.md)**：语句规则、分号使用、三种注释类型（单行、多行、PHPDoc）、PSR-12 代码风格。
+4. **[文件执行方式](section-04-execution.md)**：CLI 模式、Web 模式、执行环境差异。
+5. **[常见错误与解决方案](section-05-common-errors.md)**：语法错误、编码问题、严格类型错误、文件路径错误、命名空间错误。
+6. **[实践建议与示例](section-06-best-practices.md)**：IDE 配置、文件模板、代码片段、语法检查、完整示例、自检清单、练习。
 
-| 语法       | 形态                           | 参数说明                               | 示例                                 |
-| :--------- | :----------------------------- | :------------------------------------- | :----------------------------------- |
-| 严格类型   | `declare(strict_types=1);`     | 只能出现在文件顶部；`1` 为开启         | `declare(strict_types=1);`           |
-| 命名空间   | `namespace Vendor\Package;`    | 仅允许字母/数字/下划线，使用 `\` 分隔层级 | `namespace App\Http\Controllers;`    |
-| 引入命名空间 | `use Vendor\Package\ClassName;` | 可使用 `as` 起别名                      | `use App\Services\Mailer as AppMailer;` |
-| CLI 语法检查 | `php -l file.php`             | `-l` 表示 lint，仅检测语法不执行代码   | `php -l app/Hello.php`               |
+## 学习建议
 
-## 语句与注释
+1. 按顺序学习六个小节，每完成一节即编写 2-3 个小练习。
+2. 重点掌握文件结构规范（严格类型、编码、命名空间），这是后续所有代码的基础。
+3. 理解语句规则和注释用法，养成规范的代码风格。
+4. 熟悉常见错误，能够快速定位和解决问题。
 
-- **分号**：每条语句必须以 `;` 结束，控制结构（`if`、`for`）后跟代码块 `{}`。
-- **注释类型**：
-  - `//` 单行注释：描述简短说明。
-  - `/* ... */` 多行注释：临时注释掉一段代码时使用。
-  - `/** ... */` PHPDoc：为类、函数、属性提供结构化注释，供 IDE/静态分析使用。
-- **Whitespace**：PSR-12 要求 4 空格缩进，花括号独占一行。使用 EditorConfig 自动保证一致性。
+## 完成本章后
 
-## 实践建议
-
-1. 在 IDE 中启用“显示不可见字符”“保存时格式化”“删除行尾空格”。
-2. 使用模板：
-   ```php
-   <?php
-   declare(strict_types=1);
-
-   namespace Playground;
-
-   // TODO: 描述该文件用途
-   ```
-3. 在 CI 中执行 `php -l` 或 `composer run lint`，及时发现语法错误。
-4. 将常用片段（命名空间、strict types）设置为 IDE 代码片段（Snippet）。
-
-## 示例
-
-```php
-<?php
-declare(strict_types=1);
-
-namespace App\Http;
-
-/**
- * 基本示例
- */
-final class HelloWorld
-{
-    public function greet(string $name): string
-    {
-        return "Hello, {$name}";
-    }
-}
-```
-
-保持一致的语法结构有助于团队协作、代码评审与静态分析，减少低级错误。
-
-### 注释示例
-
-```php
-<?php
-declare(strict_types=1);
-
-namespace Playground;
-
-/**
- * 计算折扣价格
- *
- * @param float $price 原价
- * @param float $rate  折扣（0~1）
- */
-function applyDiscount(float $price, float $rate): float
-{
-    // 验证输入
-    if ($rate < 0 || $rate > 1) {
-        throw new InvalidArgumentException('Rate must be between 0 and 1');
-    }
-
-    return $price * (1 - $rate);
-}
-```
-
-## 练习
-
-1. 创建 `app/Hello.php`，包含严格类型、命名空间、类与方法，并输出问候语。
-2. 修改编码为 GBK 后再改回 UTF-8，观察 `git status` 中的差异，体会编码的重要性。
-3. 使用 `php -l` 校验多个文件，练习定位语法错误信息。
+- 能够创建并执行一个规范的 PHP 文件。
+- 理解 `<?php` 标签、UTF-8 编码、严格类型声明的作用。
+- 掌握语句分号的使用规则和三种注释类型。
+- 了解 PSR-12 代码风格要求，能够使用 EditorConfig 配置。
+- 能够使用 `php -l` 检查语法错误。
+- 理解 CLI 和 Web 执行环境的差异。
+- 能够识别并解决常见的语法错误。
