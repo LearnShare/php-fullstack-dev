@@ -5,8 +5,21 @@
 - 掌握函数定义、参数类型、默认值、可变参数与返回类型。
 - 理解作用域（局部、全局、静态）和闭包中的 `use` 语义。
 - 熟悉函数式工具（回调、可变参数、尾调用）与常用内置函数。
+- 理解可调用类型和命名参数的使用。
 
-## 函数定义
+## 章节内容
+
+本章分为四个独立小节，每节提供详细的概念解释、语法说明、参数列表和完整示例：
+
+1. **[函数基础](section-01-function-basics.md)**：函数定义、参数类型、默认值、可选参数、可空类型、联合类型、返回值类型、早返回、命名参数（PHP 8.0+）及完整示例。
+
+2. **[可变参数](section-02-variable-arguments.md)**：可变参数语法（`...` 运算符）、`func_get_args()`、`func_num_args()`、`func_get_arg()`、展开运算符的使用及完整示例。
+
+3. **[引用、箭头函数与闭包](section-03-references-closures.md)**：引用传参、箭头函数（PHP 7.4+）、闭包、变量捕获（按值、按引用）、闭包作为返回值/参数及完整示例。
+
+4. **[可调用类型与内置函数](section-04-callable-types.md)**：可调用类型的各种形式、`is_callable()`、`call_user_func()`、`call_user_func_array()`、内置函数工具及完整示例。
+
+## 函数定义示例
 
 ```php
 function greet(string $name, string $title = 'Mr.'): string
@@ -15,57 +28,6 @@ function greet(string $name, string $title = 'Mr.'): string
 }
 ```
 
-- 参数可声明类型；默认值必须在必填参数之后。
-- 返回类型使用 `: type` 指定，支持联合类型与 `void`。
-
-## 可变参数
-
-- 语法：`function sum(int ...$numbers): int`
-- `...$numbers` 会接收所有剩余参数，并以数组形式提供。
-
-```php
-function sum(int ...$nums): int
-{
-    return array_sum($nums);
-}
-```
-
-## 传值与传引用
-
-- 默认按值传递；使用 `&` 表示引用传参。
-
-```php
-function increment(int &$value): void
-{
-    $value++;
-}
-```
-
-- 引用传参适用于需要修改实参的场景，使用时需标注注释说明。
-
-## 箭头函数（PHP 7.4+）
-
-- 语法：`fn ($x) => $x + 1`
-- 自动继承父作用域变量（按值）。
-- 常用于回调、简洁的映射逻辑。
-
-```php
-$names = array_map(fn ($user) => $user['name'], $users);
-```
-
-## 闭包与 `use`
-
-- 使用匿名函数捕获外部变量。
-
-```php
-$factor = 10;
-$multiply = function (int $value) use ($factor): int {
-    return $value * $factor;
-};
-```
-
-- `use (&$var)` 以引用形式捕获，可在闭包内修改。
-
 ## 作用域
 
 - **局部作用域**：函数内部定义的变量外部不可见。
@@ -73,61 +35,38 @@ $multiply = function (int $value) use ($factor): int {
 - **静态变量**：函数内部的 `static $count = 0;`，在多次调用间持久化。
 - 使用 `global $var;` 或 `$GLOBALS['var']` 访问全局变量（应尽量避免）。
 
-## 内置函数
+## 学习建议
 
-| 函数           | 作用                              |
-| :------------- | :-------------------------------- |
-| `func_get_args` | 获取当前函数参数数组（传统写法） |
-| `call_user_func` | 调用可调用类型                  |
-| `call_user_func_array` | 以数组形式传参函数        |
-| `is_callable`  | 判断变量是否可调用               |
-| `array_map`、`array_filter` | 常见回调函数         |
+1. **按顺序学习**：按顺序学习四个小节，理解函数的各种特性和用法。
 
-## 函数的返回策略
+2. **重点掌握**：
+   - 函数参数和返回值的类型声明
+   - 可变参数的使用
+   - 引用传参的场景
+   - 箭头函数和闭包的区别
+   - 可调用类型的各种形式
 
-- **早返回**：尽早退出函数，提高可读性。
-  ```php
-  function handle(?User $user): void
-  {
-      if ($user === null) {
-          return;
-      }
-      // ...
-  }
-  ```
-- **尾调用**：函数最后一行直接返回另一个函数结果，减少临时变量。
+3. **实践练习**：
+   - 完成每小节后的练习题目
+   - 实现实际的函数功能
+   - 使用函数式编程风格处理数据
 
-## 可调用类型（`callable`）
+4. **理解原理**：
+   - 理解作用域和变量生命周期
+   - 理解闭包的变量捕获机制
+   - 理解可调用类型的实现原理
 
-- 函数名字符串：`'trim'`
-- 静态方法：`[ClassName::class, 'method']`
-- 对象方法：`[$object, 'method']`
-- 匿名函数：`function () {}`
-- 实现 `__invoke()` 的对象。
+## 完成本章后
 
-示例：
+- 能够定义和使用各种类型的函数。
+- 理解函数参数和返回值的类型声明。
+- 掌握可变参数和引用传参的使用。
+- 理解箭头函数和闭包的区别和使用场景。
+- 熟悉可调用类型的各种形式和使用方法。
+- 能够编写函数式风格的代码。
 
-```php
-function apply(callable $callback, array $items): array
-{
-    return array_map($callback, $items);
-}
-```
+## 相关章节
 
-## 命名参数（PHP 8）
-
-- 调用函数时指定参数名，提升可读性。
-
-```php
-sendEmail(
-    to: 'user@example.com',
-    subject: 'Welcome',
-    body: 'Hello!'
-);
-```
-
-## 练习
-
-1. 编写 `memoize(callable $fn): callable`，缓存纯函数的返回值。
-2. 使用 `callable` 实现一个通用的 `pipeline(array $stages): callable`，依次执行多个处理阶段。
-3. 改写已有函数，利用命名参数与默认值提升可读性。
+- **2.3 变量与常量**：了解变量的作用域。
+- **2.6 表达式与运算符**：了解函数中的表达式。
+- **2.11 匿名函数与闭包**：深入学习闭包的高级特性。

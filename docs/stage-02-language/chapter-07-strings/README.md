@@ -5,6 +5,15 @@
 - 掌握 PHP 字符串的创建、插值、转义与多字节处理。
 - 熟悉常用字符串函数及其语法、参数与返回值。
 - 能在处理 UTF-8、JSON、URL、模板时避免编码错误。
+- 理解字符串安全处理和转义的重要性。
+
+## 章节内容
+
+本章分为两个独立小节，每节提供详细的概念解释、语法说明、参数列表和完整示例：
+
+1. **[字符串创建方式](section-01-string-creation.md)**：单引号、双引号、Heredoc、Nowdoc 的语法、特点、变量插值、转义序列及选择建议。
+
+2. **[常用字符串函数](section-02-string-functions.md)**：长度计算（`strlen`、`mb_strlen`）、查找定位（`strpos`、`mb_strpos`）、截取（`substr`、`mb_substr`）、替换（`str_replace`）、去除空白（`trim`）、大小写转换、分割拼接、格式化等函数的详细用法。
 
 ## 字符串创建方式
 
@@ -15,101 +24,51 @@
 | Heredoc  | `<<<TEXT ... TEXT;`         | 类似双引号，可插值          |
 | Nowdoc   | `<<<'TEXT' ... TEXT;`       | 类似单引号，不解析变量      |
 
-示例：
+## 多字节字符串处理
 
-```php
-$name = "PHP";
-echo "Hello, {$name}\n";
-```
+处理 UTF-8 等多字节字符时，必须使用 `mb_*` 系列函数：
 
-## 转义与安全
+- `mb_internal_encoding('UTF-8')`：设置内部编码
+- `mb_strlen($str)`：字符长度
+- `mb_substr($str, $start, $length)`：截取子串
+- `mb_strpos($haystack, $needle)`：查找位置
 
-- `addslashes()`：添加反斜线（避免 SQL 注入需使用 PDO 预处理替代）。
-- `htmlspecialchars($str, ENT_QUOTES, 'UTF-8')`：输出 HTML 前进行转义。
-- `preg_quote($pattern)`：在正则表达式中转义特殊字符。
+## 字符串安全
 
-## 多字节字符串
+- **HTML 转义**：`htmlspecialchars($str, ENT_QUOTES, 'UTF-8')`
+- **SQL 注入防护**：使用 PDO 预处理语句，不要使用 `addslashes()`
+- **正则转义**：`preg_quote($pattern)`
 
-- 启用 `mbstring` 扩展，设置默认编码：`mb_internal_encoding('UTF-8');`
-- 常用函数：
-  - `mb_strlen($str)`：字符长度。
-  - `mb_substr($str, $start, $length)`：截取子串。
-  - `mb_strpos($haystack, $needle)`：查找位置。
+## 学习建议
 
-示例：
+1. **按顺序学习**：先理解字符串创建方式，再学习字符串函数。
 
-```php
-mb_internal_encoding('UTF-8');
-$title = '全栈实战';
-echo mb_substr($title, 0, 2); // 全栈
-```
+2. **重点掌握**：
+   - 单引号和双引号的区别
+   - 变量插值的正确使用
+   - 多字节字符串处理
+   - 常用字符串函数的参数和返回值
 
-## 常用字符串函数
+3. **实践练习**：
+   - 完成每小节后的练习题目
+   - 实现实际的字符串处理功能
+   - 处理多语言文本
 
-| 函数        | 语法                                                       | 说明                            |
-| :---------- | :--------------------------------------------------------- | :------------------------------ |
-| `strlen`    | `strlen(string $string): int`                              | 返回字节长度（非字符数）        |
-| `trim`      | `trim(string $string, string $characters = " \n\r\t\v\0"): string` | 去掉首尾空白或指定字符 |
-| `strpos`    | `strpos(string $haystack, string $needle, int $offset = 0): int|false` | 查找子串起始位置 |
-| `str_replace` | `str_replace(mixed $search, mixed $replace, mixed $subject, int &$count = null): mixed` | 字符串替换 |
-| `substr`    | `substr(string $string, int $offset, ?int $length = null): string` | 截取子串       |
-| `sprintf`   | `sprintf(string $format, mixed ...$values): string`        | 格式化输出字符串               |
-| `number_format` | `number_format(float $number, int $decimals = 0, string $decimal_separator = ".", string $thousands_separator = ","): string` | 金额格式 |
+4. **注意安全**：
+   - 始终对用户输入进行转义
+   - 使用正确的编码处理多字节字符
+   - 避免 SQL 注入和 XSS 攻击
 
-## 模板与输出缓冲
+## 完成本章后
 
-- 利用 `ob_start()` 与 `ob_get_clean()` 可捕获模板输出至字符串。
+- 能够正确使用四种字符串创建方式。
+- 掌握常用字符串函数的语法和用法。
+- 能够正确处理 UTF-8 多字节字符。
+- 理解字符串安全处理的重要性。
+- 能够实现常见的字符串处理功能。
 
-```php
-ob_start();
-include __DIR__ . '/templates/email.php';
-$html = ob_get_clean();
-```
+## 相关章节
 
-## 分割与拼接
-
-- `explode(',', 'a,b,c')` → `['a', 'b', 'c']`
-- `implode('-', ['2025', '11', '28'])` → `'2025-11-28'`
-
-## JSON 与 URL 编码
-
-- `json_encode($data, JSON_UNESCAPED_UNICODE)` 防止中文被转义。
-- `urlencode($str)` 与 `urldecode($str)` 处理查询字符串。
-- `http_build_query($params)` 快速构建 URL。
-
-## 正则表达式
-
-- `preg_match($pattern, $subject)`：匹配一次。
-- `preg_replace($pattern, $replacement, $subject)`：替换。
-- `preg_split($pattern, $subject)`：按正则分割。
-
-示例：
-
-```php
-$email = 'user@example.com';
-if (!preg_match('/^[\w\-.]+@[\w\-]+\.[A-Za-z]{2,}$/', $email)) {
-    throw new InvalidArgumentException('Invalid email');
-}
-```
-
-## 字符串比较
-
-- `strcmp($a, $b)`：区分大小写。
-- `strcasecmp($a, $b)`：忽略大小写。
-- `strncasecmp($a, $b, $len)`：比较前 `len` 个字符。
-- `similar_text($a, $b, &$percent)`：计算相似度。
-
-## 国际化与本地化
-
-- 利用 `intl` 扩展：`Collator`、`NumberFormatter`、`IntlDateFormatter`。
-- 示例：按中文规则排序
-  ```php
-  $collator = new Collator('zh_CN');
-  $collator->sort($names);
-  ```
-
-## 练习
-
-1. 编写 `slugify(string $title): string`，将任意 UTF-8 标题转换为 URL 友好的 slug。
-2. 实现一个模板渲染函数：传入路径与变量数组，返回渲染后的字符串，并确保输出安全。
-3. 编写脚本统计文本中出现频率最高的 10 个词，忽略大小写与标点。
+- **2.4 数据类型**：了解字符串类型的基本特性。
+- **2.6 表达式与运算符**：了解字符串连接运算符。
+- **2.8 数组**：了解字符串与数组的转换。

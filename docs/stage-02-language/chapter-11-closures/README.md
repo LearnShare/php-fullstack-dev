@@ -5,6 +5,15 @@
 - 理解匿名函数、闭包、箭头函数的核心概念。
 - 熟悉 `use` 关键字捕获变量、按值/按引用捕获的差异。
 - 掌握闭包在回调、事件、依赖注入中的实战用法。
+- 理解 PHP 闭包与 JavaScript 闭包的差异。
+
+## 章节内容
+
+本章分为两个独立小节，每节提供详细的概念解释、语法说明、参数列表和完整示例：
+
+1. **[匿名函数基础](section-01-anonymous-functions.md)**：匿名函数的语法、定义、调用、在数组函数中使用、类型声明、立即执行函数（IIFE）及完整示例。
+
+2. **[闭包与作用域](section-02-closures-scope.md)**：`use` 关键字、按值捕获、按引用捕获、闭包工厂、闭包与类、`Closure::bindTo()`、变量生命周期及完整示例。
 
 ## 匿名函数基础
 
@@ -15,158 +24,22 @@ $logger = function (string $message): void {
 $logger('Service started');
 ```
 
-- 函数无名称，赋值给变量或传入其他函数。
-- 可声明参数类型与返回类型。
+## use 捕获变量
 
-## `use` 捕获变量
+- **默认按值捕获**：`use ($variable)`，闭包内修改不会影响外部变量。
+- **按引用捕获**：`use (&$variable)`，闭包内修改会影响外部变量。
 
-- 默认按值捕获：
-
-```php
-$prefix = '[INFO]';
-$log = function (string $text) use ($prefix): void {
-    echo "{$prefix} {$text}\n";
-};
-```
-
-- 按引用捕获：`use (&$prefix)`，闭包内修改会影响外部。
-
-## 箭头函数
+## 箭头函数（PHP 7.4+）
 
 - 语法：`fn ($arg) => expression`
 - 自动按值捕获父作用域变量。
-
-```php
-$multiply = fn (int $n) => $n * $factor;
-```
+- 只能包含表达式，不能包含语句。
 
 ## 与 JavaScript 对比
 
 如果你熟悉 JavaScript，理解 PHP 闭包的关键差异：
 
-### 语法对比
-
-**JavaScript**：
-```javascript
-// 箭头函数（自动捕获外部变量）
-const factor = 10;
-const multiply = (n) => n * factor;
-
-// 普通函数（需要手动捕获）
-const multiply2 = function(n) {
-    return n * factor;  // 自动捕获外部变量
-};
-```
-
-**PHP**：
-```php
-// 箭头函数（PHP 7.4+，自动按值捕获）
-$factor = 10;
-$multiply = fn(int $n) => $n * $factor;
-
-// 匿名函数（需要 use 关键字）
-$multiply2 = function(int $n) use ($factor): int {
-    return $n * $factor;  // 必须使用 use 捕获
-};
-```
-
-### 变量捕获对比
-
-| 特性 | JavaScript | PHP |
-| :--- | :--------- | :-- |
-| 箭头函数捕获 | 自动捕获外部变量 | 自动按值捕获（PHP 7.4+） |
-| 普通函数捕获 | 自动捕获外部变量 | 必须使用 `use` 关键字 |
-| 按引用捕获 | 默认按引用 | 使用 `use (&$var)` |
-| 修改外部变量 | 可以修改（非 const） | 按值捕获不能修改，按引用可以 |
-
-**示例对比**：
-
-```javascript
-// JavaScript：箭头函数自动捕获
-let count = 0;
-const increment = () => {
-    count++;  // 可以修改外部变量
-    return count;
-};
-increment();  // count 变为 1
-```
-
-```php
-// PHP：箭头函数按值捕获，不能修改外部变量
-$count = 0;
-$increment = fn() => ++$count;  // 错误：不能修改外部变量
-
-// 需要使用匿名函数 + use(&$count)
-$increment = function() use (&$count): int {
-    $count++;  // 按引用捕获，可以修改
-    return $count;
-};
-$increment();  // $count 变为 1
-```
-
-### 闭包作用域对比
-
-**JavaScript**：
-```javascript
-// 闭包可以访问外部作用域的变量
-function createCounter() {
-    let count = 0;
-    return () => {
-        count++;
-        return count;
-    };
-}
-
-const counter = createCounter();
-counter();  // 1
-counter();  // 2
-```
-
-**PHP**：
-```php
-// PHP 闭包需要显式使用 use 捕获
-function createCounter(): Closure {
-    $count = 0;
-    return function() use (&$count): int {
-        $count++;
-        return $count;
-    };
-}
-
-$counter = createCounter();
-$counter();  // 1
-$counter();  // 2
-```
-
-### 回调函数对比
-
-**JavaScript**：
-```javascript
-// 数组方法
-const numbers = [1, 2, 3];
-const doubled = numbers.map(x => x * 2);
-const evens = numbers.filter(x => x % 2 === 0);
-
-// 事件监听
-button.addEventListener('click', () => {
-    console.log('clicked');
-});
-```
-
-**PHP**：
-```php
-// 数组函数（需要将数组作为参数）
-$numbers = [1, 2, 3];
-$doubled = array_map(fn($x) => $x * 2, $numbers);
-$evens = array_filter($numbers, fn($x) => $x % 2 === 0);
-
-// 事件系统（框架中常见）
-$dispatcher->listen('user.created', function($user) {
-    echo "User created: {$user->name}\n";
-});
-```
-
-### 关键差异总结
+### 关键差异
 
 1. **变量捕获**：
    - JavaScript：闭包自动捕获外部变量
@@ -180,71 +53,37 @@ $dispatcher->listen('user.created', function($user) {
    - JavaScript：`(arg) => expression` 或 `function() { ... }`
    - PHP：`fn($arg) => expression` 或 `function() use ($var) { ... }`
 
-4. **this 绑定**：
-   - JavaScript：箭头函数不绑定 `this`，普通函数绑定 `this`
-   - PHP：闭包可以使用 `$this`（在类中），但需要 `use ($this)`
+## 学习建议
 
-## 闭包与面向对象
+1. **按顺序学习**：先理解匿名函数，再学习闭包和作用域。
 
-- PHP 提供 `Closure` 类，可使用以下方法：
-  - `Closure::bindTo($object, ?string $class = null)`
-  - `Closure::fromCallable(callable $callable)`
+2. **重点掌握**：
+   - 匿名函数的定义和调用
+   - `use` 关键字的用法
+   - 按值和按引用捕获的区别
+   - 闭包工厂模式
 
-示例：
+3. **实践练习**：
+   - 完成每小节后的练习题目
+   - 实现实际的闭包应用场景
+   - 比较 PHP 和 JavaScript 的闭包差异
 
-```php
-$closure = function (): string {
-    return $this->secret;
-};
-$bound = $closure->bindTo($object, $object);
-echo $bound();
-```
+4. **理解原理**：
+   - 理解变量捕获的机制
+   - 理解闭包如何延长变量生命周期
+   - 理解闭包在函数式编程中的作用
 
-## 高阶函数应用
+## 完成本章后
 
-1. **回调**：`array_map`, `array_filter`, `usort`.
-2. **事件监听**：将闭包注册到事件总线。
-3. **依赖注入（DI）**：在容器中延迟构建服务。
+- 能够定义和使用匿名函数。
+- 理解闭包的概念和作用域机制。
+- 掌握 `use` 关键字的用法和区别。
+- 能够创建闭包工厂函数。
+- 理解 PHP 闭包与 JavaScript 闭包的差异。
+- 能够在实际项目中使用闭包解决实际问题。
 
-```php
-class Container
-{
-    private array $bindings = [];
+## 相关章节
 
-    public function bind(string $id, callable $factory): void
-    {
-        $this->bindings[$id] = $factory;
-    }
-
-    public function make(string $id): mixed
-    {
-        return ($this->bindings[$id])($this);
-    }
-}
-```
-
-## 使用 Generator 与闭包
-
-- 闭包可返回 `Generator`，用于惰性计算：
-
-```php
-function chunk(array $items, int $size): Generator
-{
-    $total = count($items);
-    for ($i = 0; $i < $total; $i += $size) {
-        yield array_slice($items, $i, $size);
-    }
-}
-```
-
-## 常见陷阱
-
-- 引用捕获后忘记 `unset`，导致变量引用保留。
-- 闭包序列化：默认不可序列化，若需持久化可使用 `opis/closure`。
-- 过度嵌套闭包会降低可读性，必要时提取为私有方法。
-
-## 练习
-
-1. 编写 `once(callable $fn): callable`，使得函数只执行一次并缓存结果。
-2. 使用闭包实现一个简单的任务队列，每个任务可访问共享配置。
-3. 尝试使用 `Closure::bind` 访问对象的私有属性，并讨论其风险。
+- **2.10 函数与作用域**：了解函数的基础知识。
+- **2.4 数据类型**：了解可调用类型。
+- **2.8 数组**：了解闭包在数组函数中的应用。

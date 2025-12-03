@@ -6,6 +6,14 @@
 - 掌握自动化工具（PHP CS Fixer、PHP_CodeSniffer、PHPStan/Psalm）的使用。
 - 建立统一的代码审查与文档约定。
 
+## 章节内容
+
+本章分为两个独立小节，每节提供详细的概念解释、语法说明、参数列表和完整示例：
+
+1. **[PSR 标准](section-01-psr-standards.md)**：PSR-1 基本编码标准、PSR-4 自动加载标准、PSR-12 编码风格扩展、命名规范及完整示例。
+
+2. **[PHPDoc](section-02-phpdoc.md)**：PHPDoc 基本语法、常用标签（`@param`、`@return`、`@throws`、`@var`、`@deprecated`）、类和方法文档、完整示例。
+
 ## 命名与结构
 
 - **命名空间**：遵循 PSR-4，目录结构与命名空间一致。
@@ -14,82 +22,28 @@
 - **常量**：`UPPER_SNAKE_CASE`。
 - **文件**：单一职责，一个文件一个类。
 
-## PSR 标准速览
+## 学习建议
 
-- **PSR-1**：基本编码规范
-  - 文件使用 UTF-8 无 BOM。
-  - 声明命名空间、类时遵循单一职责。
-- **PSR-4**：自动加载标准。
-- **PSR-12**：编码风格扩展，包含缩进、换行、`use` 排序等。
-- **PSR-3**：日志接口。
-- **PSR-7/15/17**：HTTP 消息与中间件规范。
+1. **按顺序学习**：先理解 PSR 标准，再学习 PHPDoc。
 
-## PHPDoc
+2. **重点掌握**：
+   - PSR-1、PSR-4、PSR-12 的基本要求
+   - PHPDoc 的常用标签
+   - 代码格式化工具的使用
 
-- 注释示例：
+3. **实践练习**：
+   - 完成每小节后的练习题目
+   - 配置代码检查工具
+   - 为现有代码添加文档
 
-```php
-/**
- * @param string $email
- * @param UserRepository $repository
- * @return User|null
- */
-function findUser(string $email, UserRepository $repository): ?User
-{
-    // ...
-}
-```
+## 完成本章后
 
-- 常用标签：`@param`、`@return`、`@throws`、`@deprecated`、`@see`。
-- 通过 PHPStorm、VS Code 插件自动生成。
+- 能够遵循 PSR 编码标准。
+- 能够编写规范的 PHPDoc 注释。
+- 能够使用代码检查工具。
+- 能够在团队中建立统一的编码规范。
 
-## 静态分析
+## 相关章节
 
-- **PHPStan** / **Psalm**：检查类型错误。
-  ```bash
-  vendor/bin/phpstan analyse src --level=7
-  ```
-- **Rector**：自动升级/重构。
-- **Phan**：另一个静态分析器。
-
-## 代码格式化
-
-- **PHP CS Fixer**、**PHP_CodeSniffer**：
-  ```bash
-  vendor/bin/php-cs-fixer fix
-  vendor/bin/phpcs --standard=PSR12 src
-  ```
-- 建议在 CI 中执行，并配置 pre-commit 钩子。
-
-## Commit 与审查
-
-- 使用 Conventional Commits：
-  - `feat(controller): add user signup`
-  - `fix(auth): handle token expiry`
-- Code Review 关注点：
-  1. 功能是否符合需求。
-  2. 代码是否遵循规范。
-  3. 安全、性能、可维护性。
-
-## 文档与注释
-
-- README 说明项目目标、环境搭建、运行方式。
-- `docs/` 中存放架构说明、API 手册、学习笔记。
-- 复杂函数前添加说明性注释，解释算法或业务规则。
-
-## 自动化检查流程
-
-```
-composer validate
-composer run lint
-composer run stan
-composer run test
-```
-
-- 在 CI（GitHub Actions、GitLab CI）中串联以上步骤，阻止不合规代码进入主分支。
-
-## 练习
-
-1. 配置 `phpcs.xml` 与 `.php_cs.dist`，让团队本地/CI 使用相同规则。
-2. 为现有项目添加 PHPStan，设定 Level 5，逐步提升到 Level 8。
-3. 制定代码审查清单，包含命名、错误处理、测试覆盖率等检查项。
+- **2.13 文件引入与模块化**：了解 PSR-4 自动加载。
+- **阶段三：面向对象、架构与设计模式**：深入学习代码组织。

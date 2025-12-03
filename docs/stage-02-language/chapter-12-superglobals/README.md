@@ -5,92 +5,76 @@
 - 熟悉 PHP 内置的超级全局变量及其生命周期。
 - 能安全地从 `$_GET`、`$_POST`、`$_COOKIE`、`$_FILES`、`$_SERVER` 等读取数据。
 - 掌握表单上传、Session、请求信息与安全过滤策略。
+- 理解 Web 安全的基本原则。
 
-## 列表总览
+## 章节内容
+
+本章分为三个独立小节，每节提供详细的概念解释、语法说明、参数列表和完整示例：
+
+1. **[$_GET、$_POST 与 $_REQUEST](section-01-get-post-request.md)**：`$_GET` 和 `$_POST` 的用法、安全读取、`filter_input()` 函数、常用过滤器、`$_REQUEST` 的不推荐使用及完整示例。
+
+2. **[$_SERVER、$_SESSION 与 $_COOKIE](section-02-server-session-cookie.md)**：`$_SERVER` 常用键、Session 管理、Cookie 设置和读取、安全配置及完整示例。
+
+3. **[$_FILES 与安全处理](section-03-files-security.md)**：`$_FILES` 结构、上传错误代码、文件验证（类型、大小、扩展名）、`move_uploaded_file()`、安全建议及完整示例。
+
+## 超级全局变量列表
 
 | 变量        | 说明                               |
 | :---------- | :--------------------------------- |
 | `$_GET`     | 查询字符串参数                     |
-| `$_POST`    | 表单提交（`application/x-www-form-urlencoded` 或 `multipart/form-data`） |
+| `$_POST`    | 表单提交数据                       |
 | `$_REQUEST` | `$_GET + $_POST + $_COOKIE`（不建议使用） |
 | `$_SERVER`  | 请求元数据（方法、URI、Header）    |
 | `$_COOKIE`  | 浏览器 Cookie                      |
 | `$_SESSION` | Session 数据                       |
 | `$_FILES`   | 上传文件信息                       |
 | `$_ENV`     | 环境变量                           |
-| `GLOBALS`   | 所有全局变量的数组                 |
-
-## `$_GET` 与 `$_POST`
-
-- 使用 `filter_input(INPUT_GET, 'key')` 安全读取。
-- 对数字参数使用 `FILTER_VALIDATE_INT`。
-- 对字符串参数 `FILTER_SANITIZE_SPECIAL_CHARS`。
-
-```php
-$page = filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT) ?? 1;
-$token = filter_input(INPUT_POST, 'csrf_token', FILTER_DEFAULT);
-```
-
-## `$_SERVER`
-
-常用键：
-
-| 键名              | 说明               |
-| :---------------- | :----------------- |
-| `REQUEST_METHOD`  | HTTP 方法          |
-| `REQUEST_URI`     | 路径与查询字符串   |
-| `HTTP_HOST`       | host 头            |
-| `HTTP_USER_AGENT` | 客户端 UA          |
-| `REMOTE_ADDR`     | 客户端 IP          |
-
-示例：
-
-```php
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    exit('Method Not Allowed');
-}
-```
-
-## `$_COOKIE` 与 `$_SESSION`
-
-- 设置 Cookie：`setcookie('name', 'value', $expire, '/', '', true, true);`
-- Session：
-  ```php
-  session_start();
-  $_SESSION['user_id'] = 1;
-  session_regenerate_id(true);
-  ```
-- 避免将敏感数据放在 Cookie；Session 可存于 Redis/Memcached。
-
-## `$_FILES`
-
-- 结构示例：
-  ```php
-  $_FILES['avatar'] = [
-      'name' => 'me.png',
-      'type' => 'image/png',
-      'tmp_name' => '/tmp/php123.tmp',
-      'error' => 0,
-      'size' => 123456,
-  ];
-  ```
-- 检查：
-  - `UPLOAD_ERR_OK` 等错误码。
-  - MIME 类型：`finfo_file()` 或 `mime_content_type()`.
-  - 大小：`$_FILES['avatar']['size']`。
-  - 使用 `move_uploaded_file()` 移动到安全目录。
+| `$GLOBALS`  | 所有全局变量的数组                 |
 
 ## 安全建议
 
 1. **不要信任客户端数据**：所有输入都需过滤/验证。
-2. **CSRF 防护**：表单中包含 token，并验证 `$_POST['csrf_token']`。
-3. **XSS 预防**：输出前使用 `htmlspecialchars`。
-4. **SQL 注入**：使用 PDO 预处理，不直接拼接 `$_GET`/`$_POST` 值。
-5. **上传文件**：限制文件类型、大小、存储路径，避免可执行权限。
 
-## 练习
+2. **使用 filter_input()**：优先使用 `filter_input()` 而不是直接访问超级全局变量。
 
-1. 编写 `request(string $key, mixed $default = null)` 助手函数，从 `$_GET` 或 `$_POST` 读取数据并自动过滤。
-2. 实现一个上传接口，验证文件大小、MIME 类型，并生成随机文件名保存。
-3. 使用 Session 构建一个简易的闪存消息（Flash Message）系统：`flash('key', 'value')` 设置，`flash('key')` 读取后删除。
+3. **CSRF 防护**：表单中包含 token，并验证 `$_POST['csrf_token']`。
+
+4. **XSS 预防**：输出前使用 `htmlspecialchars()`。
+
+5. **SQL 注入**：使用 PDO 预处理，不直接拼接用户输入。
+
+6. **文件上传**：限制文件类型、大小、存储路径，避免可执行权限。
+
+## 学习建议
+
+1. **按顺序学习**：按顺序学习三个小节，理解各种超级全局变量的用法。
+
+2. **重点掌握**：
+   - 安全读取用户输入的方法
+   - Session 和 Cookie 的管理
+   - 文件上传的验证和处理
+   - Web 安全的基本原则
+
+3. **实践练习**：
+   - 完成每小节后的练习题目
+   - 实现实际的安全处理功能
+   - 处理表单提交和文件上传
+
+4. **理解原理**：
+   - 理解 HTTP 请求和响应的机制
+   - 理解 Session 和 Cookie 的工作原理
+   - 理解常见的安全漏洞和防护方法
+
+## 完成本章后
+
+- 能够安全地读取和处理用户输入。
+- 掌握 Session 和 Cookie 的管理方法。
+- 能够正确处理文件上传。
+- 理解 Web 安全的基本原则。
+- 能够在实际项目中实现安全的 Web 应用。
+
+## 相关章节
+
+- **2.3 变量与常量**：了解变量的基本概念。
+- **2.10 函数与作用域**：了解函数的作用域。
+- **阶段四：Web 服务与 API-First 开发**：深入学习 Web 开发。

@@ -4,119 +4,68 @@
 
 - 熟悉条件分支、循环、跳转语句在 PHP 中的使用方式。
 - 能根据业务需求选择合适的控制结构（`if`、`match`、`switch`、循环）。
-- 了解组合语句（`break` 多层、`goto`）及其使用谨慎点。
+- 了解跳转语句（`break`、`continue`、`goto`）及其使用谨慎点。
+- 理解异常处理与控制流的配合使用。
 
-## 条件语句
+## 章节内容
 
-### `if / elseif / else`
+本章分为三个独立小节，每节提供详细的概念解释、语法说明、参数列表和完整示例：
 
-```php
-if ($score >= 90) {
-    $grade = 'A';
-} elseif ($score >= 80) {
-    $grade = 'B';
-} else {
-    $grade = 'C';
-}
-```
+1. **[条件语句](section-01-conditional-statements.md)**：`if/elseif/else`、`switch`、`match` 表达式的语法、用法、比较方式、使用场景及完整示例。
 
-### `switch`
+2. **[循环结构](section-02-loops.md)**：`while`、`do-while`、`for`、`foreach` 循环的语法、用法、适用场景、嵌套循环及完整示例。
 
-- 用于多分支匹配，比较使用宽松模式。
-- `break` 防止贯穿。
+3. **[跳转语句](section-03-jump-statements.md)**：`break`、`continue`、`goto` 的语法、用法、跳出多层循环、使用限制及注意事项。
 
-```php
-switch ($status) {
-    case 'pending':
-        $label = '待处理';
-        break;
-    case 'done':
-        $label = '完成';
-        break;
-    default:
-        $label = '未知';
-}
-```
+## 条件语句对比
 
-### `match`（PHP 8）
+| 特性       | `if/else`              | `switch`               | `match`                |
+| :--------- | :--------------------- | :--------------------- | :--------------------- |
+| 比较方式   | 按顺序检查             | 宽松比较（`==`）       | 严格比较（`===`）      |
+| 返回值     | 不能直接返回值         | 不能直接返回值         | 可以返回值             |
+| break      | 不需要                 | 需要（防止贯穿）       | 不需要                 |
+| 适用场景   | 复杂条件、简单判断     | 多个固定值匹配         | 多个固定值匹配、需返回值 |
+| 性能       | 按顺序检查，可能较慢   | 可能使用跳转表优化     | 与 switch 相近         |
 
-- 使用严格比较，返回值。
+## 循环结构对比
 
-```php
-$label = match ($status) {
-    'pending' => '待处理',
-    'done' => '完成',
-    default => '未知',
-};
-```
+| 循环类型   | 适用场景                     | 特点                 |
+| :--------- | :--------------------------- | :------------------- |
+| `while`    | 条件未知的循环               | 先检查条件           |
+| `do-while` | 至少执行一次的循环           | 先执行后检查         |
+| `for`      | 已知次数的循环               | 适合计数循环         |
+| `foreach`  | 遍历数组或可迭代对象         | 最高效的数组遍历方式 |
 
-## 循环结构
+## 学习建议
 
-### `while` 与 `do ... while`
+1. **按顺序学习**：按顺序学习三个小节，理解各种控制结构的使用场景。
 
-```php
-while (($line = fgets($handle)) !== false) {
-    // 处理
-}
+2. **重点掌握**：
+   - 条件语句的选择（何时使用 `if`、`switch`、`match`）
+   - 循环结构的选择（何时使用 `while`、`for`、`foreach`）
+   - `break` 和 `continue` 的正确使用
+   - `goto` 的使用限制和替代方案
 
-do {
-    $choice = trim(fgets(STDIN));
-} while (!in_array($choice, ['y', 'n'], true));
-```
+3. **实践练习**：
+   - 完成每小节后的练习题目
+   - 实现实际的控制流逻辑
+   - 重构现有代码，使用更合适的控制结构
 
-### `for`
+4. **理解原理**：
+   - 理解不同控制结构的执行流程
+   - 理解 `break` 和 `continue` 的作用范围
+   - 理解 `goto` 的限制和影响
 
-- 适合已知次数的迭代。
+## 完成本章后
 
-```php
-for ($i = 0; $i < count($items); $i++) {
-    echo $items[$i];
-}
-```
+- 能够根据场景选择合适的条件语句。
+- 掌握各种循环结构的使用方法。
+- 理解 `break` 和 `continue` 的作用和层级。
+- 了解 `goto` 的使用限制，能够避免使用或正确使用。
+- 能够编写清晰、高效的控制流代码。
 
-### `foreach`
+## 相关章节
 
-- 遍历数组或实现 `Traversable` 接口的对象。
-
-```php
-foreach ($users as $id => $user) {
-    echo "{$id}: {$user['name']}";
-}
-```
-
-### `break` 与 `continue`
-
-- `break` 跳出循环；`break 2` 可跳出两层。
-- `continue` 跳过当前迭代；`continue 2` 跳过外层循环的当前迭代。
-
-## `goto`（谨慎使用）
-
-- 语法：`goto label; ... label:`
-- 易导致代码结构混乱，仅在异常流程或生成器中偶尔使用。
-
-## `declare`
-
-- `declare(strict_types=1);`：启用严格类型。
-- `declare(ticks=1);`：注册 tick 处理器。
-- `declare(encoding='UTF-8');`（已废弃）。
-
-## `try/catch/finally`
-
-- 虽属于异常处理，但常与控制流搭配。
-
-```php
-try {
-    $result = $service->handle($payload);
-} catch (Throwable $e) {
-    logger()->error('handle.failed', ['error' => $e->getMessage()]);
-    throw $e;
-} finally {
-    // 清理资源
-}
-```
-
-## 练习
-
-1. 使用 `match` 重构多层 `if/else`，实现订单状态到标签、颜色的映射。
-2. 编写 `retry(callable $operation, int $times)` 函数，使用循环与 `try/catch` 实现重试机制。
-3. 使用 `foreach` 和 `break 2` 统计二维数组中某个值首次出现的位置。
+- **2.6 表达式与运算符**：了解条件表达式的构建。
+- **2.8 数组**：了解 `foreach` 循环的详细用法。
+- **2.17 错误与异常处理**：了解异常处理与控制流的配合。

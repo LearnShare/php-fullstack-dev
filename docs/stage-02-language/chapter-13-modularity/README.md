@@ -6,6 +6,14 @@
 - 掌握基于 Composer autoload 的现代模块化方式。
 - 学会组织项目结构、拆分配置、模板、业务逻辑文件。
 
+## 章节内容
+
+本章分为两个独立小节，每节提供详细的概念解释、语法说明、参数列表和完整示例：
+
+1. **[include 与 require](section-01-include-require.md)**：`include`、`require`、`include_once`、`require_once` 的区别、使用场景、路径处理、返回值及完整示例。
+
+2. **[Composer Autoload](section-02-composer-autoload.md)**：Composer 基础、PSR-4 自动加载、类映射、文件自动加载、优化选项及完整示例。
+
 ## include / require
 
 | 关键字      | 失败时行为         |
@@ -15,91 +23,31 @@
 | `include_once` | 仅在第一次包含文件时执行，避免重复定义 |
 | `require_once` | 同上，但致命错误行为不变 |
 
-示例：
+> **建议**：对关键依赖使用 `require_once`，模板或可选模块用 `include`。
 
-```php
-require_once __DIR__ . '/vendor/autoload.php';
-include __DIR__ . '/views/header.php';
-```
+## 学习建议
 
-> **建议**：对关键依赖使用 `require_once`，模板或可选模块用 `include`.
+1. **按顺序学习**：先理解 `include`/`require`，再学习 Composer autoload。
 
-## 动态路径
+2. **重点掌握**：
+   - `include` 和 `require` 的区别
+   - 路径处理的最佳实践
+   - PSR-4 自动加载的配置和使用
+   - Composer autoload 的优化
 
-- 使用 `__DIR__` 组合路径，避免依赖当前工作目录 (`getcwd()`).
-- 利用 `dirname(__DIR__)` 向上寻找根目录。
+3. **实践练习**：
+   - 完成每小节后的练习题目
+   - 配置一个使用 Composer autoload 的项目
+   - 组织代码结构
 
-```php
-$config = require __DIR__ . '/../config/app.php';
-```
+## 完成本章后
 
-## Composer Autoload
+- 能够正确使用 `include` 和 `require`。
+- 理解路径处理的最佳实践。
+- 掌握 Composer autoload 的配置和使用。
+- 能够组织模块化的项目结构。
 
-- 在 `composer.json` 中配置 `autoload`：
-  ```json
-  {
-    "autoload": {
-      "psr-4": {
-        "App\\": "src/"
-      }
-    }
-  }
-  ```
-- 运行 `composer dump-autoload` 生成 `vendor/autoload.php`。
-- 项目入口引入：`require __DIR__ . '/../vendor/autoload.php';`
+## 相关章节
 
-## 组织结构建议
-
-```
-project/
-├── public/          # Web 根目录
-├── src/             # 业务代码
-│   ├── Domain/
-│   ├── Application/
-│   └── Infrastructure/
-├── config/
-├── resources/views/
-├── tests/
-└── vendor/
-```
-
-## 配置文件拆分
-
-- 使用 `config/*.php` 返回数组：
-
-```php
-return [
-    'name' => env('APP_NAME', 'Learning Path'),
-    'debug' => env('APP_DEBUG', false),
-];
-```
-
-- 通过 `array_merge` 或自定义 `config()` 助手加载。
-
-## 模板与组件
-
-- 纯 PHP 模板：`include` 头尾文件，传入数据数组。
-- Blade/Twig 等模板引擎：根据需要引入依赖。
-- 建议在模板中仅做展示逻辑，将业务逻辑放在控制器/服务中。
-
-## 环境配置
-
-- `.env` 文件存储敏感配置，与 `vlucas/phpdotenv` 配合使用。
-- 示例：
-  ```php
-  Dotenv\Dotenv::createImmutable(__DIR__)->load();
-  $dbHost = $_ENV['DB_HOST'] ?? 'localhost';
-  ```
-
-## 模块化最佳实践
-
-1. **单一职责**：每个文件只关注一类功能（配置、路由、控制器等）。
-2. **命名空间**：文件路径与命名空间保持一致，便于 autoload。
-3. **依赖注入**：通过构造函数或容器传递依赖，避免 `require` 深层嵌套。
-4. **PSR 标准**：遵循 PSR-4 Autoload、PSR-12 代码风格。
-
-## 练习
-
-1. 以 `src/Services`、`src/Repositories`、`src/Http` 组织代码，配置对应的 PSR-4 自动加载，并验证 `composer dump-autoload` 后类可被自动加载。
-2. 编写一个 `config()` 助手，支持延迟加载配置文件并缓存结果。
-3. 将旧项目中的 `require` 链重构为 Composer autoload + 命名空间结构，确保功能一致。
+- **2.10 函数与作用域**：了解函数的作用域。
+- **阶段三：面向对象、架构与设计模式**：深入学习命名空间和自动加载。

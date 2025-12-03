@@ -1,4 +1,4 @@
-# 2.16 isset / empty / Null 体系
+# 2.16 isset、empty 与 Null 合并运算
 
 ## 目标
 
@@ -6,65 +6,18 @@
 - 熟悉 `isset`、`empty`、`is_null`、空合并运算符 `??` 的使用场景。
 - 避免因空值判断错误导致的逻辑漏洞。
 
+## 章节内容
+
+本章分为两个独立小节，每节提供详细的概念解释、语法说明、参数列表和完整示例：
+
+1. **[isset、empty 与 is_null](section-01-isset-empty.md)**：`isset()`、`empty()`、`is_null()` 的语法、返回值、使用场景、函数对比及完整示例。
+
+2. **[空合并运算符](section-02-null-coalescing.md)**：空合并运算符（`??`）的语法、用法、链式使用、空合并赋值运算符（`??=`）、与三元运算符的区别及完整示例。
+
 ## `null` 与未定义变量
 
 - 未定义变量访问会触发 `E_NOTICE`，但 `isset` 会返回 `false`。
-- `null` 表示“显式为空”，常用于占位或可选值。
-
-```php
-$value = null;
-echo $value === null ? 'null' : 'not null';
-```
-
-## `isset`
-
-- **语法**：`isset(mixed $var, mixed ...$vars): bool`
-- 返回 `true` 当变量存在且不为 `null`。
-- 多个参数时只有全部存在且不为 `null` 才返回 `true`。
-
-```php
-if (isset($_GET['page'])) {
-    $page = (int) $_GET['page'];
-}
-```
-
-## `empty`
-
-- **语法**：`empty(mixed $var): bool`
-- 当变量不存在或值为以下之一返回 `true`：`""`、`0`、`"0"`、`0.0`、`null`、`false`、`[]`。
-
-```php
-if (empty($input['keyword'])) {
-    throw new InvalidArgumentException('Keyword required');
-}
-```
-
-> **注意**：`empty('0')` 为 `true`，在处理数字字符串时要慎用。
-
-## `is_null`
-
-- **语法**：`is_null(mixed $value): bool`
-- 等价于 `$value === null`。
-
-## 空合并运算符 `??`
-
-- 语法：`$value = $input['key'] ?? 'default';`
-- 仅在左侧变量不存在或为 `null` 时返回右侧。
-- 与 `?:` 不同，`?:` 会把空字符串或 `0` 当作 `false`。
-
-```php
-$page = $_GET['page'] ?? 1;
-$keyword = $input['keyword'] ?? fn () => throw new InvalidArgumentException();
-```
-
-## Null 合并赋值（PHP 7.4+）
-
-- 语法：`$array['key'] ??= 'default';`
-- 等价于 `$array['key'] = $array['key'] ?? 'default';`
-
-```php
-$config['timezone'] ??= 'UTC';
-```
+- `null` 表示"显式为空"，常用于占位或可选值。
 
 ## 判空策略
 
@@ -73,8 +26,30 @@ $config['timezone'] ??= 'UTC';
 3. **数字字符串**：避免 `empty`，改用 `trim($value) === ''`。
 4. **对象属性**：统一初始化，减少 `isset($obj->prop)`。
 
-## 练习
+## 学习建议
 
-1. 封装 `data_get($array, $path, $default = null)`，支持点号路径并使用 `??`。
-2. 实现 `coalesce(...$values)`，返回第一个非 `null` 值，类似 SQL `COALESCE`。
-3. 审查项目中 `empty` 的使用场景，找出潜在的“`'0'` 被视为空”的问题并修复。
+1. **按顺序学习**：先理解 `isset`、`empty`、`is_null` 的区别，再学习空合并运算符。
+
+2. **重点掌握**：
+   - 三个函数的区别和使用场景
+   - `empty("0")` 的陷阱
+   - 空合并运算符的优势
+   - 判空的最佳实践
+
+3. **实践练习**：
+   - 完成每小节后的练习题目
+   - 重构现有代码，使用更合适的判空方式
+   - 避免常见的空值判断错误
+
+## 完成本章后
+
+- 能够正确使用 `isset()`、`empty()` 和 `is_null()`。
+- 理解空合并运算符的优势和使用场景。
+- 能够避免常见的空值判断陷阱。
+- 能够在实际项目中正确处理空值。
+
+## 相关章节
+
+- **2.3 变量与常量**：了解变量的基本概念。
+- **2.5 类型转换与比较**：了解类型转换。
+- **2.6 表达式与运算符**：了解三元运算符。
