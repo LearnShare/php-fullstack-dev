@@ -84,7 +84,10 @@
     - [2.14.2 目录操作](chapter-14-filesystem/section-02-directory-operations.md)
 
 15. **[时间与日期处理](chapter-15-datetime/README.md)**：时间日期 API 与国际化。
-    - [2.15.1 DateTime 基础](chapter-15-datetime/section-01-datetime-basics.md)
+   - [2.15.1 DateTime 基础](chapter-15-datetime/section-01-datetime-basics.md)
+   - [2.15.2 时区处理](chapter-15-datetime/section-02-timezone.md)
+   - [2.15.3 格式化与解析](chapter-15-datetime/section-03-formatting-parsing.md)
+   - [2.15.4 时间计算与比较](chapter-15-datetime/section-04-calculations-comparisons.md)
 
 16. **[isset / empty / Null 体系](chapter-16-null-system/README.md)**：isset、empty 与 Null 合并运算。
     - [2.16.1 isset、empty 与 is_null](chapter-16-null-system/section-01-isset-empty.md)
@@ -98,11 +101,19 @@
     - [2.18.1 PSR 标准](chapter-18-standards/section-01-psr-standards.md)
     - [2.18.2 PHPDoc](chapter-18-standards/section-02-phpdoc.md)
 
-19. **[常见错误与调试技巧](chapter-21-debugging/README.md)**：常见错误与调试技巧。
+19. **[常见错误与调试技巧](chapter-19-debugging/README.md)**：常见错误与调试技巧。
+   - [2.19.1 常见错误类型与修复流程](chapter-19-debugging/section-01-common-errors.md)
+   - [2.19.2 调试技巧与工具链](chapter-19-debugging/section-02-debugging-techniques.md)
+   - [2.19.3 排查清单与最佳实践](chapter-19-debugging/section-03-troubleshooting-checklist.md)
 
 20. **[PHP 版本新特性](chapter-20-php-versions/README.md)**：PHP 8.2-8.5 版本新特性。
+   - [2.20.1 PHP 8.2 新特性与示例](chapter-20-php-versions/section-01-php82.md)
+   - [2.20.2 PHP 8.3 新特性与示例](chapter-20-php-versions/section-02-php83.md)
+   - [2.20.3 PHP 8.4 新特性与示例](chapter-20-php-versions/section-03-php84.md)
+   - [2.20.4 PHP 8.5 新特性与示例](chapter-20-php-versions/section-04-php85.md)
+   - [2.20.5 升级指南与最佳实践](chapter-20-php-versions/section-05-upgrade-best-practices.md)
 
-21. **[本章小结与练习](chapter-19-summary/README.md)**：阶段总结与练习指引。
+21. **[本章小结与练习](chapter-21-summary/README.md)**：阶段总结与练习指引。
 
 完成阶段二后，你将具备：
 

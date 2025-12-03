@@ -3,45 +3,48 @@
 ## 目标
 
 - 掌握基于 `DateTime`、`DateTimeImmutable` 的现代日期处理方式。
-- 理解时区、DST、时间戳、格式化字符串。
-- 能使用 `Carbon` 等扩展库处理复杂时间逻辑。
+- 深入理解时区、DST、时间戳、格式化字符串的完整用法。
+- 能使用 `Carbon` 等扩展库处理复杂时间逻辑，并理解其底层实现。
 
 ## 章节内容
 
-本章分为一个独立小节，提供详细的概念解释、语法说明、参数列表和完整示例：
+本章分为四个独立小节，每节提供详细的概念解释、语法说明、参数列表和完整示例：
 
-1. **[DateTime 基础](section-01-datetime-basics.md)**：`DateTime` 和 `DateTimeImmutable` 的创建、格式化、修改、时区处理、时间戳转换、时间差计算及完整示例。
+1. **[DateTime 基础](section-01-datetime-basics.md)**：`DateTime` 和 `DateTimeImmutable` 的创建、修改、不可变对象特性、时间戳转换及完整示例。
 
-## 时间戳与基础函数
+2. **[时区处理](section-02-timezone.md)**：时区概念、`DateTimeZone` 使用、时区转换、DST（夏令时）处理、常见时区列表及完整示例。
 
-- `time()`：返回当前 Unix 时间戳（秒）。
-- `microtime(true)`：返回浮点数，包含微秒。
-- `date($format, $timestamp = time())`：格式化时间戳。
+3. **[格式化与解析](section-03-formatting-parsing.md)**：`format()` 方法、格式化字符串完整列表、`createFromFormat()` 解析、多语言格式化、相对时间格式化及完整示例。
 
-## DateTime / DateTimeImmutable
+4. **[时间计算与比较](section-04-calculations-comparisons.md)**：`diff()` 计算时间差、`modify()` 时间运算、日期比较、工作日计算、时间范围判断及完整示例。
 
-- `DateTime` 可变；`DateTimeImmutable` 每次操作返回新实例。
-- 建议在业务逻辑中优先使用不可变对象。
+## 核心概念
+
+- **DateTime**：可变对象，修改会改变原对象
+- **DateTimeImmutable**：不可变对象，每次操作返回新实例（推荐）
+- **DateTimeZone**：时区对象，用于处理不同时区的时间
+- **DateInterval**：时间间隔对象，用于表示时间差
+- **时间戳**：Unix 时间戳（秒）和微秒时间戳
 
 ## 学习建议
 
 1. **重点掌握**：
-   - `DateTime` 和 `DateTimeImmutable` 的区别
-   - 时区处理的方法
-   - 时间格式化和计算
-   - 时间差的计算
+   - `DateTime` 和 `DateTimeImmutable` 的区别与使用场景
+   - 时区处理的完整流程（创建、转换、存储）
+   - 格式化字符串的完整列表与常用模式
+   - 时间差计算与日期运算
 
 2. **实践练习**：
-   - 完成练习题目
-   - 实现实际的日期处理功能
-   - 处理时区转换
+   - 完成每小节后的练习题目
+   - 实现实际的日期处理功能（如倒计时、相对时间）
+   - 处理跨时区的应用场景
 
 ## 完成本章后
 
-- 能够使用 `DateTime` 和 `DateTimeImmutable` 处理日期时间。
-- 理解时区的概念和处理方法。
-- 掌握时间格式化和计算。
-- 能够在实际项目中处理日期时间相关的需求。
+- 能够熟练使用 `DateTime` 和 `DateTimeImmutable` 处理各种日期时间场景。
+- 理解时区的概念，能够正确处理跨时区应用。
+- 掌握时间格式化和解析的完整方法。
+- 能够在实际项目中处理复杂的日期时间计算需求。
 
 ## 相关章节
 
