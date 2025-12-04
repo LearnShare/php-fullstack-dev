@@ -6,57 +6,43 @@
 - 掌握 AWS ECS、Laravel Forge 等部署方式。
 - 理解 Serverless 部署的优势。
 
-## 部署方案对比
+## 章节内容
 
-| 方案              | 特点                           | 适用场景           |
-| :---------------- | :----------------------------- | :----------------- |
-| 传统 VPS         | 完全控制，需要自己管理         | 小型项目           |
-| ECS / EKS        | 容器编排，自动扩展             | 中大型项目         |
-| Laravel Forge    | 简单易用，Laravel 优化         | Laravel 项目       |
-| Serverless       | 按需付费，自动扩展             | 低流量、突发流量   |
+本章分为三个独立小节，每节提供详细的概念解释、代码示例和最佳实践：
 
-## AWS ECS
+1. **[部署选择](section-01-deployment-options.md)**：部署方案对比、VPS、容器编排、Serverless、选择建议、完整示例。
 
-### 任务定义
+2. **[传统部署](section-02-traditional-deployment.md)**：VPS 部署、Laravel Forge、部署脚本、完整示例。
 
-```json
-{
-  "family": "myapp",
-  "containerDefinitions": [
-    {
-      "name": "app",
-      "image": "myapp:latest",
-      "portMappings": [
-        {
-          "containerPort": 9000
-        }
-      ],
-      "environment": [
-        {
-          "name": "DB_HOST",
-          "value": "db.example.com"
-        }
-      ]
-    }
-  ]
-}
-```
+3. **[云平台部署](section-03-cloud-deployment.md)**：AWS ECS、Google Cloud Run、Azure Container Apps、完整示例。
 
-## Laravel Forge
+## 核心概念
 
-### 部署流程
+- **部署方案**：应用部署方式
+- **容器编排**：容器管理平台
+- **Serverless**：无服务器部署
+- **云平台**：云服务提供商
 
-1. 连接服务器
-2. 创建站点
-3. 配置环境变量
-4. 部署代码
+## 学习建议
 
-## 练习
+1. **重点掌握**：
+   - 部署方案选择
+   - 容器编排
+   - 云平台部署
 
-1. 配置 AWS ECS 部署流程。
+2. **实践练习**：
+   - 完成每小节后的练习题目
+   - 部署应用到不同平台
+   - 配置自动部署
 
-2. 使用 Laravel Forge 部署应用。
+## 完成本章后
 
-3. 对比不同部署方案的优缺点。
+- 能够选择合适的部署方案。
+- 理解各种部署方式，能够配置部署。
+- 掌握云平台部署，能够利用云服务。
+- 具备构建生产级部署系统的能力。
 
-4. 实现自动化部署脚本。
+## 相关章节
+
+- **8.1 专业 Dockerfile**：容器镜像
+- **8.5 Kubernetes**：K8s 部署

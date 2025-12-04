@@ -7,182 +7,43 @@
 - 了解事件驱动架构（EDA）。
 - 熟悉 WebSocket、SSE、MQTT 的区别与应用。
 
-## 消息队列对比
+## 章节内容
 
-### Redis Stream
+本章分为三个独立小节，每节提供详细的概念解释、代码示例和最佳实践：
 
-```php
-<?php
-declare(strict_types=1);
+1. **[异步处理基础](section-01-async-basics.md)**：异步处理概念、消息队列对比、异步任务处理、完整示例。
 
-$redis = new Redis();
-$redis->connect('127.0.0.1', 6379);
+2. **[消息队列](section-02-message-queue.md)**：Redis Stream、RabbitMQ、Kafka、消息队列选择、完整示例。
 
-// 生产消息
-$redis->xAdd('orders', '*', [
-    'order_id' => 123,
-    'user_id' => 1,
-    'amount' => 99.99,
-]);
+3. **[分布式处理](section-03-distributed.md)**：分布式任务、事件驱动架构、WebSocket、SSE、完整示例。
 
-// 消费消息
-$messages = $redis->xRead(['orders' => '$'], 10, 1000);  // 阻塞 1 秒
-foreach ($messages as $stream => $streamMessages) {
-    foreach ($streamMessages as $id => $message) {
-        processOrder($message);
-        $redis->xAck('orders', 'consumer-group', $id);
-    }
-}
-```
+## 核心概念
 
-### RabbitMQ
+- **消息队列**：异步任务处理
+- **事件驱动**：基于事件的架构
+- **分布式处理**：跨进程/跨服务器处理
+- **实时通信**：WebSocket、SSE
 
-```php
-<?php
-require __DIR__ . '/vendor/autoload.php';
+## 学习建议
 
-use PhpAmqpLib\Connection\AMQPStreamConnection;
-use PhpAmqpLib\Message\AMQPMessage;
+1. **重点掌握**：
+   - 消息队列的使用
+   - 异步处理模式
+   - 分布式处理
 
-// 连接
-$connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
-$channel = $connection->channel();
+2. **实践练习**：
+   - 完成每小节后的练习题目
+   - 实现消息队列系统
+   - 处理异步任务
 
-// 声明队列
-$channel->queue_declare('orders', false, true, false, false);
+## 完成本章后
 
-// 生产消息
-$msg = new AMQPMessage(json_encode(['order_id' => 123]));
-$channel->basic_publish($msg, '', 'orders');
+- 能够使用消息队列处理异步任务。
+- 理解事件驱动架构，能够设计事件系统。
+- 掌握分布式处理，能够处理大规模任务。
+- 具备构建生产级异步系统的能力。
 
-// 消费消息
-$callback = function ($msg) {
-    $data = json_decode($msg->body, true);
-    processOrder($data);
-    $msg->ack();
-};
+## 相关章节
 
-$channel->basic_consume('orders', '', false, false, false, false, $callback);
-
-while ($channel->is_consuming()) {
-    $channel->wait();
-}
-```
-
-## 事件驱动架构
-
-### 事件发布
-
-```php
-<?php
-declare(strict_types=1);
-
-class EventBus
-{
-    private array $listeners = [];
-    
-    public function subscribe(string $event, callable $handler): void
-    {
-        if (!isset($this->listeners[$event])) {
-            $this->listeners[$event] = [];
-        }
-        $this->listeners[$event][] = $handler;
-    }
-    
-    public function publish(string $event, array $data): void
-    {
-        if (!isset($this->listeners[$event])) {
-            return;
-        }
-        
-        foreach ($this->listeners[$event] as $handler) {
-            $handler($data);
-        }
-    }
-}
-
-// 使用
-$eventBus = new EventBus();
-$eventBus->subscribe('order.created', function ($data) {
-    sendEmail($data['user_id']);
-});
-$eventBus->publish('order.created', ['order_id' => 123, 'user_id' => 1]);
-```
-
-## WebSocket / SSE / MQTT
-
-### WebSocket
-
-```php
-<?php
-// 使用 Ratchet
-require __DIR__ . '/vendor/autoload.php';
-
-use Ratchet\MessageComponentInterface;
-use Ratchet\ConnectionInterface;
-
-class Chat implements MessageComponentInterface
-{
-    protected $clients;
-    
-    public function __construct()
-    {
-        $this->clients = new \SplObjectStorage;
-    }
-    
-    public function onOpen(ConnectionInterface $conn)
-    {
-        $this->clients->attach($conn);
-    }
-    
-    public function onMessage(ConnectionInterface $from, $msg)
-    {
-        foreach ($this->clients as $client) {
-            if ($from !== $client) {
-                $client->send($msg);
-            }
-        }
-    }
-    
-    public function onClose(ConnectionInterface $conn)
-    {
-        $this->clients->detach($conn);
-    }
-    
-    public function onError(ConnectionInterface $conn, \Exception $e)
-    {
-        $conn->close();
-    }
-}
-```
-
-### SSE（Server-Sent Events）
-
-```php
-<?php
-header('Content-Type: text/event-stream');
-header('Cache-Control: no-cache');
-header('Connection: keep-alive');
-
-while (true) {
-    $data = getLatestData();
-    echo "data: " . json_encode($data) . "\n\n";
-    ob_flush();
-    flush();
-    sleep(1);
-}
-```
-
-## 练习
-
-1. 实现一个基于 Redis Stream 的消息队列系统。
-
-2. 创建一个事件驱动系统，支持事件的发布和订阅。
-
-3. 设计一个异步任务处理系统，使用消息队列处理耗时任务。
-
-4. 实现一个 WebSocket 服务器，支持实时通信。
-
-5. 创建一个 SSE 端点，推送实时数据到客户端。
-
-6. 设计一个分布式任务调度系统，使用消息队列协调多个服务。
+- **5.7 Redis 缓存策略**：Redis 基础
+- **9.2 高并发实时应用**：实时应用

@@ -7,165 +7,43 @@
 - 能够优化镜像大小和构建速度。
 - 熟悉 FPM + Nginx 分离容器架构。
 
-## 基础 Dockerfile
+## 章节内容
 
-### PHP-FPM Dockerfile
+本章分为三个独立小节，每节提供详细的概念解释、代码示例和最佳实践：
 
-```dockerfile
-FROM php:8.2-fpm
+1. **[Dockerfile 基础](section-01-dockerfile-basics.md)**：Dockerfile 语法、基础镜像、构建命令、最佳实践、完整示例。
 
-# 安装系统依赖
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    unzip \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+2. **[多阶段构建](section-02-multi-stage.md)**：多阶段构建原理、构建阶段分离、镜像优化、完整示例。
 
-# 安装 Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+3. **[优化技巧](section-03-optimization.md)**：镜像大小优化、构建速度优化、缓存利用、安全优化、完整示例。
 
-# 设置工作目录
-WORKDIR /var/www
+## 核心概念
 
-# 复制应用代码
-COPY . .
+- **Dockerfile**：容器镜像构建文件
+- **多阶段构建**：分离构建和运行环境
+- **镜像优化**：减小镜像大小和构建时间
+- **容器安全**：安全最佳实践
 
-# 安装依赖
-RUN composer install --no-dev --optimize-autoloader
+## 学习建议
 
-# 设置权限
-RUN chown -R www-data:www-data /var/www
+1. **重点掌握**：
+   - Dockerfile 最佳实践
+   - 多阶段构建
+   - 镜像优化
 
-EXPOSE 9000
-CMD ["php-fpm"]
-```
+2. **实践练习**：
+   - 完成每小节后的练习题目
+   - 构建优化的 Dockerfile
+   - 优化现有镜像
 
-## 多阶段构建
+## 完成本章后
 
-### 优化示例
+- 能够编写优化的 Dockerfile。
+- 理解多阶段构建，能够优化镜像。
+- 掌握镜像优化技巧，提升构建效率。
+- 具备构建生产级容器镜像的能力。
 
-```dockerfile
-# 阶段一：构建阶段
-FROM php:8.2-cli AS builder
+## 相关章节
 
-WORKDIR /app
-
-# 安装 Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# 复制依赖文件
-COPY composer.json composer.lock ./
-
-# 安装依赖
-RUN composer install --no-dev --optimize-autoloader --no-scripts
-
-# 复制源代码
-COPY . .
-
-# 运行构建脚本
-RUN composer run-script post-install-cmd
-
-# 阶段二：生产阶段
-FROM php:8.2-fpm-alpine
-
-# 安装运行时依赖
-RUN apk add --no-cache \
-    libpng \
-    libjpeg-turbo \
-    freetype \
-    && docker-php-ext-install pdo_mysql opcache
-
-# 从构建阶段复制文件
-COPY --from=builder /app /var/www
-
-# 配置 OPcache
-RUN echo "opcache.enable=1" >> /usr/local/etc/php/conf.d/opcache.ini
-
-WORKDIR /var/www
-
-EXPOSE 9000
-CMD ["php-fpm"]
-```
-
-## FPM + Nginx 分离
-
-### PHP-FPM Dockerfile
-
-```dockerfile
-FROM php:8.2-fpm-alpine
-
-RUN apk add --no-cache \
-    libpng \
-    libjpeg-turbo \
-    freetype \
-    && docker-php-ext-install pdo_mysql opcache gd
-
-COPY php.ini /usr/local/etc/php/conf.d/custom.ini
-COPY www.conf /usr/local/etc/php-fpm.d/www.conf
-
-WORKDIR /var/www
-
-EXPOSE 9000
-CMD ["php-fpm"]
-```
-
-### Nginx Dockerfile
-
-```dockerfile
-FROM nginx:alpine
-
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY default.conf /etc/nginx/conf.d/default.conf
-
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
-```
-
-## 镜像优化
-
-### 减小镜像大小
-
-```dockerfile
-# 使用 Alpine 基础镜像
-FROM php:8.2-fpm-alpine
-
-# 合并 RUN 命令，减少层数
-RUN apk add --no-cache \
-    libpng \
-    libjpeg-turbo \
-    && docker-php-ext-install gd \
-    && apk del .build-deps
-
-# 清理缓存
-RUN rm -rf /var/cache/apk/* /tmp/*
-```
-
-### 构建缓存优化
-
-```dockerfile
-# 先复制依赖文件，利用缓存
-COPY composer.json composer.lock ./
-RUN composer install --no-dev
-
-# 再复制源代码
-COPY . .
-```
-
-## 练习
-
-1. 编写一个优化的 PHP-FPM Dockerfile，使用多阶段构建。
-
-2. 创建 FPM + Nginx 分离架构的 docker-compose 配置。
-
-3. 优化 Dockerfile，减小镜像大小并提升构建速度。
-
-4. 配置 OPcache 和 PHP 优化选项。
-
-5. 实现一个 CI/CD 流程，自动构建和推送 Docker 镜像。
-
-6. 创建不同环境的 Dockerfile（开发、测试、生产）。
+- **阶段一：开发环境搭建**：Docker 基础
+- **8.3 镜像安全**：容器安全

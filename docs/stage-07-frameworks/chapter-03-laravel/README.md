@@ -8,266 +8,47 @@
 - 了解 Reverb、Horizon、Telescope 等扩展工具。
 - 了解 Laravel 11 的新特性和改进。
 
-## Laravel 核心
+## 章节内容
 
-### 服务容器
+本章分为五个独立小节，每节提供详细的概念解释、代码示例和最佳实践：
 
-```php
-<?php
-// 绑定
-app()->bind(UserRepository::class, DatabaseUserRepository::class);
+1. **[Laravel 基础](section-01-laravel-basics.md)**：Laravel 架构、服务容器、路由系统、中间件、完整示例。
 
-// 单例
-app()->singleton(EmailService::class, SmtpEmailService::class);
+2. **[核心组件](section-02-core-components.md)**：Eloquent ORM、Blade 模板、队列系统、事件系统、完整示例。
 
-// 解析
-$service = app(UserService::class);
-```
+3. **[数据库与 ORM](section-03-database-orm.md)**：数据库配置、Eloquent 使用、关系映射、查询优化、完整示例。
 
-### 路由
+4. **[认证与授权](section-04-auth.md)**：认证系统、授权系统、多因素认证、API 认证、完整示例。
 
-```php
-<?php
-// web.php
-Route::get('/users', [UserController::class, 'index']);
-Route::post('/users', [UserController::class, 'store']);
-Route::get('/users/{user}', [UserController::class, 'show']);
+5. **[2025 最新特性](section-05-latest-features.md)**：Laravel 11 新特性、Livewire、Inertia、Octane、Reverb、完整示例。
 
-// API 路由
-Route::apiResource('users', UserController::class);
-```
+## 核心概念
 
-### Eloquent ORM
+- **Laravel**：现代 PHP 框架
+- **Eloquent**：ORM 系统
+- **Blade**：模板引擎
+- **Octane**：高性能运行时
 
-```php
-<?php
-// 模型
-class User extends Model
-{
-    protected $fillable = ['name', 'email'];
-    
-    public function orders()
-    {
-        return $this->hasMany(Order::class);
-    }
-}
+## 学习建议
 
-// 使用
-$user = User::find(1);
-$orders = $user->orders;
-```
+1. **重点掌握**：
+   - Laravel 核心概念
+   - Eloquent ORM
+   - 最新特性
 
-## Livewire
+2. **实践练习**：
+   - 完成每小节后的练习题目
+   - 构建 Laravel 应用
+   - 使用最新特性
 
-### 组件
+## 完成本章后
 
-```php
-<?php
-namespace App\Livewire;
+- 能够使用 Laravel 构建应用。
+- 理解 Laravel 架构，能够扩展功能。
+- 掌握最新特性，能够提升开发效率。
+- 具备构建生产级 Laravel 应用的能力。
 
-use Livewire\Component;
+## 相关章节
 
-class Counter extends Component
-{
-    public $count = 0;
-    
-    public function increment()
-    {
-        $this->count++;
-    }
-    
-    public function render()
-    {
-        return view('livewire.counter');
-    }
-}
-```
-
-## Inertia
-
-### 控制器
-
-```php
-<?php
-use Inertia\Inertia;
-
-class UserController extends Controller
-{
-    public function index()
-    {
-        return Inertia::render('Users/Index', [
-            'users' => User::all(),
-        ]);
-    }
-}
-```
-
-## Octane
-
-### 配置
-
-```bash
-# 安装 Octane
-composer require laravel/octane
-
-# 启动 Octane
-php artisan octane:start --server=swoole
-```
-
-## Laravel 11 新特性
-
-### 简化的目录结构
-
-```php
-// Laravel 11 简化了目录结构
-// 不再需要 app/Http/Kernel.php
-// 不再需要 bootstrap/app.php（简化版）
-
-// 新的应用结构
-app/
-├── Http/
-│   └── Controllers/
-├── Models/
-└── Services/
-```
-
-### 新的配置方式
-
-```php
-// config/app.php 简化
-// 使用环境变量替代大量配置项
-
-// .env
-APP_NAME="My App"
-APP_ENV=local
-```
-
-### 改进的路由
-
-```php
-<?php
-// routes/web.php
-// Laravel 11 支持更简洁的路由定义
-
-use App\Http\Controllers\UserController;
-
-Route::get('/users', [UserController::class, 'index']);
-Route::post('/users', [UserController::class, 'store']);
-
-// 资源路由
-Route::apiResource('users', UserController::class);
-```
-
-### 新的中间件语法
-
-```php
-<?php
-// Laravel 11 支持更灵活的中间件定义
-Route::middleware(['auth', 'throttle:60,1'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'show']);
-});
-```
-
-## Livewire 3
-
-### 新特性
-
-- 更快的性能
-- 改进的组件系统
-- 更好的 TypeScript 支持
-
-```php
-<?php
-namespace App\Livewire;
-
-use Livewire\Component;
-
-class Counter extends Component
-{
-    public int $count = 0;
-    
-    public function increment(): void
-    {
-        $this->count++;
-    }
-    
-    public function render()
-    {
-        return view('livewire.counter');
-    }
-}
-```
-
-## Inertia.js 详细使用
-
-### 安装和配置
-
-```bash
-composer require inertiajs/inertia-laravel
-
-php artisan inertia:middleware
-```
-
-### 控制器使用
-
-```php
-<?php
-namespace App\Http\Controllers;
-
-use Inertia\Inertia;
-
-class UserController extends Controller
-{
-    public function index()
-    {
-        return Inertia::render('Users/Index', [
-            'users' => User::all(),
-        ]);
-    }
-    
-    public function show(User $user)
-    {
-        return Inertia::render('Users/Show', [
-            'user' => $user,
-        ]);
-    }
-}
-```
-
-### 前端集成（Vue/React）
-
-```javascript
-// resources/js/Pages/Users/Index.vue
-<template>
-  <div>
-    <h1>Users</h1>
-    <ul>
-      <li v-for="user in users" :key="user.id">
-        {{ user.name }}
-      </li>
-    </ul>
-  </div>
-</template>
-
-<script setup>
-defineProps({
-  users: Array
-})
-</script>
-```
-
-## 练习
-
-1. 创建一个 Laravel 11 项目，实现用户管理的 CRUD 功能。
-
-2. 使用 Livewire 3 创建一个实时计数器组件。
-
-3. 配置 Octane，对比性能提升。
-
-4. 集成 Horizon 监控队列任务。
-
-5. 使用 Telescope 调试应用。
-
-6. 使用 Inertia.js 创建一个 SPA 应用。
-
-7. 实现一个完整的 Laravel 应用，包含认证、授权、API 等功能。
+- **5.6 ORM 框架与数据迁移**：ORM 基础
+- **7.1 IoC 与 DI**：依赖注入

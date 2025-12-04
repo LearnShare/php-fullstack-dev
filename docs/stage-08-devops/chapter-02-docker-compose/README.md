@@ -6,105 +6,41 @@
 - 能够搭建完整的本地开发环境。
 - 理解生产与开发环境的差异配置。
 
-## docker-compose 基础
+## 章节内容
 
-### 基础配置
+本章分为两个独立小节，每节提供详细的概念解释、代码示例和最佳实践：
 
-```yaml
-version: '3.8'
+1. **[docker-compose 基础](section-01-compose-basics.md)**：docker-compose 语法、服务定义、网络配置、数据卷、完整示例。
 
-services:
-  app:
-    build: .
-    volumes:
-      - .:/var/www
-    depends_on:
-      - db
-      - redis
-  
-  db:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: myapp
-    volumes:
-      - db_data:/var/lib/mysql
-  
-  redis:
-    image: redis:alpine
-  
-volumes:
-  db_data:
-```
+2. **[本地开发环境](section-02-dev-environment.md)**：开发环境配置、热重载、调试配置、多服务编排、完整示例。
 
-## 完整开发环境
+## 核心概念
 
-### docker-compose.yml
+- **docker-compose**：容器编排工具
+- **服务编排**：多容器应用管理
+- **开发环境**：本地开发配置
+- **热重载**：代码变更自动重载
 
-```yaml
-version: '3.8'
+## 学习建议
 
-services:
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./public:/var/www/public
-    depends_on:
-      - php
-  
-  php:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - .:/var/www
-    depends_on:
-      - db
-      - redis
-  
-  db:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: myapp
-      MYSQL_USER: app
-      MYSQL_PASSWORD: password
-    ports:
-      - "3306:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-  
-  redis:
-    image: redis:alpine
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-  
-  mailpit:
-    image: axllent/mailpit
-    ports:
-      - "1025:1025"
-      - "8025:8025"
+1. **重点掌握**：
+   - docker-compose 配置
+   - 服务编排
+   - 开发环境搭建
 
-volumes:
-  db_data:
-  redis_data:
-```
+2. **实践练习**：
+   - 完成每小节后的练习题目
+   - 搭建开发环境
+   - 配置多服务应用
 
-## 练习
+## 完成本章后
 
-1. 创建一个完整的 docker-compose 开发环境。
+- 能够使用 docker-compose 管理多容器应用。
+- 理解服务编排，能够配置复杂应用。
+- 掌握开发环境搭建，能够提升开发效率。
+- 具备构建生产级容器应用的能力。
 
-2. 配置不同环境的 compose 文件（开发、测试、生产）。
+## 相关章节
 
-3. 实现服务的健康检查和自动重启。
-
-4. 配置网络和卷管理。
-
-5. 创建开发环境的初始化脚本。
-
-6. 实现服务的日志收集和查看。
+- **8.1 专业 Dockerfile**：容器镜像
+- **阶段一：开发环境搭建**：开发环境
