@@ -4,6 +4,15 @@
 
 **目标**：从零开始掌握 PHP 8.2+、现代运行时、OOP 架构，为后续进阶到 Laravel / 企业级开发奠定基础
 
+## 📚 开始学习
+
+**如果你是零基础学员，请先阅读：**
+- **[全局学习指南](docs/LEARNING_GUIDE.md)**：完整的学习路径、时间估算、检查点、学习方法
+
+**各阶段前置知识要求：**
+- 每个阶段的 README 都包含详细的前置知识要求和学习时间估算
+- 请在学习前仔细阅读，确保具备必要的知识基础
+
 ## 文档说明
 
 本指南采用分阶段、分章节的结构，每个阶段和章节都是独立的文档文件，便于学习和查阅。所有内容面向零基础学员设计，提供详细的概念解释、语法说明、参数列表、完整示例代码和练习任务。
@@ -392,13 +401,18 @@
   - [8.9.1 GitOps 概念](docs/stage-08-devops/chapter-09-gitops/section-01-gitops-concept.md)
   - [8.9.2 GitOps 实践](docs/stage-08-devops/chapter-09-gitops/section-02-gitops-practice.md)
 
-### 阶段九：高质量实战项目（Capstone）
+### 阶段九：实战开发项目（Project Practice）
 
 - [阶段九总览](docs/stage-09-projects/README.md)
-- [9.1 SaaS 平台（核心项目）](docs/stage-09-projects/chapter-01-saas/README.md)
-- [9.2 高并发实时应用](docs/stage-09-projects/chapter-02-realtime/README.md)
-- [9.3 API-First 企业服务](docs/stage-09-projects/chapter-03-api-first/README.md)
-- [9.4 生产级部署](docs/stage-09-projects/chapter-04-production/README.md)
+- [9.1 多用户博客系统](docs/stage-09-projects/chapter-01-multi-user-blog/README.md)
+  - [9.1.1 需求分析与功能规划](docs/stage-09-projects/chapter-01-multi-user-blog/section-01-requirements.md)
+  - [9.1.2 技术架构设计](docs/stage-09-projects/chapter-01-multi-user-blog/section-02-architecture.md)
+  - [9.1.3 技术栈选型](docs/stage-09-projects/chapter-01-multi-user-blog/section-03-technology-stack.md)
+  - [9.1.4 数据库设计](docs/stage-09-projects/chapter-01-multi-user-blog/section-04-database-design.md)
+  - [9.1.5 API 接口设计](docs/stage-09-projects/chapter-01-multi-user-blog/section-05-api-design.md)
+  - [9.1.6 模块划分与实现指南](docs/stage-09-projects/chapter-01-multi-user-blog/section-06-module-design.md)
+  - [9.1.7 测试策略与实现](docs/stage-09-projects/chapter-01-multi-user-blog/section-07-testing.md)
+  - [9.1.8 部署与运维](docs/stage-09-projects/chapter-01-multi-user-blog/section-08-deployment.md)
 
 ### 阶段十：附言
 
@@ -426,7 +440,7 @@
 6. **阶段六**：了解安全和性能优化
 7. **阶段七**：深入学习现代框架
 8. **阶段八**：掌握部署和 DevOps
-9. **阶段九**：完成实战项目
+9. **阶段九**：完成实战项目，综合运用所学知识
 10. **阶段十**：参考附言内容（PSR 标准规范等），作为补充学习资料
 
 ### 有经验开发者路径
