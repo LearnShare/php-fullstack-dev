@@ -2,7 +2,7 @@
 
 ## 概述
 
-PHP 8.5（2025）引入管道操作符、`clone with` 语法、内置 URI 扩展、OPcache 必选等特性，进一步提升代码表达力与运行时性能。
+PHP 8.5（2025.11）引入管道操作符、`clone with` 语法、URI parser 配置支持、OPcache 必选、废弃非规范化类型转换等特性，进一步提升代码表达力与运行时性能。
 
 ## 管道操作符（|>）
 
@@ -34,18 +34,13 @@ $newUser = clone $user with ['age' => 31, 'email' => 'alice.new@example.com'];
 
 - 简化不可变对象的更新操作，避免手动克隆后逐个赋值。
 
-## 内置 URI 扩展
+## URI Parser 配置支持
 
-```php
-use Uri\Uri;
+PHP 8.5 增加了对 URI parser 的配置支持，允许为 FTP/FTPS、SSL/TLS stream wrappers 以及 `FILTER_VALIDATE_URL` 配置 URI 解析器。
 
-$uri = new Uri('https://example.com/path?query=value#fragment');
-echo $uri->getScheme();   // https
-echo $uri->getHost();      // example.com
-$uri->setHost('newdomain.com');
-```
-
-- 提供统一、强大的 URI 处理 API，替代字符串拼接。
+- 提供更灵活的 URI 解析配置选项
+- 支持自定义 URI 解析行为
+- 改进对复杂 URI 格式的处理能力
 
 ## PHP_BUILD_DATE 常量
 
@@ -79,12 +74,12 @@ $bool = (bool) $value;
 
 1. 使用管道操作符重构复杂的函数调用链。
 2. 用 `clone with` 简化不可变对象的更新逻辑。
-3. 迁移到内置 URI 扩展，替代字符串拼接。
-4. 更新所有非规范化类型转换为标准写法。
+3. 利用 URI parser 配置支持，改进 URI 处理。
+4. 更新所有非规范化类型转换为标准写法（`(integer)` → `(int)`，`(double)` → `(float)`，`(boolean)` → `(bool)`）。
 5. 利用 OPcache 必选特性，简化配置检查。
 
 ## 练习
 
 - 使用管道操作符重构一个复杂的数据处理流程。
 - 使用 `clone with` 创建不可变对象的更新方法。
-- 使用内置 URI 扩展解析和修改 URL。
+- 更新代码中的非规范化类型转换，使用标准写法。
