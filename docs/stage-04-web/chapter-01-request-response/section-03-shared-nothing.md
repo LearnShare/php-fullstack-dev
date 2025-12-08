@@ -12,7 +12,7 @@ Shared Nothing 架构是 PHP Web 应用的核心设计原则。本节详细介�
 
 ```php
 <?php
-// ❌ 不推荐：使用全局变量（进程间不共享）
+// [不推荐] 使用全局变量（进程间不共享）
 $globalCounter = 0;
 
 function incrementCounter(): void
@@ -21,7 +21,7 @@ function incrementCounter(): void
     $globalCounter++;  // 每个进程独立，无法跨请求共享
 }
 
-// ✅ 推荐：使用外部存储
+// [推荐] 使用外部存储
 function incrementCounter(): void
 {
     $redis = new Redis();
@@ -87,10 +87,10 @@ function incrementCounter(): void
 
 ```php
 <?php
-// ❌ 无法使用进程内变量
+// [不推荐] 无法使用进程内变量
 $userSession = [];  // 进程重启后丢失
 
-// ✅ 使用外部存储
+// [推荐] 使用外部存储
 // 1. 数据库
 $db->query('SELECT * FROM sessions WHERE id = ?', [$sessionId]);
 
@@ -107,10 +107,10 @@ file_get_contents("/tmp/session_{$sessionId}.json");
 
 ```php
 <?php
-// ❌ 无法直接共享
+// [不推荐] 无法直接共享
 $sharedCache = [];  // 每个进程独立
 
-// ✅ 使用外部缓存
+// [推荐] 使用外部缓存
 $redis = new Redis();
 $redis->set('cache:key', $value);
 ```
@@ -259,10 +259,10 @@ upstream php_backend {
 
 ```php
 <?php
-// ❌ 不推荐
+// [不推荐] 不推荐
 $globalConfig = [];
 
-// ✅ 推荐：使用配置类
+// [推荐] 推荐：使用配置类
 class Config
 {
     private static array $config = [];

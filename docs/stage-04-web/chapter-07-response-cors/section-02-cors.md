@@ -154,10 +154,10 @@ header('Access-Control-Allow-Origin: http://localhost:3000');
 
 ```php
 <?php
-// ❌ 不推荐：允许所有源
+// [不推荐] 允许所有源
 header('Access-Control-Allow-Origin: *');
 
-// ✅ 推荐：明确指定允许的源
+// [推荐] 明确指定允许的源
 $allowedOrigins = [
     'https://app.example.com',
     'https://admin.example.com',
