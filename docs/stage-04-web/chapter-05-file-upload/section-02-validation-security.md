@@ -21,12 +21,12 @@
 <?php
 declare(strict_types=1);
 
-// ❌ 不安全的做法
+// [不安全] 不安全的做法
 if ($_FILES['avatar']['type'] === 'image/jpeg') {
     // 危险！客户端可以伪造 type
 }
 
-// ✅ 安全的做法：使用服务器端检测
+// [安全] 安全的做法：使用服务器端检测
 function getRealMimeType(string $filePath): string
 {
     $finfo = finfo_open(FILEINFO_MIME_TYPE);

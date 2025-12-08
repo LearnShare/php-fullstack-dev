@@ -27,10 +27,10 @@ echo "Page: {$page}\n";
 <?php
 declare(strict_types=1);
 
-// ❌ 不安全的做法
+// [不推荐] 不安全的做法
 $id = $_GET['id']; // 可能未定义，可能包含恶意数据
 
-// ✅ 安全的做法
+// [推荐] 安全的做法
 function getInt(string $key, int $default = 0): int
 {
     if (!isset($_GET[$key])) {
@@ -165,7 +165,7 @@ if ($email === false) {
 
 ```php
 <?php
-// ❌ 危险示例
+// [不推荐] 危险示例
 $id = $_REQUEST['id']; // 不知道来自 GET、POST 还是 COOKIE
 
 // 攻击场景：
@@ -178,7 +178,7 @@ $id = $_REQUEST['id']; // 不知道来自 GET、POST 还是 COOKIE
 
 ```php
 <?php
-// ✅ 明确指定数据来源
+// [推荐] 明确指定数据来源
 $id = $_GET['id'] ?? $_POST['id'] ?? null;
 
 // 或使用 filter_input 指定输入源
