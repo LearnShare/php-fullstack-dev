@@ -11,7 +11,7 @@
 1. **[PHP 8.2 新特性与示例](section-01-php82.md)**：Readonly 类、独立类型、枚举常量表达式、敏感参数、全新 Random 扩展等重点能力。
 2. **[PHP 8.3 新特性与示例](section-02-php83.md)**：`json_validate()`、类常量类型、`#[\Override]`、`mb_str_pad()`、覆盖属性类型等语法增强。
 3. **[PHP 8.4 新特性与示例](section-03-php84.md)**：属性钩子、不对称可见性、`array_first/array_last`、`#[\NoDiscard]`、DOM API 改进等。
-4. **[PHP 8.5 新特性与示例](section-04-php85.md)**：管道操作符、`clone with`、内置 URI 扩展、OPcache 必选、类型转换规范化等。
+4. **[PHP 8.5 新特性与示例](section-04-php85.md)**：管道操作符、`clone with`、URI parser 配置支持、OPcache 必选、废弃非规范化类型转换等。
 5. **[升级指南与最佳实践](section-05-upgrade-best-practices.md)**：逐版本升级路线、兼容性检测脚本、最佳实践与练习任务。
 
 ## 学习路径
