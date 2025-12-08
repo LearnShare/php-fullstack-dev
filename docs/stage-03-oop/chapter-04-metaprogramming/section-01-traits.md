@@ -38,7 +38,7 @@ class User
 }
 
 $user = new User('Alice');
-$user->register(); // [2025-01-15 14:30:00] User Alice registered
+$user->register(); // [2025-11-28 14:30:00] User Alice registered
 ```
 
 ### Traits 语法
