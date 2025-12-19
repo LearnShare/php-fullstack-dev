@@ -557,5 +557,5 @@ $user->update(['name' => '李四']);
 ## 相关章节
 
 - **[1.0.1 PHP 起源与发展历程](section-01-history.md)**：PHP 的起源和发展历程
-- **[1.3 核心工具链](../../chapter-04-toolchain/README.md)**：详细了解 Composer、IDE、Git 等工具
-- **[2.18 代码规范](../../../stage-02-language/chapter-18-standards/README.md)**：详细了解 PSR 标准和代码规范
+- **[1.3 核心工具链](../../chapter-04-toolchain/readme.md)**：详细了解 Composer、IDE、Git 等工具
+- **[2.18 代码规范](../../../stage-02-language/chapter-18-standards/readme.md)**：详细了解 PSR 标准和代码规范

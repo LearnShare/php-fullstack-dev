@@ -82,7 +82,7 @@
 
 本阶段提供以下实战项目：
 
-1. **[多用户博客系统](chapter-01-multi-user-blog/README.md)**：完整的博客平台，包含用户管理、文章发布、评论、标签等功能
+1. **[多用户博客系统](chapter-01-multi-user-blog/readme.md)**：完整的博客平台，包含用户管理、文章发布、评论、标签等功能
 
 **项目特点：**
 - 使用 Laravel 11+ 框架
@@ -131,7 +131,7 @@
 
 ## 章节内容
 
-1. **[多用户博客系统](chapter-01-multi-user-blog/README.md)**：完整的博客平台开发实战
+1. **[多用户博客系统](chapter-01-multi-user-blog/readme.md)**：完整的博客平台开发实战
    - [9.1.1 需求分析与功能规划](chapter-01-multi-user-blog/section-01-requirements.md)
    - [9.1.2 技术架构设计](chapter-01-multi-user-blog/section-02-architecture.md)
    - [9.1.3 技术栈选型](chapter-01-multi-user-blog/section-03-technology-stack.md)

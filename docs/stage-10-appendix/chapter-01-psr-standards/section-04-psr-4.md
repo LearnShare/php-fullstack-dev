@@ -239,7 +239,7 @@ mypackage/
 ├── src/
 │   └── MyPackage/
 │       └── Service.php
-└── README.md
+└── readme.md
 ```
 
 **composer.json**：

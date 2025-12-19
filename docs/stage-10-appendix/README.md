@@ -21,7 +21,7 @@
 
 ## 章节内容
 
-1. **[PSR 标准规范](chapter-01-psr-standards/README.md)**：PSR 标准规范详解
+1. **[PSR 标准规范](chapter-01-psr-standards/readme.md)**：PSR 标准规范详解
    - [10.1.1 PSR 标准概述](chapter-01-psr-standards/section-01-introduction.md)
    - [10.1.2 PSR-1 基础编码标准](chapter-01-psr-standards/section-02-psr-1.md)
    - [10.1.3 PSR-12 扩展编码风格指南](chapter-01-psr-standards/section-03-psr-12.md)

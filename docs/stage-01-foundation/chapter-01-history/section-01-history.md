@@ -538,4 +538,4 @@ PHP 8.5 于 2025 年 11 月 20 日正式发布，主要特性包括：
 ## 相关章节
 
 - **[1.0.2 PHP 生态系统](section-02-ecosystem.md)**：PHP 流行的技术、框架、工具等相关生态
-- **[2.20 PHP 版本新特性](../../stage-02-language/chapter-20-php-versions/README.md)**：详细了解 PHP 8.2-8.5 的新特性
+- **[2.20 PHP 版本新特性](../../stage-02-language/chapter-20-php-versions/readme.md)**：详细了解 PHP 8.2-8.5 的新特性
