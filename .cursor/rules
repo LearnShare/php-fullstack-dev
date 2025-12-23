@@ -1,6 +1,6 @@
 # PHP + MySQL 全栈开发指南 - 项目规则
 
-> 本文档定义了编写 PHP + MySQL 全栈开发指南的所有规范要求，AI 助手必须严格遵守。
+> 本文档与 `.cursorrules` 文件同步，定义了编写 PHP + MySQL 全栈开发指南的所有规范要求。
 >
 > **详细规则已拆分为多个文件，请根据需要在 `.docs/ai-rules/` 目录中查阅。**
 
@@ -8,26 +8,36 @@
 
 ## 快速索引
 
-### 核心规则（必须遵守）
+### A. 核心执行规则（Core Execution Rules）
 
-1. **[基础规则](.docs/ai-rules/01-basic-rules.md)**：对话语言、模型声明、执行流程、记忆要求
-2. **[文档结构规范](.docs/ai-rules/02-document-structure.md)**：目录结构、文件命名、完整性检查
-3. **[Markdown 格式规范](.docs/ai-rules/03-markdown-format.md)**：标题空行、表格对齐、代码块格式、行宽控制
-4. **[内容完整性要求](.docs/ai-rules/04-content-completeness.md)**：受众定位、详细度、方法/函数说明规范、练习任务
+1. **[基础规则](../.docs/ai-rules/01-basic-rules.md)**：对话语言、模型声明、记忆要求
+2. **[执行工作流](../.docs/ai-rules/02-execution-workflow.md)**：执行前、执行中、执行后的要求
 
-### 辅助规则
+### B. 格式规范类（Format Standards）
 
-5. **[代码规范](.docs/ai-rules/05-code-standards.md)**：代码示例、注释规范
-6. **[工具与命令规范](.docs/ai-rules/06-tools-commands.md)**：文件修改、输出方式
-7. **[学习路径要求](.docs/ai-rules/07-learning-path.md)**：阶段文档、学习路径建议
+3. **[Markdown 格式规范](../.docs/ai-rules/03-markdown-format.md)**：标题空行、表格对齐、代码块格式、行宽控制（详细且细致）
+4. **[代码格式规范](../.docs/ai-rules/04-code-format.md)**：代码示例、注释规范、PHP 代码规范
 
-### 检查与参考
+### C. 内容规范类（Content Standards）
 
-8. **[自检清单](.docs/ai-rules/08-checklist.md)**：提交前必须逐项确认
-9. **[常见问题](.docs/ai-rules/09-common-issues.md)**：常见错误与注意事项
-10. **[内容风格要求](.docs/ai-rules/10-content-style-requirements.md)**：PHP 文档编写内容与风格规范
-11. **[错误反思总结](.docs/ai-rules/11-error-reflection-summary.md)**：AI 编写错误总结与改进方法
-12. **[内容结构标准](.docs/ai-rules/12-content-structure-standards.md)**：不同类型章节的内容结构标准
+5. **[内容完整性要求](../.docs/ai-rules/05-content-completeness.md)**：受众定位、详细度、12 要素、方法/函数说明规范、核心编写原则
+6. **[内容结构标准](../.docs/ai-rules/06-content-structure.md)**：不同类型章节的内容结构标准
+7. **[函数文档格式标准](../.docs/ai-rules/07-function-documentation.md)**：函数文档格式标准（语法、参数、返回值）
+
+### D. 文档组织类（Document Organization）
+
+8. **[文档结构规范](../.docs/ai-rules/08-document-structure.md)**：目录结构、文件命名、完整性检查
+9. **[学习路径要求](../.docs/ai-rules/09-learning-path.md)**：阶段文档、学习路径建议
+
+### E. 工具与操作类（Tools & Operations）
+
+10. **[工具与命令规范](../.docs/ai-rules/10-tools-commands.md)**：文件修改、输出方式
+
+### F. 检查与参考类（Checklists & References）
+
+11. **[自检清单](../.docs/ai-rules/11-checklist.md)**：提交前必须逐项确认
+12. **[常见问题](../.docs/ai-rules/12-common-issues.md)**：常见错误与注意事项
+13. **[错误反思总结](../.docs/ai-rules/13-error-reflection.md)**：AI 编写错误总结与改进方法
 
 ---
 
@@ -39,7 +49,7 @@
 - ✅ 标题、代码块前后必须空行
 - ✅ 表格必须在源文件中按 `|` 对齐列宽，方便直接阅读；使用对齐标记（`|:---|`），宽度比例：9 中文 ≈ 15 英文
 - ✅ 禁止使用 CODE REFERENCES 格式
-- ✅ 每个方法/函数必须包含：语法、参数表、返回值、示例、输出、注意事项、练习
+- ✅ **每个方法/函数必须包含：语法、参数、返回值（三个部分缺一不可）**
 - ✅ 所有文档面向零基础学员，内容详实（参考 300-500 行）
 
 ### 文件命名
@@ -49,9 +59,10 @@
 
 ### 内容要求
 
-- 必须包含 12 个要素：概述、特性、语法、参数、返回值、示例、输出、注意事项、常见问题、最佳实践、练习任务
+- 必须包含 12 个要素：概述、特性、语法、参数、返回值、示例、输出、注意事项、常见问题、最佳实践、对比分析、练习任务
 - 每个章节 3-5 个练习任务
 - 提供对比说明和实际应用场景
+- 符合核心编写原则：客观性、去隐喻化、去黑话化、零起点逻辑
 
 ### PHP 特定要求
 
@@ -70,6 +81,6 @@
 
 ---
 
-**版本**：2.0
-**最后更新**：2025-12-19
+**版本**：3.0
+**最后更新**：2025-12-22
 **适用范围**：PHP + MySQL 全栈开发指南所有文档
