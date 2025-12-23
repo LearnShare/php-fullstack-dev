@@ -168,6 +168,11 @@ ini_set('date.timezone', 'Asia/Shanghai');
 
 **语法**：`ini_get(string $option): string|false`
 
+**参数**：
+- `$option`：配置项名称
+
+**返回值**：成功返回配置值（字符串），失败返回 `false`。
+
 **示例**：
 
 ```php
@@ -186,6 +191,12 @@ echo "Display Errors: {$displayErrors}\n";
 ### ini_get_all() - 获取所有配置
 
 **语法**：`ini_get_all(?string $extension = null, bool $details = true): array`
+
+**参数**：
+- `$extension`：可选，扩展名称（如 'mysql'），默认为 `null`（返回所有配置）
+- `$details`：可选，是否返回详细信息，默认为 `true`
+
+**返回值**：返回包含所有配置项的关联数组。
 
 **示例**：
 

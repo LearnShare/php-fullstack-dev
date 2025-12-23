@@ -10,6 +10,15 @@
 
 **语法**：`file_get_contents(string $filename, bool $use_include_path = false, ?resource $context = null, int $offset = 0, ?int $length = null): string|false`
 
+**参数**：
+- `$filename`：要读取的文件路径
+- `$use_include_path`：可选，是否在 include_path 中搜索文件，默认为 `false`
+- `$context`：可选，流上下文资源，默认为 `null`
+- `$offset`：可选，读取的起始位置（字节），默认为 0
+- `$length`：可选，要读取的最大长度（字节），默认为 `null`（读取到文件末尾）
+
+**返回值**：成功返回文件内容（字符串），失败返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -60,6 +69,14 @@ fclose($handle);
 
 **语法**：`file_put_contents(string $filename, mixed $data, int $flags = 0, ?resource $context = null): int|false`
 
+**参数**：
+- `$filename`：要写入的文件路径
+- `$data`：要写入的数据（字符串或数组）
+- `$flags`：可选，写入标志（`FILE_APPEND`、`FILE_USE_INCLUDE_PATH`、`LOCK_EX` 等），默认为 0
+- `$context`：可选，流上下文资源，默认为 `null`
+
+**返回值**：成功返回写入的字节数，失败返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -94,6 +111,12 @@ fclose($handle);
 
 **语法**：`copy(string $from, string $to): bool`
 
+**参数**：
+- `$from`：源文件路径
+- `$to`：目标文件路径
+
+**返回值**：成功返回 `true`，失败返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -104,6 +127,13 @@ copy(__DIR__ . '/source.txt', __DIR__ . '/destination.txt');
 ### rename() - 重命名/移动文件
 
 **语法**：`rename(string $from, string $to, ?resource $context = null): bool`
+
+**参数**：
+- `$from`：原文件路径
+- `$to`：新文件路径
+- `$context`：可选，流上下文资源，默认为 `null`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
 
 ```php
 <?php
@@ -116,6 +146,12 @@ rename(__DIR__ . '/old.txt', __DIR__ . '/new.txt');
 
 **语法**：`unlink(string $filename, ?resource $context = null): bool`
 
+**参数**：
+- `$filename`：要删除的文件路径
+- `$context`：可选，流上下文资源，默认为 `null`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -126,6 +162,13 @@ unlink(__DIR__ . '/file.txt');
 ## 文件信息
 
 ### file_exists() - 检查文件是否存在
+
+**语法**：`file_exists(string $filename): bool`
+
+**参数**：
+- `$filename`：要检查的文件路径
+
+**返回值**：如果文件或目录存在返回 `true`，否则返回 `false`。
 
 ```php
 <?php
@@ -138,6 +181,13 @@ if (file_exists(__DIR__ . '/file.txt')) {
 
 ### filesize() - 获取文件大小
 
+**语法**：`filesize(string $filename): int|false`
+
+**参数**：
+- `$filename`：文件路径
+
+**返回值**：成功返回文件大小（字节数），失败返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -147,6 +197,13 @@ echo "File size: {$size} bytes\n";
 ```
 
 ### filemtime() - 获取修改时间
+
+**语法**：`filemtime(string $filename): int|false`
+
+**参数**：
+- `$filename`：文件路径
+
+**返回值**：成功返回文件的最后修改时间（Unix 时间戳），失败返回 `false`。
 
 ```php
 <?php

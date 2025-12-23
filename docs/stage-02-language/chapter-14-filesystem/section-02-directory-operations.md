@@ -10,6 +10,14 @@
 
 **语法**：`mkdir(string $directory, int $permissions = 0777, bool $recursive = false, ?resource $context = null): bool`
 
+**参数**：
+- `$directory`：要创建的目录路径
+- `$permissions`：可选，目录权限（八进制），默认为 0777
+- `$recursive`：可选，是否递归创建父目录，默认为 `false`
+- `$context`：可选，流上下文资源，默认为 `null`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -26,6 +34,12 @@ mkdir(__DIR__ . '/path/to/dir', 0755, true);
 ### rmdir() - 删除空目录
 
 **语法**：`rmdir(string $directory, ?resource $context = null): bool`
+
+**参数**：
+- `$directory`：要删除的目录路径（必须是空目录）
+- `$context`：可选，流上下文资源，默认为 `null`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
 
 ```php
 <?php
@@ -66,6 +80,13 @@ function deleteDirectory(string $dir): bool
 ### scandir() - 列出目录内容
 
 **语法**：`scandir(string $directory, int $sorting_order = SCANDIR_SORT_ASCENDING, ?resource $context = null): array|false`
+
+**参数**：
+- `$directory`：要扫描的目录路径
+- `$sorting_order`：可选，排序顺序（`SCANDIR_SORT_ASCENDING`、`SCANDIR_SORT_DESCENDING`、`SCANDIR_SORT_NONE`），默认为 `SCANDIR_SORT_ASCENDING`
+- `$context`：可选，流上下文资源，默认为 `null`
+
+**返回值**：成功返回包含文件和目录名的数组，失败返回 `false`。数组包含 `.` 和 `..` 条目。
 
 ```php
 <?php
@@ -126,6 +147,13 @@ function scanDirectory(string $dir): array
 
 ### realpath() - 获取绝对路径
 
+**语法**：`realpath(string $path): string|false`
+
+**参数**：
+- `$path`：要解析的路径
+
+**返回值**：成功返回规范化的绝对路径，失败返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -135,6 +163,14 @@ echo $path . "\n";
 ```
 
 ### dirname() - 获取目录名
+
+**语法**：`dirname(string $path, int $levels = 1): string`
+
+**参数**：
+- `$path`：文件路径
+- `$levels`：可选，向上返回的目录层级数，默认为 1
+
+**返回值**：返回父目录的路径。
 
 ```php
 <?php
@@ -146,6 +182,14 @@ $dir = dirname($file);  // /path/to
 
 ### basename() - 获取文件名
 
+**语法**：`basename(string $path, string $suffix = ""): string`
+
+**参数**：
+- `$path`：文件路径
+- `$suffix`：可选，如果文件名以该后缀结尾，则去除该后缀
+
+**返回值**：返回路径中的文件名部分。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -156,6 +200,14 @@ $nameWithoutExt = basename($file, '.txt');  // file
 ```
 
 ### pathinfo() - 获取路径信息
+
+**语法**：`pathinfo(string $path, int $flags = PATHINFO_ALL): mixed`
+
+**参数**：
+- `$path`：文件路径
+- `$flags`：可选，指定返回的信息（`PATHINFO_DIRNAME`、`PATHINFO_BASENAME`、`PATHINFO_EXTENSION`、`PATHINFO_FILENAME` 或 `PATHINFO_ALL`），默认为 `PATHINFO_ALL`
+
+**返回值**：如果指定了 `$flags`，返回对应的字符串；否则返回包含所有信息的关联数组。
 
 ```php
 <?php

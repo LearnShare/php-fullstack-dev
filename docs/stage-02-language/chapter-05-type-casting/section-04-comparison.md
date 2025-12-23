@@ -83,10 +83,31 @@ var_dump([] === false);        // bool(false) - 严格比较
 
 **语法**：`strcmp(string $string1, string $string2): int`
 
+**参数**：
+- `$string1`：要比较的第一个字符串
+- `$string2`：要比较的第二个字符串
+
 **返回值**：
 - `< 0`：`$string1` 小于 `$string2`
 - `= 0`：`$string1` 等于 `$string2`
 - `> 0`：`$string1` 大于 `$string2`
+
+**比较逻辑**：
+`strcmp()` 使用二进制安全的字节比较（binary-safe string comparison），比较过程如下：
+
+1. **逐字节比较**：从字符串的第一个字符开始，按字节逐个比较
+2. **ASCII 值比较**：比较每个字符的 ASCII 值（或字节值）
+3. **首次差异决定结果**：遇到第一个不同的字符时，返回两个字符 ASCII 值的差（`$string1[i] - $string2[i]`）
+4. **长度差异处理**：如果所有字符都相同，但长度不同，返回长度的差（`strlen($string1) - strlen($string2)`）
+
+**比较示例**：
+- `strcmp("apple", "banana")`：比较 'a' 和 'b'，'a'(97) < 'b'(98)，返回负数
+- `strcmp("apple", "apricot")`：前两个字符 'a' 和 'a' 相同，比较第三个字符 'p' 和 'r'，'p'(112) < 'r'(114)，返回负数
+- `strcmp("apple", "app")`：前三个字符相同，但长度不同，返回正数（"apple" 更长）
+
+**注意事项**：
+- `strcmp()` 区分大小写（'A' 的 ASCII 值为 65，'a' 为 97）
+- 对于多字节字符（如中文），`strcmp()` 按字节比较，可能不符合预期，应使用 `mb_strcmp()` 或 `strcoll()`
 
 ```php
 <?php
@@ -101,6 +122,15 @@ echo strcmp("apple", "apple") . "\n";   // 0
 
 **语法**：`strcasecmp(string $string1, string $string2): int`
 
+**参数**：
+- `$string1`：要比较的第一个字符串
+- `$string2`：要比较的第二个字符串
+
+**返回值**：
+- `< 0`：`$string1` 小于 `$string2`（不区分大小写）
+- `= 0`：`$string1` 等于 `$string2`（不区分大小写）
+- `> 0`：`$string1` 大于 `$string2`（不区分大小写）
+
 ```php
 <?php
 declare(strict_types=1);
@@ -111,6 +141,16 @@ echo strcasecmp("Apple", "apple") . "\n";  // 0（相等）
 ### bccomp() - 高精度比较
 
 **语法**：`bccomp(string $num1, string $num2, ?int $scale = null): int`
+
+**参数**：
+- `$num1`：要比较的第一个数字（字符串格式）
+- `$num2`：要比较的第二个数字（字符串格式）
+- `$scale`：可选，小数位数精度，默认为 `null`（使用全局精度设置）
+
+**返回值**：
+- `< 0`：`$num1` 小于 `$num2`
+- `= 0`：`$num1` 等于 `$num2`
+- `> 0`：`$num1` 大于 `$num2`
 
 用于比较大数或需要高精度的数值。
 
@@ -126,6 +166,13 @@ echo bccomp("10.4", "10.5", 1) . "\n";  // -1（小于）
 ### version_compare() - 版本比较
 
 **语法**：`version_compare(string $version1, string $version2, ?string $operator = null): int|bool`
+
+**参数**：
+- `$version1`：要比较的第一个版本号
+- `$version2`：要比较的第二个版本号
+- `$operator`：可选，比较运算符（`'<'`、`'<='`、`'>'`、`'>='`、`'=='`、`'!='`、`'<>'`），默认为 `null`
+
+**返回值**：如果指定了 `$operator`，返回布尔值（是否符合运算符条件）；否则返回整数（`-1`、`0` 或 `1`）。
 
 ```php
 <?php

@@ -216,6 +216,12 @@ echo $multiplier(5) . "\n";  // 15
 
 **语法**：`Closure::bindTo(?object $newThis, ?string $newScope = "static"): ?Closure`
 
+**参数**：
+- `$newThis`：可选，要绑定到的对象，如果为 `null` 则解绑
+- `$newScope`：可选，类作用域（类名或 `"static"`），默认为 `"static"`
+
+**返回值**：成功返回新的闭包对象，失败返回 `null`。
+
 ### 基本用法
 
 ```php

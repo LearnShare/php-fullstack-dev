@@ -10,7 +10,10 @@
 
 **语法**：`isset(mixed $var, mixed ...$vars): bool`
 
-**返回值**：如果变量存在且不为 `null`，返回 `true`；否则返回 `false`。
+**参数**：
+- `$var, ...$vars`：要检查的变量（可变参数，可传入多个变量）
+
+**返回值**：如果所有变量都存在且不为 `null`，返回 `true`；否则返回 `false`。
 
 ### 基本用法
 
@@ -65,6 +68,9 @@ var_dump(isset($data['user']['name']));  // bool(true)
 
 **语法**：`empty(mixed $var): bool`
 
+**参数**：
+- `$var`：要检查的变量
+
 **返回值**：如果变量被认为是"空"的，返回 `true`；否则返回 `false`。
 
 ### 被认为是"空"的值
@@ -118,6 +124,9 @@ if ($value === "" || $value === null) {
 ### 语法
 
 **语法**：`is_null(mixed $value): bool`
+
+**参数**：
+- `$value`：要检查的值
 
 **返回值**：如果值为 `null`，返回 `true`；否则返回 `false`。
 

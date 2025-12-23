@@ -10,6 +10,11 @@
 
 **语法**：`var_dump(mixed ...$values): void`
 
+**参数**：
+- `...$values`：要输出的变量（可变参数，可传入多个变量）
+
+**返回值**：无返回值。
+
 **特点**：
 - 显示变量的类型和值
 - 递归显示数组和对象
@@ -51,6 +56,12 @@ array(3) {
 
 **语法**：`print_r(mixed $value, bool $return = false): string|bool`
 
+**参数**：
+- `$value`：要输出的变量
+- `$return`：可选，如果为 `true`，返回字符串而不是直接输出，默认为 `false`
+
+**返回值**：如果 `$return` 为 `true`，返回格式化的字符串；否则返回 `true`。
+
 **特点**：
 - 输出格式更易读
 - 可以返回字符串而不是直接输出
@@ -80,6 +91,12 @@ echo '</pre>';
 
 **语法**：`var_export(mixed $value, bool $return = false): ?string`
 
+**参数**：
+- `$value`：要输出的变量
+- `$return`：可选，如果为 `true`，返回字符串而不是直接输出，默认为 `false`
+
+**返回值**：如果 `$return` 为 `true`，返回格式化的字符串（有效的 PHP 代码）；否则返回 `null`。
+
 **特点**：
 - 输出格式是有效的 PHP 代码
 - 可以用于生成配置文件
@@ -105,8 +122,11 @@ echo $code;
 
 **参数**：
 - `$message`：日志消息
-- `$message_type`：日志类型（0=系统日志，1=邮件，3=文件）
-- `$destination`：目标文件（类型为 3 时）
+- `$message_type`：可选，日志类型（0=系统日志，1=邮件，3=文件），默认为 0
+- `$destination`：可选，目标文件（类型为 3 时）或邮件地址（类型为 1 时），默认为 `null`
+- `$additional_headers`：可选，额外的邮件头（类型为 1 时），默认为 `null`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
 
 **示例**：
 
@@ -149,8 +169,10 @@ error_log('ERROR: ' . $message, 3, '/var/log/php/error.log');
 **语法**：`debug_backtrace(int $options = DEBUG_BACKTRACE_PROVIDE_OBJECT, int $limit = 0): array`
 
 **参数**：
-- `$options`：选项（`DEBUG_BACKTRACE_IGNORE_ARGS` 忽略参数）
-- `$limit`：限制返回的帧数
+- `$options`：可选，选项（`DEBUG_BACKTRACE_PROVIDE_OBJECT`、`DEBUG_BACKTRACE_IGNORE_ARGS` 等），默认为 `DEBUG_BACKTRACE_PROVIDE_OBJECT`
+- `$limit`：可选，限制返回的帧数，默认为 0（返回所有帧）
+
+**返回值**：返回包含调用栈信息的数组。
 
 **示例**：
 
@@ -189,6 +211,12 @@ a();
 
 **语法**：`debug_print_backtrace(int $options = 0, int $limit = 0): void`
 
+**参数**：
+- `$options`：可选，选项（`DEBUG_BACKTRACE_IGNORE_ARGS` 等），默认为 0
+- `$limit`：可选，限制打印的帧数，默认为 0（打印所有帧）
+
+**返回值**：无返回值。
+
 **示例**：
 
 ```php
@@ -214,6 +242,10 @@ a();
 
 **语法**：`xdebug_break(): void`
 
+**参数**：无参数。
+
+**返回值**：无返回值。
+
 **说明**：在代码中强制设置断点，即使 IDE 未设置断点。
 
 **示例**：
@@ -237,6 +269,11 @@ function processData(array $data): void
 
 **语法**：`xdebug_info(?string $category = null): array|string`
 
+**参数**：
+- `$category`：可选，要查看的类别（如 'mode'），默认为 `null`（返回所有信息）
+
+**返回值**：如果指定了类别，返回字符串；否则返回包含所有诊断信息的数组。
+
 **示例**：
 
 ```php
@@ -253,6 +290,10 @@ var_dump(xdebug_info('mode'));
 ### xdebug_get_function_stack() - 获取调用栈
 
 **语法**：`xdebug_get_function_stack(): array`
+
+**参数**：无参数。
+
+**返回值**：返回包含调用栈信息的数组。
 
 **示例**：
 

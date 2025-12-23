@@ -74,6 +74,14 @@ echo $pos2 . "\n";  // 8
 
 **语法**：`mb_strpos(string $haystack, string $needle, int $offset = 0, ?string $encoding = null): int|false`
 
+**参数**：
+- `$haystack`：要搜索的字符串
+- `$needle`：要查找的子串
+- `$offset`：可选，搜索起始位置
+- `$encoding`：可选，字符编码，默认为内部编码
+
+**返回值**：找到返回位置（从 0 开始），未找到返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -87,6 +95,13 @@ echo $pos . "\n";  // 4
 ### strrpos() - 从后往前查找
 
 **语法**：`strrpos(string $haystack, string $needle, int $offset = 0): int|false`
+
+**参数**：
+- `$haystack`：要搜索的字符串
+- `$needle`：要查找的子串
+- `$offset`：可选，搜索起始位置（负数表示从末尾开始）
+
+**返回值**：找到返回位置（从 0 开始），未找到返回 `false`。
 
 ```php
 <?php
@@ -124,6 +139,14 @@ echo substr($str, 0, -1) . "\n";   // Hello, World
 ### mb_substr() - 截取子串（按字符）
 
 **语法**：`mb_substr(string $string, int $start, ?int $length = null, ?string $encoding = null): string`
+
+**参数**：
+- `$string`：原字符串
+- `$start`：起始位置（负数表示从末尾开始）
+- `$length`：可选，要截取的长度（负数表示从末尾开始）
+- `$encoding`：可选，字符编码，默认为内部编码
+
+**返回值**：返回截取的子串。
 
 ```php
 <?php
@@ -174,6 +197,14 @@ echo str_replace($search, $replace, $str) . "\n";  // I like orange and grape
 
 **语法**：`str_ireplace(mixed $search, mixed $replace, mixed $subject, int &$count = null): mixed`
 
+**参数**：
+- `$search`：要查找的值（可以是字符串或数组）
+- `$replace`：替换值（可以是字符串或数组）
+- `$subject`：要搜索替换的字符串或数组
+- `$count`：可选，接收替换次数
+
+**返回值**：返回替换后的字符串或数组。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -210,9 +241,21 @@ echo trim($str, '*') . "\n";  // Hello
 
 **语法**：`ltrim(string $string, string $characters = " \n\r\t\v\0"): string`
 
+**参数**：
+- `$string`：要处理的字符串
+- `$characters`：可选，要去除的字符列表
+
+**返回值**：返回去除左侧空白后的字符串。
+
 ### rtrim() - 去除右侧空白
 
 **语法**：`rtrim(string $string, string $characters = " \n\r\t\v\0"): string`
+
+**参数**：
+- `$string`：要处理的字符串
+- `$characters`：可选，要去除的字符列表
+
+**返回值**：返回去除右侧空白后的字符串。
 
 ```php
 <?php
@@ -229,6 +272,11 @@ echo rtrim($str) . "\n";  // "  Hello"
 
 **语法**：`strtolower(string $string): string`
 
+**参数**：
+- `$string`：要转换的字符串
+
+**返回值**：返回转换为小写的字符串。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -239,6 +287,11 @@ echo strtolower("Hello, World!") . "\n";  // hello, world!
 ### strtoupper() - 转为大写
 
 **语法**：`strtoupper(string $string): string`
+
+**参数**：
+- `$string`：要转换的字符串
+
+**返回值**：返回转换为大写的字符串。
 
 ```php
 <?php
@@ -251,6 +304,11 @@ echo strtoupper("Hello, World!") . "\n";  // HELLO, WORLD!
 
 **语法**：`ucfirst(string $string): string`
 
+**参数**：
+- `$string`：要转换的字符串
+
+**返回值**：返回首字母大写的字符串。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -261,6 +319,12 @@ echo ucfirst("hello, world!") . "\n";  // Hello, world!
 ### ucwords() - 每个单词首字母大写
 
 **语法**：`ucwords(string $string, string $separators = " \t\r\n\f\v"): string`
+
+**参数**：
+- `$string`：要转换的字符串
+- `$separators`：可选，单词分隔符列表
+
+**返回值**：返回每个单词首字母大写的字符串。
 
 ```php
 <?php
@@ -274,6 +338,13 @@ echo ucwords("hello, world!") . "\n";  // Hello, World!
 ### explode() - 分割字符串
 
 **语法**：`explode(string $separator, string $string, int $limit = PHP_INT_MAX): array`
+
+**参数**：
+- `$separator`：分隔符
+- `$string`：要分割的字符串
+- `$limit`：可选，限制分割后的数组元素数量
+
+**返回值**：返回分割后的数组。
 
 ```php
 <?php
@@ -292,6 +363,12 @@ print_r($parts);  // ['apple', 'banana,orange']
 
 **语法**：`implode(string $separator, array $array): string`
 
+**参数**：
+- `$separator`：分隔符
+- `$array`：要拼接的数组
+
+**返回值**：返回拼接后的字符串。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -306,6 +383,12 @@ echo implode(", ", $fruits) . "\n";  // apple, banana, orange
 
 **语法**：`sprintf(string $format, mixed ...$values): string`
 
+**参数**：
+- `$format`：格式化字符串，包含格式说明符（如 `%s`、`%d`、`%f` 等）
+- `...$values`：要格式化的值（可变参数）
+
+**返回值**：返回格式化后的字符串。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -319,6 +402,14 @@ echo $message . "\n";  // Name: Alice, Age: 25
 ### number_format() - 数字格式化
 
 **语法**：`number_format(float $number, int $decimals = 0, ?string $decimal_separator = ".", ?string $thousands_separator = ","): string`
+
+**参数**：
+- `$number`：要格式化的数字
+- `$decimals`：可选，小数位数，默认为 0
+- `$decimal_separator`：可选，小数点分隔符，默认为 "."
+- `$thousands_separator`：可选，千位分隔符，默认为 ","
+
+**返回值**：返回格式化后的数字字符串。
 
 ```php
 <?php
@@ -396,4 +487,3 @@ echo StringHelper::extractEmail("Contact: user@example.com") . "\n";
 4. 创建一个函数，提取文本中的所有 URL。
 
 5. 编写一个函数，实现字符串的模糊匹配。
-

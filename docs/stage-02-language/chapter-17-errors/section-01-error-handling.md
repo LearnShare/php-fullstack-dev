@@ -49,6 +49,12 @@ ini_set('error_log', __DIR__ . '/logs/php-errors.log');
 
 **语法**：`set_error_handler(?callable $callback, int $error_levels = E_ALL): ?callable`
 
+**参数**：
+- `$callback`：错误处理回调函数，接收 `(int $severity, string $message, string $file, int $line)` 参数，返回 `bool`。如果为 `null`，则恢复默认错误处理
+- `$error_levels`：可选，要处理的错误级别（位掩码），默认为 `E_ALL`
+
+**返回值**：返回之前设置的错误处理函数，如果没有则返回 `null`。
+
 ```php
 <?php
 declare(strict_types=1);

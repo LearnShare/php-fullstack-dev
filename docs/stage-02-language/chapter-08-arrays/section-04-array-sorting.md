@@ -10,6 +10,12 @@
 
 **语法**：`sort(array &$array, int $flags = SORT_REGULAR): bool`
 
+**参数**：
+- `$array`：要排序的数组（按引用传递，会被修改）
+- `$flags`：可选，排序标志（`SORT_REGULAR`、`SORT_NUMERIC`、`SORT_STRING` 等），默认为 `SORT_REGULAR`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -22,6 +28,12 @@ print_r($numbers);  // [1, 1, 2, 3, 4, 5, 6, 9] - 键被重新索引
 ### rsort() - 按值降序排序（重新索引）
 
 **语法**：`rsort(array &$array, int $flags = SORT_REGULAR): bool`
+
+**参数**：
+- `$array`：要排序的数组（按引用传递，会被修改）
+- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
 
 ```php
 <?php
@@ -37,6 +49,12 @@ print_r($numbers);  // [9, 6, 5, 4, 3, 2, 1, 1]
 ### asort() - 按值升序排序（保留键）
 
 **语法**：`asort(array &$array, int $flags = SORT_REGULAR): bool`
+
+**参数**：
+- `$array`：要排序的数组（按引用传递，会被修改）
+- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
 
 ```php
 <?php
@@ -58,6 +76,12 @@ print_r($fruits);
 ### arsort() - 按值降序排序（保留键）
 
 **语法**：`arsort(array &$array, int $flags = SORT_REGULAR): bool`
+
+**参数**：
+- `$array`：要排序的数组（按引用传递，会被修改）
+- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
 
 ```php
 <?php
@@ -82,6 +106,12 @@ print_r($fruits);
 
 **语法**：`ksort(array &$array, int $flags = SORT_REGULAR): bool`
 
+**参数**：
+- `$array`：要排序的数组（按引用传递，会被修改）
+- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -102,6 +132,12 @@ print_r($fruits);
 ### krsort() - 按键降序排序
 
 **语法**：`krsort(array &$array, int $flags = SORT_REGULAR): bool`
+
+**参数**：
+- `$array`：要排序的数组（按引用传递，会被修改）
+- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
 
 ```php
 <?php
@@ -125,6 +161,12 @@ print_r($fruits);
 ### usort() - 自定义值排序
 
 **语法**：`usort(array &$array, callable $callback): bool`
+
+**参数**：
+- `$array`：要排序的数组（按引用传递，会被修改）
+- `$callback`：比较函数，接收两个参数，返回 `< 0`、`0` 或 `> 0`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
 
 ```php
 <?php
@@ -164,9 +206,21 @@ print_r($users);
 
 **语法**：`uasort(array &$array, callable $callback): bool`
 
+**参数**：
+- `$array`：要排序的数组（按引用传递，会被修改）
+- `$callback`：比较函数，接收两个参数，返回 `< 0`、`0` 或 `> 0`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
+
 ### uksort() - 自定义键排序
 
 **语法**：`uksort(array &$array, callable $callback): bool`
+
+**参数**：
+- `$array`：要排序的数组（按引用传递，会被修改）
+- `$callback`：比较函数，接收两个键作为参数，返回 `< 0`、`0` 或 `> 0`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
 
 ## 多字段排序
 

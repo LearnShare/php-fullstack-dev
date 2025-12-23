@@ -146,6 +146,11 @@ foreach ($users as $user) {
 
 **语法**：`reset(array|object $array): mixed`
 
+**参数**：
+- `$array`：要重置指针的数组
+
+**返回值**：返回数组的第一个元素的值，如果数组为空返回 `false`。
+
 将数组内部指针指向第一个元素。
 
 ```php
@@ -164,6 +169,11 @@ echo current($arr) . "\n";  // a
 
 **语法**：`next(array|object $array): mixed`
 
+**参数**：
+- `$array`：要移动指针的数组
+
+**返回值**：返回下一个元素的值，如果没有下一个元素返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -177,6 +187,11 @@ echo next($arr) . "\n";     // c
 ### prev() - 移动指针到上一个
 
 **语法**：`prev(array|object $array): mixed`
+
+**参数**：
+- `$array`：要移动指针的数组
+
+**返回值**：返回上一个元素的值，如果没有上一个元素返回 `false`。
 
 ```php
 <?php
@@ -193,6 +208,11 @@ echo prev($arr) . "\n";      // a
 
 **语法**：`end(array|object $array): mixed`
 
+**参数**：
+- `$array`：要移动指针的数组
+
+**返回值**：返回数组的最后一个元素的值，如果数组为空返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -205,6 +225,11 @@ echo current($arr) . "\n";  // c
 ### current() - 获取当前元素
 
 **语法**：`current(array|object $array): mixed`
+
+**参数**：
+- `$array`：要获取当前元素的数组
+
+**返回值**：返回当前指针指向的元素的值，如果指针超出数组范围返回 `false`。
 
 ```php
 <?php
@@ -219,6 +244,11 @@ echo current($arr) . "\n";  // b
 ### key() - 获取当前键
 
 **语法**：`key(array|object $array): int|string|null`
+
+**参数**：
+- `$array`：要获取当前键的数组
+
+**返回值**：返回当前指针指向的元素的键（整数或字符串），如果指针超出数组范围返回 `null`。
 
 ```php
 <?php

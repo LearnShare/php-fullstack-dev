@@ -391,6 +391,11 @@ echo round(3.14159, 3) . "\n";  // 3.142
 
 **语法**：`floor(float $num): float`
 
+**参数**：
+- `$num`：要取整的数字
+
+**返回值**：返回向下取整后的浮点数。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -403,6 +408,11 @@ echo floor(-3.7) . "\n";  // -4
 
 **语法**：`ceil(float $num): float`
 
+**参数**：
+- `$num`：要取整的数字
+
+**返回值**：返回向上取整后的浮点数。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -414,6 +424,11 @@ echo ceil(-3.2) . "\n";  // -3
 #### `floatval()` - 转换为浮点数
 
 **语法**：`floatval(mixed $value): float`
+
+**参数**：
+- `$value`：要转换的值
+
+**返回值**：返回转换后的浮点数。
 
 ```php
 <?php
@@ -641,6 +656,14 @@ echo substr($str, 0, -1) . "\n";   // Hello, World
 #### `mb_substr()` - 截取子串（按字符）
 
 **语法**：`mb_substr(string $string, int $start, ?int $length = null, ?string $encoding = null): string`
+
+**参数**：
+- `$string`：原字符串
+- `$start`：起始位置（负数表示从末尾开始）
+- `$length`：可选，要截取的长度（负数表示从末尾开始），默认为 `null`（截取到末尾）
+- `$encoding`：可选，字符编码，默认为内部编码
+
+**返回值**：返回截取后的子串。
 
 ```php
 <?php

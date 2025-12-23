@@ -172,7 +172,10 @@ var_dump($ch instanceof CurlHandle);  // bool(true)
 
 **语法**：`is_resource(mixed $value): bool`
 
-**注意**：PHP 8.0+ 中，许多资源已对象化，此函数可能返回 `false`。
+**参数**：
+- `$value`：要检测的值
+
+**返回值**：如果 `$value` 是资源类型，返回 `true`；否则返回 `false`。注意：PHP 8.0+ 中，许多资源已对象化，此函数可能返回 `false`。
 
 ```php
 <?php
@@ -191,6 +194,9 @@ var_dump($file instanceof \GdImage);  // 检查具体类型
 #### `get_resource_type()`
 
 **语法**：`get_resource_type(resource $resource): string`
+
+**参数**：
+- `$resource`：要检查的资源
 
 **返回值**：返回资源类型名称，如果不是资源则返回空字符串。
 

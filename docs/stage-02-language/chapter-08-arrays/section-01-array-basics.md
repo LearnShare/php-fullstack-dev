@@ -263,6 +263,11 @@ $arr[null] = 'null';   // 等同于 $arr[''] = 'null'
 
 **语法**：`is_array(mixed $value): bool`
 
+**参数**：
+- `$value`：要检测的值
+
+**返回值**：如果 `$value` 是数组类型，返回 `true`；否则返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);

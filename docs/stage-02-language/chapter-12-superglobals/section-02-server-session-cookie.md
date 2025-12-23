@@ -149,6 +149,17 @@ echo "Username: {$username}\n";
 
 **语法**：`setcookie(string $name, string $value = "", int $expires = 0, string $path = "", string $domain = "", bool $secure = false, bool $httponly = false): bool`
 
+**参数**：
+- `$name`：Cookie 名称
+- `$value`：可选，Cookie 值，默认为空字符串
+- `$expires`：可选，过期时间（Unix 时间戳），默认为 0（会话结束时过期）
+- `$path`：可选，Cookie 路径，默认为空字符串（当前目录）
+- `$domain`：可选，Cookie 域名，默认为空字符串（当前域名）
+- `$secure`：可选，是否仅通过 HTTPS 传输，默认为 `false`
+- `$httponly`：可选，是否仅允许 HTTP 访问（防止 JavaScript 访问），默认为 `false`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);

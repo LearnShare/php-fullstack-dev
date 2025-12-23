@@ -244,6 +244,12 @@ echo trim($sentence) . "\n";  // Hello World PHP
 
 **语法**：`sort(array &$array, int $flags = SORT_REGULAR): bool`
 
+**参数**：
+- `$array`：要排序的数组（按引用传递，会被修改）
+- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -257,9 +263,21 @@ print_r($numbers);  // [1, 1, 2, 3, 4, 5, 6, 9]
 
 **语法**：`rsort(array &$array, int $flags = SORT_REGULAR): bool`
 
+**参数**：
+- `$array`：要排序的数组（按引用传递，会被修改）
+- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
+
 #### `asort()` - 按值排序（保留键）
 
 **语法**：`asort(array &$array, int $flags = SORT_REGULAR): bool`
+
+**参数**：
+- `$array`：要排序的数组（按引用传递，会被修改）
+- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
 
 ```php
 <?php
@@ -282,9 +300,21 @@ print_r($fruits);
 
 **语法**：`ksort(array &$array, int $flags = SORT_REGULAR): bool`
 
+**参数**：
+- `$array`：要排序的数组（按引用传递，会被修改）
+- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
+
 #### `usort()` - 自定义排序
 
 **语法**：`usort(array &$array, callable $callback): bool`
+
+**参数**：
+- `$array`：要排序的数组（按引用传递，会被修改）
+- `$callback`：比较函数，接收两个参数，返回 `< 0`、`0` 或 `> 0`
+
+**返回值**：成功返回 `true`，失败返回 `false`。
 
 ```php
 <?php
@@ -377,6 +407,11 @@ echo $user->greet() . "\n";  // Hello, I'm Alice
 #### `is_object()`
 
 **语法**：`is_object(mixed $value): bool`
+
+**参数**：
+- `$value`：要检测的值
+
+**返回值**：如果 `$value` 是对象类型，返回 `true`；否则返回 `false`。
 
 ```php
 <?php
@@ -576,6 +611,12 @@ var_dump(is_callable([new Greeter(), 'greet'])); // bool(true)
 
 **语法**：`call_user_func(callable $callback, mixed ...$args): mixed`
 
+**参数**：
+- `$callback`：要调用的函数或方法
+- `...$args`：可变参数，传递给回调函数的参数
+
+**返回值**：返回回调函数的返回值。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -592,6 +633,12 @@ echo $result . "\n";  // 8
 #### `call_user_func_array()`
 
 **语法**：`call_user_func_array(callable $callback, array $args): mixed`
+
+**参数**：
+- `$callback`：要调用的函数或方法
+- `$args`：传递给回调函数的参数数组
+
+**返回值**：返回回调函数的返回值。
 
 ```php
 <?php

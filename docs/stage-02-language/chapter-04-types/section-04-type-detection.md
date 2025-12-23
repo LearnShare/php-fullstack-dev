@@ -78,6 +78,11 @@ if (is_string($value)) {
 
 **语法**：`is_bool(mixed $value): bool`
 
+**参数**：
+- `$value`：要检测的值
+
+**返回值**：如果 `$value` 是布尔类型，返回 `true`；否则返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -90,6 +95,11 @@ var_dump(is_bool(0));      // bool(false)
 #### `is_int()` / `is_integer()` / `is_long()`
 
 **语法**：`is_int(mixed $value): bool`
+
+**参数**：
+- `$value`：要检测的值
+
+**返回值**：如果 `$value` 是整数类型，返回 `true`；否则返回 `false`。
 
 ```php
 <?php
@@ -104,6 +114,11 @@ var_dump(is_int("42"));    // bool(false)
 
 **语法**：`is_float(mixed $value): bool`
 
+**参数**：
+- `$value`：要检测的值
+
+**返回值**：如果 `$value` 是浮点数类型，返回 `true`；否则返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -115,6 +130,11 @@ var_dump(is_float(42));     // bool(false)
 #### `is_string()`
 
 **语法**：`is_string(mixed $value): bool`
+
+**参数**：
+- `$value`：要检测的值
+
+**返回值**：如果 `$value` 是字符串类型，返回 `true`；否则返回 `false`。
 
 ```php
 <?php
@@ -130,6 +150,11 @@ var_dump(is_string(42));      // bool(false)
 
 **语法**：`is_array(mixed $value): bool`
 
+**参数**：
+- `$value`：要检测的值
+
+**返回值**：如果 `$value` 是数组类型，返回 `true`；否则返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -143,6 +168,11 @@ var_dump(is_array("string"));     // bool(false)
 
 **语法**：`is_object(mixed $value): bool`
 
+**参数**：
+- `$value`：要检测的值
+
+**返回值**：如果 `$value` 是对象类型，返回 `true`；否则返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -154,6 +184,13 @@ var_dump(is_object([]));             // bool(false)
 #### `is_callable()`
 
 **语法**：`is_callable(mixed $value, bool $syntax_only = false, string &$callable_name = null): bool`
+
+**参数**：
+- `$value`：要检测的值
+- `$syntax_only`：可选，如果为 `true`，只检查语法，不检查是否可调用，默认为 `false`
+- `$callable_name`：可选，接收可调用名称的引用变量，默认为 `null`
+
+**返回值**：如果 `$value` 是可调用的，返回 `true`；否则返回 `false`。
 
 ```php
 <?php
@@ -172,6 +209,11 @@ var_dump(is_callable([new stdClass(), 'method'])); // 取决于方法是否存�
 
 **语法**：`is_null(mixed $value): bool`
 
+**参数**：
+- `$value`：要检测的值
+
+**返回值**：如果值为 `null`，返回 `true`；否则返回 `false`。
+
 ```php
 <?php
 declare(strict_types=1);
@@ -184,7 +226,10 @@ var_dump(is_null(0));       // bool(false)
 
 **语法**：`is_resource(mixed $value): bool`
 
-**注意**：PHP 8.0+ 中许多资源已对象化，此函数可能返回 `false`。
+**参数**：
+- `$value`：要检测的值
+
+**返回值**：如果 `$value` 是资源类型，返回 `true`；否则返回 `false`。注意：PHP 8.0+ 中许多资源已对象化，此函数可能返回 `false`。
 
 ```php
 <?php
@@ -202,7 +247,10 @@ var_dump(is_resource($file));
 
 **语法**：`is_numeric(mixed $value): bool`
 
-检测值是否为数字或数字字符串。
+**参数**：
+- `$value`：要检测的值
+
+**返回值**：如果值是数字或数字字符串，返回 `true`；否则返回 `false`。
 
 ```php
 <?php
@@ -219,7 +267,10 @@ var_dump(is_numeric("0x1A"));   // bool(false) - 注意：不识别十六进制�
 
 **语法**：`is_scalar(mixed $value): bool`
 
-检测值是否为标量类型（bool、int、float、string）。
+**参数**：
+- `$value`：要检测的值
+
+**返回值**：如果值是标量类型（bool、int、float、string），返回 `true`；否则返回 `false`。
 
 ```php
 <?php
@@ -238,7 +289,10 @@ var_dump(is_scalar(null));      // bool(false)
 
 **语法**：`is_iterable(mixed $value): bool`
 
-检测值是否可迭代（数组或实现了 `Traversable` 接口的对象）。
+**参数**：
+- `$value`：要检测的值
+
+**返回值**：如果值可迭代（数组或实现了 `Traversable` 接口的对象），返回 `true`；否则返回 `false`。
 
 ```php
 <?php
@@ -253,7 +307,10 @@ var_dump(is_iterable("string"));            // bool(false)
 
 **语法**：`is_countable(mixed $value): bool`
 
-检测值是否可计数（数组或实现了 `Countable` 接口的对象）。
+**参数**：
+- `$value`：要检测的值
+
+**返回值**：如果值可计数（数组或实现了 `Countable` 接口的对象），返回 `true`；否则返回 `false`。
 
 ```php
 <?php
@@ -314,6 +371,11 @@ function process(mixed $value): void
 
 **语法**：`var_dump(mixed ...$values): void`
 
+**参数**：
+- `...$values`：要输出的变量（可变参数，可传入多个变量）
+
+**返回值**：无返回值。
+
 输出变量的详细信息，包括类型和值。
 
 ```php
@@ -334,6 +396,12 @@ var_dump($var);
 ### print_r()
 
 **语法**：`print_r(mixed $value, bool $return = false): string|bool`
+
+**参数**：
+- `$value`：要输出的变量
+- `$return`：可选，如果为 `true`，返回字符串而不是直接输出，默认为 `false`
+
+**返回值**：如果 `$return` 为 `true`，返回格式化的字符串；否则返回 `true`。
 
 以更易读的格式输出变量信息。
 
