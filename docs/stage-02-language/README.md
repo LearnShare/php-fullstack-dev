@@ -50,9 +50,9 @@
 - 类型系统（2.4-2.5）：1 周
 - 表达式和字符串（2.6-2.7）：1 周
 - 数组（2.8）：1 周
-- 控制结构和函数（2.9-2.11）：1 周
-- Web 相关（2.12-2.15）：1 周
-- 高级特性（2.16-2.20）：1 周
+- 控制结构和函数（2.9-2.10）：1 周
+- Web 相关（2.11-2.14）：1 周
+- 高级特性（2.15-2.19）：1 周
 - 总结和练习：1 周
 
 ## 练习建议
@@ -148,62 +148,68 @@
    - [2.9.2 循环结构](chapter-09-control-flow/section-02-loops.md)
    - [2.9.3 跳转语句](chapter-09-control-flow/section-03-jump-statements.md)
 
-10. **[函数与作用域](chapter-10-functions/readme.md)**：函数、作用域与静态变量。
+10. **[函数与作用域](chapter-10-functions/readme.md)**：函数、作用域、匿名函数与闭包。
     - [2.10.1 函数基础](chapter-10-functions/section-01-function-basics.md)
     - [2.10.2 可变参数](chapter-10-functions/section-02-variable-arguments.md)
     - [2.10.3 引用、箭头函数与闭包](chapter-10-functions/section-03-references-closures.md)
-    - [2.10.4 可调用类型与内置函数](chapter-10-functions/section-04-callable-types.md)
+    - [2.10.4 匿名函数](chapter-10-functions/section-04-anonymous-functions.md)
+    - [2.10.5 可调用类型与内置函数](chapter-10-functions/section-05-callable-types.md)
 
-11. **[匿名函数与闭包](chapter-11-closures/readme.md)**：匿名函数、闭包与类型声明。
-    - [2.11.1 匿名函数基础](chapter-11-closures/section-01-anonymous-functions.md)
-    - [2.11.2 闭包与作用域](chapter-11-closures/section-02-closures-scope.md)
+11. **[超级全局变量](chapter-11-superglobals/readme.md)**：超级全局变量与安全处理。
+    - [2.11.1 $_GET、$_POST 与 $_REQUEST](chapter-11-superglobals/section-01-get-post-request.md)
+    - [2.11.2 $_SERVER、$_SESSION 与 $_COOKIE](chapter-11-superglobals/section-02-server-session-cookie.md)
+    - [2.11.3 $_FILES 与安全处理](chapter-11-superglobals/section-03-files-security.md)
 
-12. **[超级全局变量](chapter-12-superglobals/readme.md)**：超级全局变量与安全处理。
-    - [2.12.1 $_GET、$_POST 与 $_REQUEST](chapter-12-superglobals/section-01-get-post-request.md)
-    - [2.12.2 $_SERVER、$_SESSION 与 $_COOKIE](chapter-12-superglobals/section-02-server-session-cookie.md)
-    - [2.12.3 $_FILES 与安全处理](chapter-12-superglobals/section-03-files-security.md)
+12. **[文件引入与模块化](chapter-12-modularity/readme.md)**：模块编写、文件引入、命名空间与 Composer 依赖管理。
+    - [2.12.1 模块基础](chapter-12-modularity/section-01-module-basics.md)
+    - [2.12.2 include 与 require](chapter-12-modularity/section-02-include-require.md)
+    - [2.12.3 使用导入的内容](chapter-12-modularity/section-03-using-imported.md)
+    - [2.12.4 避免冲突和循环导入](chapter-12-modularity/section-04-conflicts-circular.md)
+    - [2.12.5 路径处理和返回值](chapter-12-modularity/section-05-paths-returns.md)
+    - [2.12.6 Composer 基础](chapter-12-modularity/section-06-composer-basics.md)
+    - [2.12.7 Composer 自动加载](chapter-12-modularity/section-07-composer-autoload.md)
+    - [2.12.8 编写和发布 Composer 包](chapter-12-modularity/section-08-composer-packages.md)
+    - [2.12.9 命名空间与模块组织](chapter-12-modularity/section-09-namespaces.md)
 
-13. **[文件引入与模块化](chapter-13-modularity/readme.md)**：文件引入与 Composer autoload。
-    - [2.13.1 include 与 require](chapter-13-modularity/section-01-include-require.md)
-    - [2.13.2 Composer Autoload](chapter-13-modularity/section-02-composer-autoload.md)
+13. **[文件系统操作](chapter-13-filesystem/readme.md)**：文件系统与 I/O。
+   - [2.13.1 文件读取](chapter-13-filesystem/section-01-file-reading.md)
+   - [2.13.2 文件写入](chapter-13-filesystem/section-02-file-writing.md)
+   - [2.13.3 文件操作](chapter-13-filesystem/section-03-file-operations.md)
+   - [2.13.4 文件锁和临时文件](chapter-13-filesystem/section-04-file-locks-temp.md)
+   - [2.13.5 文件信息](chapter-13-filesystem/section-05-file-info.md)
+   - [2.13.6 目录操作](chapter-13-filesystem/section-06-directory-operations.md)
 
-14. **[文件系统操作](chapter-14-filesystem/readme.md)**：文件系统与 I/O。
-    - [2.14.1 文件操作](chapter-14-filesystem/section-01-file-operations.md)
-    - [2.14.2 目录操作](chapter-14-filesystem/section-02-directory-operations.md)
+14. **[时间与日期处理](chapter-14-datetime/readme.md)**：时间日期 API 与国际化。
+   - [2.14.1 DateTime 基础](chapter-14-datetime/section-01-datetime-basics.md)
+   - [2.14.2 时区处理](chapter-14-datetime/section-02-timezone.md)
+   - [2.14.3 格式化与解析](chapter-14-datetime/section-03-formatting-parsing.md)
+   - [2.14.4 时间计算与比较](chapter-14-datetime/section-04-calculations-comparisons.md)
 
-15. **[时间与日期处理](chapter-15-datetime/readme.md)**：时间日期 API 与国际化。
-   - [2.15.1 DateTime 基础](chapter-15-datetime/section-01-datetime-basics.md)
-   - [2.15.2 时区处理](chapter-15-datetime/section-02-timezone.md)
-   - [2.15.3 格式化与解析](chapter-15-datetime/section-03-formatting-parsing.md)
-   - [2.15.4 时间计算与比较](chapter-15-datetime/section-04-calculations-comparisons.md)
+15. **[isset / empty / Null 体系](chapter-15-null-system/readme.md)**：isset、empty 与 Null 合并运算。
+    - [2.15.1 isset、empty 与 is_null](chapter-15-null-system/section-01-isset-empty.md)
+    - [2.15.2 空合并运算符](chapter-15-null-system/section-02-null-coalescing.md)
 
-16. **[isset / empty / Null 体系](chapter-16-null-system/readme.md)**：isset、empty 与 Null 合并运算。
-    - [2.16.1 isset、empty 与 is_null](chapter-16-null-system/section-01-isset-empty.md)
-    - [2.16.2 空合并运算符](chapter-16-null-system/section-02-null-coalescing.md)
+16. **[错误与异常处理](chapter-16-errors/readme.md)**：错误、异常与 Throwable。
+    - [2.16.1 错误处理](chapter-16-errors/section-01-error-handling.md)
+    - [2.16.2 异常处理](chapter-16-errors/section-02-exceptions.md)
 
-17. **[错误与异常处理](chapter-17-errors/readme.md)**：错误、异常与 Throwable。
-    - [2.17.1 错误处理](chapter-17-errors/section-01-error-handling.md)
-    - [2.17.2 异常处理](chapter-17-errors/section-02-exceptions.md)
+17. **[代码规范](chapter-17-standards/readme.md)**：代码规范、PHPDoc 与 PSR。
+    - [2.17.1 PSR 标准](chapter-17-standards/section-01-psr-standards.md)
+    - [2.17.2 PHPDoc](chapter-17-standards/section-02-phpdoc.md)
 
-18. **[代码规范](chapter-18-standards/readme.md)**：代码规范、PHPDoc 与 PSR。
-    - [2.18.1 PSR 标准](chapter-18-standards/section-01-psr-standards.md)
-    - [2.18.2 PHPDoc](chapter-18-standards/section-02-phpdoc.md)
+18. **[常见错误与调试技巧](chapter-18-debugging/readme.md)**：常见错误与调试技巧。
+   - [2.18.1 常见错误类型与修复流程](chapter-18-debugging/section-01-common-errors.md)
+   - [2.18.2 调试技巧与工具链](chapter-18-debugging/section-02-debugging-techniques.md)
+   - [2.18.3 排查清单与最佳实践](chapter-18-debugging/section-03-troubleshooting-checklist.md)
 
-19. **[常见错误与调试技巧](chapter-19-debugging/readme.md)**：常见错误与调试技巧。
-   - [2.19.1 常见错误类型与修复流程](chapter-19-debugging/section-01-common-errors.md)
-   - [2.19.2 调试技巧与工具链](chapter-19-debugging/section-02-debugging-techniques.md)
-   - [2.19.3 排查清单与最佳实践](chapter-19-debugging/section-03-troubleshooting-checklist.md)
+19. **[PHP 版本新特性](chapter-19-php-versions/readme.md)**：PHP 8.2-8.5 版本新特性。
+   - [2.19.1 PHP 8.2 新特性与示例](chapter-19-php-versions/section-01-php82.md)
+   - [2.19.2 PHP 8.3 新特性与示例](chapter-19-php-versions/section-02-php83.md)
+   - [2.19.3 PHP 8.4 新特性与示例](chapter-19-php-versions/section-03-php84.md)
+   - [2.19.4 PHP 8.5 新特性与示例](chapter-19-php-versions/section-04-php85.md)
+   - [2.19.5 升级指南与最佳实践](chapter-19-php-versions/section-05-upgrade-best-practices.md)
 
-20. **[PHP 版本新特性](chapter-20-php-versions/readme.md)**：PHP 8.2-8.5 版本新特性。
-   - [2.20.1 PHP 8.2 新特性与示例](chapter-20-php-versions/section-01-php82.md)
-   - [2.20.2 PHP 8.3 新特性与示例](chapter-20-php-versions/section-02-php83.md)
-   - [2.20.3 PHP 8.4 新特性与示例](chapter-20-php-versions/section-03-php84.md)
-   - [2.20.4 PHP 8.5 新特性与示例](chapter-20-php-versions/section-04-php85.md)
-   - [2.20.5 升级指南与最佳实践](chapter-20-php-versions/section-05-upgrade-best-practices.md)
-
-21. **[本章小结与练习](chapter-21-summary/readme.md)**：阶段总结与练习指引。
-
-完成阶段二后，你将具备：
+## 完成阶段二后，你将具备：
 
 - 扎实的 PHP 语言基础与调试能力，能够独立说明一段 PHP 程序的执行过程。
 - 对类型系统、内置函数及运行机制的系统理解，能准确选择合适的数据结构。

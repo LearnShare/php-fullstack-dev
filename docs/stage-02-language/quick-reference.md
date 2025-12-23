@@ -19,11 +19,11 @@
 
 | 函数/运算符 | 描述 | 语法 | 链接 |
 | :--------- | :--- | :--- | :--- |
-| `isset()` | 检查变量是否存在且不为 `null` | `isset(mixed ...$vars): bool` | [2.16.1](../chapter-16-null-system/section-01-isset-empty.md) |
-| `empty()` | 检查变量是否为空（`""`、`0`、`null`、`false`、`[]` 等） | `empty(mixed $var): bool` | [2.16.1](../chapter-16-null-system/section-01-isset-empty.md) |
-| `is_null()` | 检查变量是否为 `null` | `is_null(mixed $value): bool` | [2.16.1](../chapter-16-null-system/section-01-isset-empty.md) |
-| `??` | 空合并运算符，变量为 `null` 或未定义时返回默认值 | `$var ?? $default` | [2.16.2](../chapter-16-null-system/section-02-null-coalescing.md) |
-| `??=` | 空合并赋值运算符，仅在变量为 `null` 或未定义时赋值 | `$var ??= $value` | [2.16.2](../chapter-16-null-system/section-02-null-coalescing.md) |
+| `isset()` | 检查变量是否存在且不为 `null` | `isset(mixed ...$vars): bool` | [2.15.1](../chapter-15-null-system/section-01-isset-empty.md) |
+| `empty()` | 检查变量是否为空（`""`、`0`、`null`、`false`、`[]` 等） | `empty(mixed $var): bool` | [2.15.1](../chapter-15-null-system/section-01-isset-empty.md) |
+| `is_null()` | 检查变量是否为 `null` | `is_null(mixed $value): bool` | [2.15.1](../chapter-15-null-system/section-01-isset-empty.md) |
+| `??` | 空合并运算符，变量为 `null` 或未定义时返回默认值 | `$var ?? $default` | [2.15.2](../chapter-15-null-system/section-02-null-coalescing.md) |
+| `??=` | 空合并赋值运算符，仅在变量为 `null` 或未定义时赋值 | `$var ??= $value` | [2.15.2](../chapter-15-null-system/section-02-null-coalescing.md) |
 | `unset()` | 销毁变量 | `unset(mixed $var, mixed ...$vars): void` | [2.3.1](../chapter-03-variables/section-01-variable-basics.md) |
 
 ### 类型检测
@@ -338,4 +338,3 @@
 **相关章节**：
 
 - [阶段二总览](readme.md)：完整的阶段二学习指南
-- [2.21 本章小结与练习](chapter-21-summary/readme.md)：阶段总结与练习指引

@@ -646,7 +646,7 @@ $response
 
 - **[2.4.4 类型检测](../chapter-04-types/section-04-type-detection.md)**：详细介绍 `gettype()`、`is_int()`、`is_string()`、`is_array()` 等类型检测函数的用法、参数说明、使用场景和最佳实践。这些函数用于检测变量的类型，是编写健壮代码的重要工具。
 
-- **[2.16 isset、empty 与 Null 合并运算](../chapter-16-null-system/readme.md)**：详细介绍 `isset()`、`empty()`、`is_null()` 和空合并运算符（`??`）的用法、参数说明、使用场景和最佳实践。在输出变量之前，通常需要先检查变量是否存在或为空，这些函数和运算符是处理这种情况的重要工具。
+- **[2.15 isset、empty 与 Null 合并运算](../chapter-15-null-system/readme.md)**：详细介绍 `isset()`、`empty()`、`is_null()` 和空合并运算符（`??`）的用法、参数说明、使用场景和最佳实践。在输出变量之前，通常需要先检查变量是否存在或为空，这些函数和运算符是处理这种情况的重要工具。
 
 ## 常见错误与注意事项
 

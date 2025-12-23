@@ -4,6 +4,117 @@
 
 数组排序是数据处理中的常见操作。PHP 提供了多种排序函数，可以根据值、键进行排序，也可以使用自定义比较函数。
 
+## 排序标志详解
+
+排序标志决定了数组元素比较和排序的方式。不同的标志适用于不同的数据类型和排序需求。**所有支持 `$flags` 参数的排序函数都使用相同的标志**。
+
+| 标志              | 说明                     | 适用场景                           |
+| :---------------- | :----------------------- | :--------------------------------- |
+| `SORT_REGULAR`    | 常规比较（默认）         | 混合类型数组，让 PHP 自动判断      |
+| `SORT_NUMERIC`    | 数值比较                 | 数字字符串数组，需要按数值大小排序 |
+| `SORT_STRING`     | 字符串比较               | 纯字符串数组，按字典序排序         |
+| `SORT_LOCALE_STRING` | 根据当前区域设置比较 | 需要本地化排序的字符串数组         |
+| `SORT_NATURAL`    | 自然排序                 | 包含数字的文件名、版本号等         |
+| `SORT_FLAG_CASE`  | 可与 `SORT_STRING` 或 `SORT_NATURAL` 组合，不区分大小写 | 需要忽略大小写的字符串排序 |
+
+### SORT_REGULAR vs SORT_NUMERIC vs SORT_STRING
+
+这三种标志的主要区别在于如何处理混合类型的数据：
+
+```php
+<?php
+declare(strict_types=1);
+
+$mixed = ['10', 2, '1', 20, '3'];
+
+// SORT_REGULAR：根据类型自动判断
+$regular = $mixed;
+sort($regular, SORT_REGULAR);
+print_r($regular);  // ['1', 2, '3', '10', 20]
+// 说明：字符串 '1' 和 '3' 按字符串比较，数值 2 和 20 按数值比较
+
+// SORT_NUMERIC：全部转换为数值后比较
+$numeric = $mixed;
+sort($numeric, SORT_NUMERIC);
+print_r($numeric);  // ['1', 2, '3', '10', 20]
+// 说明：所有值都转换为数值：'10'→10, '1'→1, '3'→3, 然后按数值大小排序
+
+// SORT_STRING：全部转换为字符串后比较
+$string = $mixed;
+sort($string, SORT_STRING);
+print_r($string);  // ['1', '10', '3', 2, 20]
+// 说明：所有值都转换为字符串后按字符比较：
+// '1' < '10'（第一个字符相同，比较第二个字符 '0'）
+// '10' < '3'（第一个字符 '1' < '3'）
+// '3' < '2'（字符 '3' > '2'，但这里 '3' 是字符串，'2' 是数值，转换后比较）
+```
+
+### SORT_STRING 的字符比较规则
+
+`SORT_STRING` 按字符的 ASCII 码值逐字符比较：
+
+```php
+<?php
+declare(strict_types=1);
+
+$numbers = ['10', '2', '1', '20', '3'];
+
+sort($numbers, SORT_STRING);
+print_r($numbers);  // ['1', '10', '2', '20', '3']
+// 说明：
+// '1' < '10'：第一个字符相同（'1'），比较第二个字符，'1' 没有第二个字符，所以 '1' < '10'
+// '10' < '2'：第一个字符 '1'（ASCII 49）< '2'（ASCII 50）
+// '2' < '20'：第一个字符相同，比较第二个字符
+// '20' < '3'：第一个字符 '2' < '3'
+```
+
+### SORT_NATURAL 自然排序示例
+
+自然排序会识别字符串中的数字部分，按数值大小比较：
+
+```php
+<?php
+declare(strict_types=1);
+
+$files = ['file1.txt', 'file10.txt', 'file2.txt', 'file20.txt'];
+
+// SORT_STRING：按字符比较
+$string = $files;
+sort($string, SORT_STRING);
+print_r($string);  // ['file1.txt', 'file10.txt', 'file2.txt', 'file20.txt']
+// 说明：'file1' < 'file10'（第一个字符相同，比较第二个字符...）
+//      'file10' < 'file2'（'file1' < 'file2'，因为 '1' < '2'）
+
+// SORT_NATURAL：自然排序
+$natural = $files;
+sort($natural, SORT_NATURAL);
+print_r($natural);  // ['file1.txt', 'file2.txt', 'file10.txt', 'file20.txt']
+// 说明：识别数字部分，file1(1) < file2(2) < file10(10) < file20(20)
+```
+
+### SORT_FLAG_CASE 不区分大小写
+
+`SORT_FLAG_CASE` 必须与 `SORT_STRING` 或 `SORT_NATURAL` 组合使用：
+
+```php
+<?php
+declare(strict_types=1);
+
+$words = ['Apple', 'banana', 'Cherry', 'date'];
+
+// SORT_STRING：区分大小写
+$caseSensitive = $words;
+sort($caseSensitive, SORT_STRING);
+print_r($caseSensitive);  // ['Apple', 'Cherry', 'banana', 'date']
+// 说明：大写字母的 ASCII 码小于小写字母（'A'=65 < 'a'=97）
+
+// SORT_STRING | SORT_FLAG_CASE：不区分大小写
+$caseInsensitive = $words;
+sort($caseInsensitive, SORT_STRING | SORT_FLAG_CASE);
+print_r($caseInsensitive);  // ['Apple', 'banana', 'Cherry', 'date']
+// 说明：忽略大小写后按字母顺序排序
+```
+
 ## 基于值的排序
 
 ### sort() - 按值升序排序（重新索引）
@@ -12,7 +123,7 @@
 
 **参数**：
 - `$array`：要排序的数组（按引用传递，会被修改）
-- `$flags`：可选，排序标志（`SORT_REGULAR`、`SORT_NUMERIC`、`SORT_STRING` 等），默认为 `SORT_REGULAR`
+- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`。详见前面的"排序标志详解"章节。
 
 **返回值**：成功返回 `true`，失败返回 `false`。
 
@@ -31,7 +142,7 @@ print_r($numbers);  // [1, 1, 2, 3, 4, 5, 6, 9] - 键被重新索引
 
 **参数**：
 - `$array`：要排序的数组（按引用传递，会被修改）
-- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`
+- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`。详见前面的"排序标志详解"章节。
 
 **返回值**：成功返回 `true`，失败返回 `false`。
 
@@ -52,7 +163,7 @@ print_r($numbers);  // [9, 6, 5, 4, 3, 2, 1, 1]
 
 **参数**：
 - `$array`：要排序的数组（按引用传递，会被修改）
-- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`
+- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`。详见前面的"排序标志详解"章节。
 
 **返回值**：成功返回 `true`，失败返回 `false`。
 
@@ -79,7 +190,7 @@ print_r($fruits);
 
 **参数**：
 - `$array`：要排序的数组（按引用传递，会被修改）
-- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`
+- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`。详见前面的"排序标志详解"章节。
 
 **返回值**：成功返回 `true`，失败返回 `false`。
 
@@ -108,7 +219,7 @@ print_r($fruits);
 
 **参数**：
 - `$array`：要排序的数组（按引用传递，会被修改）
-- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`
+- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`。详见前面的"排序标志详解"章节。
 
 **返回值**：成功返回 `true`，失败返回 `false`。
 
@@ -135,7 +246,7 @@ print_r($fruits);
 
 **参数**：
 - `$array`：要排序的数组（按引用传递，会被修改）
-- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`
+- `$flags`：可选，排序标志，默认为 `SORT_REGULAR`。详见前面的"排序标志详解"章节。
 
 **返回值**：成功返回 `true`，失败返回 `false`。
 
@@ -244,36 +355,6 @@ usort($users, function($a, $b) {
 });
 
 print_r($users);
-```
-
-## 排序标志
-
-| 标志              | 说明                     |
-| :---------------- | :----------------------- |
-| `SORT_REGULAR`    | 常规比较（默认）         |
-| `SORT_NUMERIC`    | 数值比较                 |
-| `SORT_STRING`     | 字符串比较               |
-| `SORT_LOCALE_STRING` | 根据当前区域设置比较 |
-| `SORT_NATURAL`    | 自然排序                 |
-| `SORT_FLAG_CASE`  | 可与 `SORT_STRING` 或 `SORT_NATURAL` 组合，不区分大小写 |
-
-### 自然排序示例
-
-```php
-<?php
-declare(strict_types=1);
-
-$files = ['file1.txt', 'file10.txt', 'file2.txt', 'file20.txt'];
-
-// 常规排序
-$regular = $files;
-sort($regular, SORT_STRING);
-print_r($regular);  // ['file1.txt', 'file10.txt', 'file2.txt', 'file20.txt']
-
-// 自然排序
-$natural = $files;
-sort($natural, SORT_NATURAL);
-print_r($natural);  // ['file1.txt', 'file2.txt', 'file10.txt', 'file20.txt']
 ```
 
 ## 完整示例
