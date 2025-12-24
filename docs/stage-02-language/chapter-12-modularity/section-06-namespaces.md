@@ -1,4 +1,4 @@
-# 2.12.9 命名空间与模块组织
+# 2.12.6 命名空间与模块组织
 
 ## 概述
 
@@ -689,3 +689,8 @@ echo "User: {$user->getName()}\n";
 4. 编写代码，演示 `use` 语句的不同用法（导入类、导入命名空间、使用别名）。
 
 5. 配置 PSR-4 自动加载，验证命名空间与文件路径的映射关系。
+
+## 相关章节
+
+- **[1.3.2 Composer 自动加载](../../stage-01-foundation/chapter-04-toolchain/section-02-composer-autoload.md)**：深入学习 Composer 的 PSR-4 自动加载机制
+- **[2.16.1 PSR 标准](../chapter-17-standards/section-01-psr-standards.md)**：了解 PSR-4 标准的详细规范

@@ -576,3 +576,9 @@ $controller->index();
 4. 编写脚本，比较优化前后的自动加载性能。
 
 5. 实现一个混合自动加载配置，同时使用 PSR-4、类映射和文件自动加载。
+
+## 相关章节
+
+- **[1.3.1 Composer 基础](section-01-composer-basics.md)**：了解 Composer 的基本使用
+- **[1.3.3 编写和发布 Composer 包](section-03-composer-packages.md)**：学习如何创建和发布自己的包
+- **[2.16.1 PSR 标准](../../stage-02-language/chapter-17-standards/section-01-psr-standards.md)**：了解 PSR-4 标准的详细规范

@@ -1,4 +1,4 @@
-# 2.12.8 编写和发布 Composer 包
+# 1.3.3 编写和发布 Composer 包
 
 ## 概述
 
@@ -699,3 +699,8 @@ jobs:
 5. 将包提交到 Packagist，并配置自动更新。
 
 6. 创建一个完整的包，包含多个类、测试、文档和 CI 配置。
+
+## 相关章节
+
+- **[1.3.1 Composer 基础](section-01-composer-basics.md)**：了解 Composer 的基本使用
+- **[1.3.2 Composer 自动加载](section-02-composer-autoload.md)**：深入学习 Composer 的自动加载机制

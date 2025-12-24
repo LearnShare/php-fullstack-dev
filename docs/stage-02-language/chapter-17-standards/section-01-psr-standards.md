@@ -54,7 +54,7 @@ class UserService
 
 ## PSR-4：自动加载标准
 
-> **详细使用说明**：关于如何在 Composer 中配置和使用 PSR-4 自动加载，请参考 [2.12.7 Composer 自动加载](../chapter-12-modularity/section-07-composer-autoload.md)。
+> **详细使用说明**：关于如何在 Composer 中配置和使用 PSR-4 自动加载，请参考 [1.3.2 Composer 自动加载](../../stage-01-foundation/chapter-04-toolchain/section-02-composer-autoload.md)。
 
 ### 基本规则
 

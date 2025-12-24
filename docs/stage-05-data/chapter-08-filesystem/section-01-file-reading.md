@@ -1,4 +1,4 @@
-# 2.13.1 文件读取
+# 5.8.1 文件读取
 
 ## 概述
 
@@ -11,8 +11,13 @@ PHP 提供了多种文件读取方法，每种方法适用于不同的场景：
 1. **`file_get_contents()`**：一次性读取整个文件，适合小文件
 2. **`fopen()` + `fread()`**：流式读取，适合大文件
 3. **`fopen()` + `fgets()`**：逐行读取，适合文本文件
-4. **`fopen()` + `fgetcsv()`**：读取 CSV 文件
-5. **`readfile()`**：直接输出文件内容，适合下载场景
+4. **`fopen()` + `fgetc()`**：逐字符读取，适合特殊需求
+5. **`fopen()` + `fgetcsv()`**：读取 CSV 文件
+6. **`readfile()`**：直接输出文件内容，适合下载场景
+
+> **相关章节**：
+> - 关于文件指针的详细说明，请参考 [5.8.4 文件指针操作](section-04-file-pointer.md)
+> - 关于二进制文件读取的详细说明，请参考 [5.8.5 二进制文件处理](section-05-binary-files.md)
 
 ## file_get_contents() - 读取整个文件
 
@@ -67,7 +72,7 @@ $content = file_get_contents('config.php', true);  // 在 include_path 中搜索
 - 对于大文件（> 10MB），建议使用流式读取
 - 读取失败时返回 `false`，需要检查返回值
 - 从 URL 读取需要 `allow_url_fopen=On`
-- 二进制文件需要使用 `b` 模式（通过流上下文）
+- 二进制文件需要使用二进制模式读取（详见 [5.8.5 二进制文件处理](section-05-binary-files.md)）
 
 ## fopen() - 打开文件
 
@@ -97,8 +102,37 @@ $content = file_get_contents('config.php', true);  // 在 include_path 中搜索
 | `c+` | 读写 | 创建 | 打开（不清空） | 文件开头 |
 
 **模式后缀**：
-- `b`：二进制模式（Windows 上推荐使用，如 `rb`、`wb`）
-- `t`：文本模式（默认）
+- `b`：二进制模式（Binary mode）
+- `t`：文本模式（Text mode，默认）
+
+### 文本模式 vs 二进制模式
+
+**文本模式（`t`）**：
+- 默认模式，适用于文本文件
+- 在 Windows 上会自动转换换行符（`\r\n` ↔ `\n`）
+- 在类 Unix 系统上无影响（因为换行符是 `\n`）
+- 适用于：`.txt`、`.php`、`.html`、`.json` 等文本文件
+
+**二进制模式（`b`）**：
+- 不进行任何转换，按字节原样读取
+- 适用于所有文件类型，特别是二进制文件
+- **在 Windows 上强烈推荐使用**，避免换行符转换问题
+- 适用于：图片（`.jpg`、`.png`、`.gif`）、视频、音频、压缩文件、可执行文件等
+
+**为什么需要二进制模式**：
+
+在 Windows 系统上，文本模式会自动转换换行符：
+- 读取时：`\r\n`（Windows）→ `\n`（PHP 内部）
+- 写入时：`\n`（PHP 内部）→ `\r\n`（Windows）
+
+对于二进制文件，这种转换会**破坏文件内容**。例如：
+- 图片文件中如果包含 `0x0A`（`\n`），会被错误处理
+- 压缩文件、可执行文件等会被损坏
+
+**跨平台兼容性**：
+- 在类 Unix 系统（Linux、macOS）上，文本模式和二进制模式行为相同
+- 在 Windows 上，二进制模式是必需的
+- **最佳实践**：始终使用二进制模式（`b`），确保跨平台兼容性
 
 **示例**：
 
@@ -128,8 +162,10 @@ if ($handle === false) {
     throw new RuntimeException('File already exists');
 }
 
-// 二进制模式（Windows 推荐）
+// 二进制模式（推荐，跨平台兼容）
 $handle = fopen(__DIR__ . '/image.jpg', 'rb');
+$handle = fopen(__DIR__ . '/data.bin', 'rb');
+$handle = fopen(__DIR__ . '/archive.zip', 'rb');
 ```
 
 ## fread() - 读取数据
@@ -169,40 +205,6 @@ while (($chunk = fread($handle, 8192)) !== false) {
 fclose($handle);
 ```
 
-## feof() - 检查文件指针是否到达文件末尾
-
-**语法**：`feof(resource $stream): bool`
-
-**返回值**：如果文件指针到达文件末尾返回 `true`，否则返回 `false`。
-
-**注意事项**：
-- 只有在尝试读取超出文件末尾的数据后，`feof()` 才会返回 `true`
-- 不要用 `feof()` 作为循环条件，应该检查 `fread()` 的返回值
-
-**正确用法**：
-
-```php
-<?php
-declare(strict_types=1);
-
-$handle = fopen(__DIR__ . '/data.txt', 'r');
-if ($handle === false) {
-    throw new RuntimeException('Cannot open file');
-}
-
-// ✅ 正确：检查 fread() 的返回值
-while (($chunk = fread($handle, 8192)) !== false) {
-    echo $chunk;
-}
-
-// ❌ 错误：不要用 feof() 作为循环条件
-while (!feof($handle)) {
-    $chunk = fread($handle, 8192);
-    // 如果 fread() 返回 false，$chunk 可能是 false，但仍会继续循环
-}
-
-fclose($handle);
-```
 
 ## fclose() - 关闭文件
 
@@ -284,6 +286,62 @@ while (($line = fgets($handle, 100)) !== false) {
 fclose($handle);
 ```
 
+## fgetc() - 读取单个字符
+
+**适用场景**：
+- 逐字符处理文件
+- 解析特定格式的文件
+- 需要精确控制读取位置
+
+**语法**：`fgetc(resource $stream): string|false`
+
+**参数**：
+- `$stream`：文件句柄
+
+**返回值**：
+- 成功返回一个字符（字符串，长度为 1），失败或到达文件末尾返回 `false`
+
+**工作原理**：
+- 从当前文件指针位置读取一个字符
+- 读取后文件指针向前移动 1 字节
+- 返回的字符包含换行符、空格等所有字符
+
+**示例**：
+
+```php
+<?php
+declare(strict_types=1);
+
+$handle = fopen(__DIR__ . '/data.txt', 'r');
+if ($handle === false) {
+    throw new RuntimeException('Cannot open file');
+}
+
+// 逐字符读取
+while (($char = fgetc($handle)) !== false) {
+    echo $char;
+    // 可以在这里处理每个字符
+}
+
+fclose($handle);
+
+// 读取前 10 个字符
+$handle = fopen(__DIR__ . '/data.txt', 'r');
+for ($i = 0; $i < 10; $i++) {
+    $char = fgetc($handle);
+    if ($char === false) {
+        break;  // 到达文件末尾
+    }
+    echo $char;
+}
+fclose($handle);
+```
+
+**注意事项**：
+- `fgetc()` 返回的字符串长度为 1，即使是多字节字符
+- 对于 UTF-8 等多字节编码，应该使用其他方法（如 `fread()` + `mb_substr()`）
+- 逐字符读取效率较低，适合小文件或特殊需求
+
 ## fgetcsv() - 读取 CSV 文件
 
 **语法**：`fgetcsv(resource $stream, ?int $length = null, string $separator = ",", string $enclosure = "\"", string $escape = "\\"): array|false`
@@ -349,12 +407,13 @@ readfile(__DIR__ . '/file.txt');
 exit;
 ```
 
+
 ## 注意事项
 
-1. **错误处理**：始终检查文件操作的返回值。
-2. **大文件处理**：对于大文件（> 10MB），使用流式操作而不是一次性读取。
-3. **资源释放**：使用 `fopen()` 后必须使用 `fclose()` 释放资源。
-4. **二进制文件**：处理二进制文件时，使用 `b` 模式（如 `rb`、`wb`）。
+1. **错误处理**：始终检查文件操作的返回值
+2. **大文件处理**：对于大文件（> 10MB），使用流式操作而不是一次性读取
+3. **资源释放**：使用 `fopen()` 后必须使用 `fclose()` 释放资源
+4. **二进制文件**：处理二进制文件时，**必须**使用 `b` 模式（如 `rb`、`wb`），避免数据损坏。即使是文本文件，也推荐使用 `b` 模式以确保跨平台兼容性（详见 [5.8.5 二进制文件处理](section-05-binary-files.md)）
 
 ## 练习
 

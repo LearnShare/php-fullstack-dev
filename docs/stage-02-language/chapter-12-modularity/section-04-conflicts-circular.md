@@ -565,6 +565,8 @@ class ServiceB
 
 Composer autoload 会在需要时自动加载类，避免循环导入问题。
 
+> **详细说明**：关于 Composer 自动加载的详细配置和使用，请参考 [1.3.2 Composer 自动加载](../../stage-01-foundation/chapter-04-toolchain/section-02-composer-autoload.md)。
+
 ### 解决方案 5：事件驱动架构
 
 **使用事件解耦模块**：

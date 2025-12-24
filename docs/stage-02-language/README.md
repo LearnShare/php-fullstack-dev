@@ -166,20 +166,9 @@
     - [2.12.3 使用导入的内容](chapter-12-modularity/section-03-using-imported.md)
     - [2.12.4 避免冲突和循环导入](chapter-12-modularity/section-04-conflicts-circular.md)
     - [2.12.5 路径处理和返回值](chapter-12-modularity/section-05-paths-returns.md)
-    - [2.12.6 Composer 基础](chapter-12-modularity/section-06-composer-basics.md)
-    - [2.12.7 Composer 自动加载](chapter-12-modularity/section-07-composer-autoload.md)
-    - [2.12.8 编写和发布 Composer 包](chapter-12-modularity/section-08-composer-packages.md)
-    - [2.12.9 命名空间与模块组织](chapter-12-modularity/section-09-namespaces.md)
+    - [2.12.6 命名空间与模块组织](chapter-12-modularity/section-06-namespaces.md)
 
-13. **[文件系统操作](chapter-13-filesystem/readme.md)**：文件系统与 I/O。
-   - [2.13.1 文件读取](chapter-13-filesystem/section-01-file-reading.md)
-   - [2.13.2 文件写入](chapter-13-filesystem/section-02-file-writing.md)
-   - [2.13.3 文件操作](chapter-13-filesystem/section-03-file-operations.md)
-   - [2.13.4 文件锁和临时文件](chapter-13-filesystem/section-04-file-locks-temp.md)
-   - [2.13.5 文件信息](chapter-13-filesystem/section-05-file-info.md)
-   - [2.13.6 目录操作](chapter-13-filesystem/section-06-directory-operations.md)
-
-14. **[时间与日期处理](chapter-14-datetime/readme.md)**：时间日期 API 与国际化。
+13. **[时间与日期处理](chapter-14-datetime/readme.md)**：时间日期 API 与国际化。
    - [2.14.1 DateTime 基础](chapter-14-datetime/section-01-datetime-basics.md)
    - [2.14.2 时区处理](chapter-14-datetime/section-02-timezone.md)
    - [2.14.3 格式化与解析](chapter-14-datetime/section-03-formatting-parsing.md)

@@ -140,9 +140,18 @@
    - [5.7.2 缓存策略](chapter-07-redis/section-02-cache-strategies.md)
    - [5.7.3 缓存问题与解决方案](chapter-07-redis/section-03-cache-problems.md)
    - [5.7.4 高级特性](chapter-07-redis/section-04-advanced-features.md)
-8. **[文件系统流式操作](chapter-08-filesystem/readme.md)**：文件系统流式操作。
-   - [5.8.1 流式操作](chapter-08-filesystem/section-01-streaming.md)
-   - [5.8.2 大文件处理](chapter-08-filesystem/section-02-large-files.md)
+8. **[文件系统操作](chapter-08-filesystem/readme.md)**：文件系统操作。
+   - [5.8.1 文件读取](chapter-08-filesystem/section-01-file-reading.md)
+   - [5.8.2 文件写入](chapter-08-filesystem/section-02-file-writing.md)
+   - [5.8.3 文件操作](chapter-08-filesystem/section-03-file-operations.md)
+   - [5.8.4 文件指针操作](chapter-08-filesystem/section-04-file-pointer.md)
+   - [5.8.5 二进制文件处理](chapter-08-filesystem/section-05-binary-files.md)
+   - [5.8.6 文件锁和临时文件](chapter-08-filesystem/section-06-file-locks-temp.md)
+   - [5.8.7 目录操作](chapter-08-filesystem/section-07-directory-operations.md)
+   - [5.8.8 文件信息](chapter-08-filesystem/section-08-file-info.md)
+   - [5.8.9 流式操作与流包装器](chapter-08-filesystem/section-09-streaming.md)
+   - [5.8.10 大文件处理](chapter-08-filesystem/section-10-large-files.md)
+   - [5.8.11 文件权限详解](chapter-08-filesystem/section-11-file-permissions.md)
 9. **[日志体系与监控](chapter-09-logging/readme.md)**：日志体系与监控。
    - [5.9.1 日志体系设计](chapter-09-logging/section-01-logging-system.md)
    - [5.9.2 结构化日志](chapter-09-logging/section-02-structured-logs.md)
@@ -156,5 +165,5 @@
 - 熟悉现代 MySQL 特性（JSON 字段、窗口函数等）。
 - 掌握 ORM 框架的使用，能够进行数据迁移和填充。
 - 理解 Redis 缓存策略，能够处理缓存穿透、击穿、雪崩等问题。
-- 掌握文件系统流式操作，能够高效处理大文件。
+- 掌握文件系统操作，能够进行文件读写、目录操作、流式处理等。
 - 建立完整的日志体系，支持结构化日志和链路追踪。

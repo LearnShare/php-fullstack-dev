@@ -94,11 +94,13 @@
    - [1.2.2 客户端工具与命令](chapter-03-mysql/section-02-tools-commands.md)
 
 4. **[核心工具链](chapter-04-toolchain/readme.md)**：配置 Composer、IDE、Git、容器与自动化脚本，形成统一工具链。
-   - [1.3.1 Composer 依赖管理](chapter-04-toolchain/section-01-composer.md)
-   - [1.3.2 IDE 与扩展配置](chapter-04-toolchain/section-02-ide-extensions.md)
-   - [1.3.3 Git 与任务管理](chapter-04-toolchain/section-03-git-tasks.md)
-   - [1.3.4 容器与环境管理](chapter-04-toolchain/section-04-docker-compose.md)
-   - [1.3.5 自动化脚本](chapter-04-toolchain/section-05-automation.md)
+   - [1.3.1 Composer 基础](chapter-04-toolchain/section-01-composer-basics.md)
+   - [1.3.2 Composer 自动加载](chapter-04-toolchain/section-02-composer-autoload.md)
+   - [1.3.3 编写和发布 Composer 包](chapter-04-toolchain/section-03-composer-packages.md)
+   - [1.3.4 IDE 与扩展配置](chapter-04-toolchain/section-04-ide-extensions.md)
+   - [1.3.5 Git 与任务管理](chapter-04-toolchain/section-05-git-tasks.md)
+   - [1.3.6 容器与环境管理](chapter-04-toolchain/section-06-docker-compose.md)
+   - [1.3.7 自动化脚本](chapter-04-toolchain/section-07-automation.md)
 
 5. **[配置、扩展与调试](chapter-05-config-debug/readme.md)**：掌握 php.ini、扩展安装、Xdebug 调试与配置差异排查。
    - [1.4.1 php.ini 配置](chapter-05-config-debug/section-01-php-ini.md)

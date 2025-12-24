@@ -1,4 +1,4 @@
-# 2.12.6 Composer 基础
+# 1.3.1 Composer 基础
 
 ## 概述
 
@@ -106,6 +106,36 @@ composer help
 composer list
 ```
 
+## 与 npm 对比
+
+如果你熟悉 Node.js 的 npm，Composer 功能类似：
+
+| 功能 | npm (Node.js) | Composer (PHP) |
+| :--- | :------------ | :------------- |
+| 包管理 | `npm install` | `composer install` |
+| 添加依赖 | `npm install package` | `composer require package` |
+| 移除依赖 | `npm uninstall package` | `composer remove package` |
+| 更新依赖 | `npm update` | `composer update` |
+| 配置文件 | `package.json` | `composer.json` |
+| 锁定文件 | `package-lock.json` | `composer.lock` |
+| 依赖目录 | `node_modules/` | `vendor/` |
+| 脚本命令 | `npm run script` | `composer run-script script` |
+| 全局安装 | `npm install -g` | `composer global require` |
+
+### 关键差异
+
+1. **自动加载**：
+   - npm：需要手动 `require()` 或 `import`
+   - Composer：自动生成 `vendor/autoload.php`，自动加载类
+
+2. **命名空间**：
+   - npm：使用模块路径（`require('./module')`）
+   - Composer：使用命名空间（`use Vendor\Package\Class`）
+
+3. **版本约束**：
+   - npm：`^1.0.0`、`~1.0.0`、`>=1.0.0`
+   - Composer：`^1.0`、`~1.0`、`>=1.0`（语义相同）
+
 ## composer.json 文件
 
 ### 基本结构
@@ -139,7 +169,7 @@ composer list
 | `type` | 包类型 | `"project"`, `"library"` |
 | `require` | 生产环境依赖 | `{"php": "^8.2"}` |
 | `require-dev` | 开发环境依赖 | `{"phpunit/phpunit": "^10.0"}` |
-| `autoload` | 自动加载配置 | 见自动加载章节 |
+| `autoload` | 自动加载配置 | 见 [1.3.2 Composer 自动加载](section-02-composer-autoload.md) |
 | `license` | 许可证 | `"MIT"`, `"Apache-2.0"` |
 | `authors` | 作者信息 | `[{"name": "John", "email": "john@example.com"}]` |
 
@@ -469,6 +499,30 @@ composer diagnose
 composer audit
 ```
 
+## 配置建议
+
+### 推荐配置
+
+```json
+{
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    }
+}
+```
+
+### 镜像配置
+
+```bash
+# 使用阿里云镜像（国内推荐）
+composer config -g repos.packagist composer https://mirrors.aliyun.com/composer/
+
+# 使用腾讯云镜像
+composer config -g repos.packagist composer https://mirrors.cloud.tencent.com/composer/
+```
+
 ## 最佳实践
 
 ### 1. 版本控制
@@ -586,6 +640,11 @@ $controller->index();
 5. **版本约束**：
    - 使用 `^` 允许小版本更新
    - 避免使用 `*` 或过宽的约束
+
+## 相关章节
+
+- **[1.3.2 Composer 自动加载](section-02-composer-autoload.md)**：深入学习 Composer 的自动加载机制
+- **[1.3.3 编写和发布 Composer 包](section-03-composer-packages.md)**：学习如何创建和发布自己的包
 
 ## 练习
 

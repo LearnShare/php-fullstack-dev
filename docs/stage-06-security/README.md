@@ -115,6 +115,7 @@
    - [6.1.2 注入攻击防护](chapter-01-owasp/section-02-injection.md)
    - [6.1.3 认证与会话管理](chapter-01-owasp/section-03-authentication.md)
    - [6.1.4 其他安全风险](chapter-01-owasp/section-04-other-risks.md)
+   - [6.1.5 路径安全](chapter-01-owasp/section-05-path-security.md)
 2. **[密码与加密安全](chapter-02-encryption/readme.md)**：密码与加密安全。
    - [6.2.1 密码加密](chapter-02-encryption/section-01-password-encryption.md)
    - [6.2.2 数据加密](chapter-02-encryption/section-02-data-encryption.md)
