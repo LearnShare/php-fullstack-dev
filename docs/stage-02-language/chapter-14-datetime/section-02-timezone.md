@@ -18,13 +18,24 @@
 
 ## DateTimeZone 类
 
+### DateTimeZone 构造函数
+
+**语法**：`new DateTimeZone(string $timezone)`
+
+**参数**：
+- `$timezone`：时区标识符或偏移量字符串。支持的格式：
+  - **时区标识符**：`"Asia/Shanghai"`、`"UTC"`、`"America/New_York"`（推荐）
+  - **偏移量**：`"+08:00"`、`"-05:00"`（不推荐，无法处理 DST）
+
+**返回值**：返回 `DateTimeZone` 对象实例。如果时区无效，抛出 `Exception`。
+
 ### 创建时区对象
 
 ```php
 <?php
 declare(strict_types=1);
 
-// 使用时区标识符
+// 使用时区标识符（推荐）
 $tz = new DateTimeZone('Asia/Shanghai');
 $tz = new DateTimeZone('UTC');
 $tz = new DateTimeZone('America/New_York');
@@ -134,6 +145,43 @@ $summer = new DateTime('2024-07-15 10:00:00', $tz);
 echo $summer->format('Y-m-d H:i:s T') . "\n";  // 2024-07-15 10:00:00 EDT
 ```
 
+### getOffset() - 获取时区偏移
+
+**语法**：`getOffset(DateTimeInterface $datetime): int`
+
+**参数**：
+- `$datetime`：`DateTime` 或 `DateTimeImmutable` 对象，用于确定特定时间的偏移（考虑 DST）。
+
+**返回值**：返回时区偏移量（秒数）。正数表示 UTC 以东，负数表示 UTC 以西。
+
+```php
+<?php
+declare(strict_types=1);
+
+$tz = new DateTimeZone('America/New_York');
+$date = new DateTime('2024-07-15 10:00:00', $tz);
+
+// 获取时区偏移（秒）
+$offset = $tz->getOffset($date);
+echo "Offset: " . ($offset / 3600) . " hours\n";  // -4 hours (EDT)
+```
+
+### getName() - 获取时区名称
+
+**语法**：`getName(): string`
+
+**参数**：无
+
+**返回值**：返回时区标识符字符串。
+
+```php
+<?php
+declare(strict_types=1);
+
+$tz = new DateTimeZone('America/New_York');
+echo "Timezone: " . $tz->getName() . "\n";  // America/New_York
+```
+
 ### 获取时区信息
 
 ```php
@@ -155,6 +203,28 @@ echo "Abbreviation: " . $date->format('T') . "\n";  // EDT
 ```
 
 ## 获取时区列表
+
+### listIdentifiers() - 获取时区标识符列表
+
+**语法**：`static listIdentifiers(int $timezoneGroup = DateTimeZone::ALL, ?string $countryCode = null): array`
+
+**参数**：
+- `$timezoneGroup`：可选，时区组常量，默认为 `DateTimeZone::ALL`。可选值：
+  - `DateTimeZone::AFRICA`：非洲时区
+  - `DateTimeZone::AMERICA`：美洲时区
+  - `DateTimeZone::ANTARCTICA`：南极洲时区
+  - `DateTimeZone::ARCTIC`：北极时区
+  - `DateTimeZone::ASIA`：亚洲时区
+  - `DateTimeZone::ATLANTIC`：大西洋时区
+  - `DateTimeZone::AUSTRALIA`：澳大利亚时区
+  - `DateTimeZone::EUROPE`：欧洲时区
+  - `DateTimeZone::INDIAN`：印度洋时区
+  - `DateTimeZone::PACIFIC`：太平洋时区
+  - `DateTimeZone::UTC`：UTC 时区
+  - `DateTimeZone::ALL`：所有时区
+- `$countryCode`：可选，ISO 3166-1 两位国家代码，如 `"US"`、`"CN"`。
+
+**返回值**：返回时区标识符数组。
 
 ### 所有时区
 
@@ -182,6 +252,12 @@ foreach ($asiaTimezones as $tz) {
 
 // 美国时区
 $usTimezones = DateTimeZone::listIdentifiers(DateTimeZone::AMERICA);
+foreach ($usTimezones as $tz) {
+    echo $tz . "\n";
+}
+
+// 按国家代码过滤
+$usTimezones = DateTimeZone::listIdentifiers(DateTimeZone::ALL, 'US');
 foreach ($usTimezones as $tz) {
     echo $tz . "\n";
 }

@@ -392,7 +392,7 @@ PHP 8.2 于 2022 年 12 月 8 日发布，主要特性包括：
 - **敏感参数**：使用 `#[\SensitiveParameter]` 属性标记敏感参数，避免在错误堆栈中泄露
 - **全新 Random 扩展**：提供更强大和灵活的随机数生成
 
-详细内容请参考：[2.19.1 PHP 8.2 新特性与示例](../../stage-02-language/chapter-19-php-versions/section-01-php82.md)
+详细内容请参考：[2.18.1 PHP 8.2 新特性与示例](../../stage-02-language/chapter-18-php-versions/section-01-php82.md)
 
 ### PHP 8.3（2023年11月23日）
 
@@ -404,7 +404,7 @@ PHP 8.3 于 2023 年 11 月 23 日发布，主要特性包括：
 - **`mb_str_pad()` 函数**：多字节字符串填充
 - **覆盖属性类型**：子类可以覆盖父类属性的类型（更严格）
 
-详细内容请参考：[2.19.2 PHP 8.3 新特性与示例](../../stage-02-language/chapter-19-php-versions/section-02-php83.md)
+详细内容请参考：[2.18.2 PHP 8.3 新特性与示例](../../stage-02-language/chapter-18-php-versions/section-02-php83.md)
 
 ### PHP 8.4（2024年11月21日）
 
@@ -416,7 +416,7 @@ PHP 8.4 于 2024 年 11 月 21 日发布，主要特性包括：
 - **`#[\NoDiscard]` 属性**：标记不应丢弃的返回值
 - **DOM API 改进**：更好的 DOM 操作 API
 
-详细内容请参考：[2.19.3 PHP 8.4 新特性与示例](../../stage-02-language/chapter-19-php-versions/section-03-php84.md)
+详细内容请参考：[2.18.3 PHP 8.4 新特性与示例](../../stage-02-language/chapter-18-php-versions/section-03-php84.md)
 
 ### PHP 8.5（2025年11月20日）
 
@@ -428,7 +428,7 @@ PHP 8.5 于 2025 年 11 月 20 日正式发布，主要特性包括：
 - **`#[\NoDiscard]` 属性**：标记不应丢弃的返回值
 - **OPcache 必选**：OPcache 成为核心扩展，不再可选
 
-详细内容请参考：[2.19.4 PHP 8.5 新特性与示例](../../stage-02-language/chapter-19-php-versions/section-04-php85.md)
+详细内容请参考：[2.18.4 PHP 8.5 新特性与示例](../../stage-02-language/chapter-18-php-versions/section-04-php85.md)
 
 ## 版本演进总结
 
@@ -538,4 +538,4 @@ PHP 8.5 于 2025 年 11 月 20 日正式发布，主要特性包括：
 ## 相关章节
 
 - **[1.0.2 PHP 生态系统](section-02-ecosystem.md)**：PHP 流行的技术、框架、工具等相关生态
-- **[2.19 PHP 版本新特性](../../stage-02-language/chapter-19-php-versions/readme.md)**：详细了解 PHP 8.2-8.5 的新特性
+- **[2.18 PHP 版本新特性](../../stage-02-language/chapter-18-php-versions/readme.md)**：详细了解 PHP 8.2-8.5 的新特性

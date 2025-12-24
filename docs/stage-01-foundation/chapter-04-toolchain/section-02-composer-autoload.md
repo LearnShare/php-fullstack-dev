@@ -6,7 +6,7 @@ Composer 提供了强大的自动加载功能，可以根据命名空间自动�
 
 ## PSR-4 自动加载
 
-> **标准规范**：关于 PSR-4 标准的详细规范要求，请参考 [2.16.1 PSR 标准](../../stage-02-language/chapter-17-standards/section-01-psr-standards.md)。
+> **标准规范**：关于 PSR-4 标准的详细规范要求，请参考 [2.13.1 PSR 标准](../../stage-02-language/chapter-13-standards/section-01-psr-standards.md)。
 
 ### 基本概念
 
@@ -581,4 +581,4 @@ $controller->index();
 
 - **[1.3.1 Composer 基础](section-01-composer-basics.md)**：了解 Composer 的基本使用
 - **[1.3.3 编写和发布 Composer 包](section-03-composer-packages.md)**：学习如何创建和发布自己的包
-- **[2.16.1 PSR 标准](../../stage-02-language/chapter-17-standards/section-01-psr-standards.md)**：了解 PSR-4 标准的详细规范
+- **[2.13.1 PSR 标准](../../stage-02-language/chapter-13-standards/section-01-psr-standards.md)**：了解 PSR-4 标准的详细规范

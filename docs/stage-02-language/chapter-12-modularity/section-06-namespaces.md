@@ -693,4 +693,4 @@ echo "User: {$user->getName()}\n";
 ## 相关章节
 
 - **[1.3.2 Composer 自动加载](../../stage-01-foundation/chapter-04-toolchain/section-02-composer-autoload.md)**：深入学习 Composer 的 PSR-4 自动加载机制
-- **[2.16.1 PSR 标准](../chapter-17-standards/section-01-psr-standards.md)**：了解 PSR-4 标准的详细规范
+- **[2.13.1 PSR 标准](../chapter-13-standards/section-01-psr-standards.md)**：了解 PSR-4 标准的详细规范

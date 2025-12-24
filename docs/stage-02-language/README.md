@@ -168,7 +168,11 @@
     - [2.12.5 路径处理和返回值](chapter-12-modularity/section-05-paths-returns.md)
     - [2.12.6 命名空间与模块组织](chapter-12-modularity/section-06-namespaces.md)
 
-13. **[时间与日期处理](chapter-14-datetime/readme.md)**：时间日期 API 与国际化。
+13. **[代码规范](chapter-13-standards/readme.md)**：代码规范、PHPDoc 与 PSR。
+    - [2.13.1 PSR 标准](chapter-13-standards/section-01-psr-standards.md)
+    - [2.13.2 PHPDoc](chapter-13-standards/section-02-phpdoc.md)
+
+14. **[时间与日期处理](chapter-14-datetime/readme.md)**：时间日期 API 与国际化。
    - [2.14.1 DateTime 基础](chapter-14-datetime/section-01-datetime-basics.md)
    - [2.14.2 时区处理](chapter-14-datetime/section-02-timezone.md)
    - [2.14.3 格式化与解析](chapter-14-datetime/section-03-formatting-parsing.md)
@@ -182,21 +186,17 @@
     - [2.16.1 错误处理](chapter-16-errors/section-01-error-handling.md)
     - [2.16.2 异常处理](chapter-16-errors/section-02-exceptions.md)
 
-17. **[代码规范](chapter-17-standards/readme.md)**：代码规范、PHPDoc 与 PSR。
-    - [2.17.1 PSR 标准](chapter-17-standards/section-01-psr-standards.md)
-    - [2.17.2 PHPDoc](chapter-17-standards/section-02-phpdoc.md)
+17. **[常见错误与调试技巧](chapter-17-debugging/readme.md)**：常见错误与调试技巧。
+   - [2.17.1 常见错误类型与修复流程](chapter-17-debugging/section-01-common-errors.md)
+   - [2.17.2 调试技巧与工具链](chapter-17-debugging/section-02-debugging-techniques.md)
+   - [2.17.3 排查清单与最佳实践](chapter-17-debugging/section-03-troubleshooting-checklist.md)
 
-18. **[常见错误与调试技巧](chapter-18-debugging/readme.md)**：常见错误与调试技巧。
-   - [2.18.1 常见错误类型与修复流程](chapter-18-debugging/section-01-common-errors.md)
-   - [2.18.2 调试技巧与工具链](chapter-18-debugging/section-02-debugging-techniques.md)
-   - [2.18.3 排查清单与最佳实践](chapter-18-debugging/section-03-troubleshooting-checklist.md)
-
-19. **[PHP 版本新特性](chapter-19-php-versions/readme.md)**：PHP 8.2-8.5 版本新特性。
-   - [2.19.1 PHP 8.2 新特性与示例](chapter-19-php-versions/section-01-php82.md)
-   - [2.19.2 PHP 8.3 新特性与示例](chapter-19-php-versions/section-02-php83.md)
-   - [2.19.3 PHP 8.4 新特性与示例](chapter-19-php-versions/section-03-php84.md)
-   - [2.19.4 PHP 8.5 新特性与示例](chapter-19-php-versions/section-04-php85.md)
-   - [2.19.5 升级指南与最佳实践](chapter-19-php-versions/section-05-upgrade-best-practices.md)
+18. **[PHP 版本新特性](chapter-18-php-versions/readme.md)**：PHP 8.2-8.5 版本新特性。
+   - [2.18.1 PHP 8.2 新特性与示例](chapter-18-php-versions/section-01-php82.md)
+   - [2.18.2 PHP 8.3 新特性与示例](chapter-18-php-versions/section-02-php83.md)
+   - [2.18.3 PHP 8.4 新特性与示例](chapter-18-php-versions/section-03-php84.md)
+   - [2.18.4 PHP 8.5 新特性与示例](chapter-18-php-versions/section-04-php85.md)
+   - [2.18.5 升级指南与最佳实践](chapter-18-php-versions/section-05-upgrade-best-practices.md)
 
 ## 完成阶段二后，你将具备：
 

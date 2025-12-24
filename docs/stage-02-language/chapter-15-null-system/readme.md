@@ -1,4 +1,4 @@
-# 2.16 isset、empty 与 Null 合并运算
+# 2.15 isset、empty 与 Null 合并运算
 
 ## 目标
 
