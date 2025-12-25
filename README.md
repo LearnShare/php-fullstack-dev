@@ -1,8 +1,46 @@
 # PHP + MySQL 全栈开发指南
 
-**适用对象**：具有网页开发基础（HTML/CSS/JS/TS），但缺乏 PHP/后端经验的工程师
+## 适用对象
 
-**目标**：从零开始掌握 PHP 8.2+、现代运行时、OOP 架构，为后续进阶到 Laravel / 企业级开发奠定基础
+本指南适合以下学习者：
+
+- **前端开发者转后端**：已掌握 HTML/CSS/JavaScript/TypeScript 基础，希望学习 PHP 后端开发
+- **全栈开发初学者**：具备基础编程思维，希望系统学习 PHP 从零到进阶
+- **其他语言开发者**：已有其他编程语言经验（如 Python、Java、C# 等），希望快速掌握 PHP
+
+**不适合**：完全没有编程基础的学习者（建议先学习基础编程概念）
+
+## 学习目标
+
+完成本指南学习后，你将能够：
+
+- 掌握 PHP 8.2+ 语言核心和面向对象编程（OOP）
+- 具备系统编程能力（文件操作、网络编程、CLI 开发、错误处理、调试、日志）
+- 掌握 Web 开发技能（RESTful API、HTTP 协议、会话管理、认证授权、路由、中间件）
+- 掌握数据库操作（PDO、ORM、Redis 缓存、性能优化）
+- 具备架构设计能力（SOLID 原则、设计模式、MVC、六边形架构、DDD）
+- 掌握现代开发工具链（Composer、现代 PHP 运行时、Docker、CI/CD、DevOps）
+- 为学习 Laravel、Symfony 等现代框架和企业级开发奠定基础
+
+## 前置要求
+
+### 必须掌握
+
+- **HTML/CSS 基础**：能够编写基本 HTML 结构和 CSS 样式，理解表单、链接等基本元素
+- **JavaScript 基础**：理解变量、函数、对象、数组等基本概念，能够使用 DOM API 进行基本操作
+- **编程基础**：理解变量、数据类型、运算符、控制结构（if/else、循环）、函数概念
+
+### 建议掌握（可选）
+
+- **命令行基础**：基本命令行操作（cd、ls/dir、mkdir 等），如不熟悉阶段一会讲解
+- **版本控制基础**：Git 基本概念（可选，阶段一会讲解）
+- **数据库基础概念**：数据库、表、字段等基本概念（可选，阶段一会从零讲解）
+
+### 学习环境
+
+- **操作系统**：Windows、macOS 或 Linux 均可（阶段一会讲解各平台安装配置）
+- **硬件要求**：建议至少 4GB 内存（8GB 更佳），至少 10GB 可用磁盘空间
+- **软件要求**：文本编辑器或 IDE（阶段一会推荐配置）、现代浏览器、PHP/MySQL/Composer 等工具（阶段一会指导安装）
 
 ## 开始学习
 
@@ -112,23 +150,23 @@
   - [2.11.3 使用导入的内容](docs/stage-02-language/chapter-11-modularity/section-03-using-imported.md)（待创建）
   - [2.11.4 避免冲突和循环导入](docs/stage-02-language/chapter-11-modularity/section-04-conflicts-circular.md)（待创建）
   - [2.11.5 路径处理和返回值](docs/stage-02-language/chapter-11-modularity/section-05-paths-returns.md)（待创建）
-- [2.12 时间与日期处理](docs/stage-02-language/chapter-12-datetime/readme.md)（待创建）
-  - [2.12.1 DateTime 基础](docs/stage-02-language/chapter-12-datetime/section-01-datetime-basics.md)（待创建）
-  - [2.12.2 时区处理](docs/stage-02-language/chapter-12-datetime/section-02-timezone.md)（待创建）
-  - [2.12.3 格式化与解析](docs/stage-02-language/chapter-12-datetime/section-03-formatting-parsing.md)（待创建）
-  - [2.12.4 时间计算与比较](docs/stage-02-language/chapter-12-datetime/section-04-calculations-comparisons.md)（待创建）
-- [2.13 isset / empty / Null 体系](docs/stage-02-language/chapter-13-null-system/readme.md)（待创建）
-  - [2.13.1 isset、empty 与 is_null](docs/stage-02-language/chapter-13-null-system/section-01-isset-empty.md)（待创建）
-  - [2.13.2 空合并运算符](docs/stage-02-language/chapter-13-null-system/section-02-null-coalescing.md)（待创建）
-- [2.14 代码规范](docs/stage-02-language/chapter-14-standards/readme.md)（待创建）
-  - [2.14.1 PSR 标准](docs/stage-02-language/chapter-14-standards/section-01-psr-standards.md)（待创建）
-  - [2.14.2 PHPDoc](docs/stage-02-language/chapter-14-standards/section-02-phpdoc.md)（待创建）
-- [2.15 PHP 版本新特性](docs/stage-02-language/chapter-15-php-versions/readme.md)（待创建）
-  - [2.15.1 PHP 8.2 新特性与示例](docs/stage-02-language/chapter-15-php-versions/section-01-php82.md)（待创建）
-  - [2.15.2 PHP 8.3 新特性与示例](docs/stage-02-language/chapter-15-php-versions/section-02-php83.md)（待创建）
-  - [2.15.3 PHP 8.4 新特性与示例](docs/stage-02-language/chapter-15-php-versions/section-03-php84.md)（待创建）
-  - [2.15.4 PHP 8.5 新特性与示例](docs/stage-02-language/chapter-15-php-versions/section-04-php85.md)（待创建）
-  - [2.15.5 升级指南与最佳实践](docs/stage-02-language/chapter-15-php-versions/section-05-upgrade-best-practices.md)（待创建）
+- [2.12 isset / empty / Null 体系](docs/stage-02-language/chapter-12-null-system/readme.md)（待创建）
+  - [2.12.1 isset、empty 与 is_null](docs/stage-02-language/chapter-12-null-system/section-01-isset-empty.md)（待创建）
+  - [2.12.2 空合并运算符](docs/stage-02-language/chapter-12-null-system/section-02-null-coalescing.md)（待创建）
+- [2.13 代码规范](docs/stage-02-language/chapter-13-standards/readme.md)（待创建）
+  - [2.13.1 PSR 标准](docs/stage-02-language/chapter-13-standards/section-01-psr-standards.md)（待创建）
+  - [2.13.2 PHPDoc](docs/stage-02-language/chapter-13-standards/section-02-phpdoc.md)（待创建）
+  - [2.13.3 静态代码分析](docs/stage-02-language/chapter-13-standards/section-03-static-analysis.md)（待创建）
+    - [2.13.3.1 PHPStan 配置与使用](docs/stage-02-language/chapter-13-standards/section-03-static-analysis/subsection-01-phpstan.md)（待创建）
+    - [2.13.3.2 Psalm 配置与使用](docs/stage-02-language/chapter-13-standards/section-03-static-analysis/subsection-02-psalm.md)（待创建）
+    - [2.13.3.3 静态分析与 CI/CD 集成](docs/stage-02-language/chapter-13-standards/section-03-static-analysis/subsection-03-cicd-integration.md)（待创建）
+    - [2.13.3.4 代码质量提升实践](docs/stage-02-language/chapter-13-standards/section-03-static-analysis/subsection-04-best-practices.md)（待创建）
+- [2.14 PHP 版本新特性](docs/stage-02-language/chapter-14-php-versions/readme.md)（待创建）
+  - [2.14.1 PHP 8.2 新特性与示例](docs/stage-02-language/chapter-14-php-versions/section-01-php82.md)（待创建）
+  - [2.14.2 PHP 8.3 新特性与示例](docs/stage-02-language/chapter-14-php-versions/section-02-php83.md)（待创建）
+  - [2.14.3 PHP 8.4 新特性与示例](docs/stage-02-language/chapter-14-php-versions/section-03-php84.md)（待创建）
+  - [2.14.4 PHP 8.5 新特性与示例](docs/stage-02-language/chapter-14-php-versions/section-04-php85.md)（待创建）
+  - [2.14.5 升级指南与最佳实践](docs/stage-02-language/chapter-14-php-versions/section-05-upgrade-best-practices.md)（待创建）
 
 ### 阶段三：面向对象编程基础（OOP Basics）
 
@@ -165,57 +203,62 @@
 **定位**：文件系统、网络、CLI 编程、错误处理、调试、日志、内存管理、加密与序列化等系统级编程
 
 - [阶段四总览](docs/stage-04-system/readme.md)（待创建）
-- [4.1 文件系统操作](docs/stage-04-system/chapter-01-filesystem/readme.md)（待创建）
-  - [4.1.1 文件读取](docs/stage-04-system/chapter-01-filesystem/section-01-file-reading.md)（待创建）
-  - [4.1.2 文件写入](docs/stage-04-system/chapter-01-filesystem/section-02-file-writing.md)（待创建）
-  - [4.1.3 文件操作](docs/stage-04-system/chapter-01-filesystem/section-03-file-operations.md)（待创建）
-  - [4.1.4 文件指针操作](docs/stage-04-system/chapter-01-filesystem/section-04-file-pointer.md)（待创建）
-  - [4.1.5 二进制文件处理](docs/stage-04-system/chapter-01-filesystem/section-05-binary-files.md)（待创建）
-  - [4.1.6 文件锁和临时文件](docs/stage-04-system/chapter-01-filesystem/section-06-file-locks-temp.md)（待创建）
-  - [4.1.7 目录操作](docs/stage-04-system/chapter-01-filesystem/section-07-directory-operations.md)（待创建）
-  - [4.1.8 文件信息](docs/stage-04-system/chapter-01-filesystem/section-08-file-info.md)（待创建）
-  - [4.1.9 流式操作与流包装器](docs/stage-04-system/chapter-01-filesystem/section-09-streaming.md)（待创建）
-  - [4.1.10 大文件处理](docs/stage-04-system/chapter-01-filesystem/section-10-large-files.md)（待创建）
-  - [4.1.11 文件权限详解](docs/stage-04-system/chapter-01-filesystem/section-11-file-permissions.md)（待创建）
-  - [4.1.12 路径处理](docs/stage-04-system/chapter-01-filesystem/section-12-path-handling.md)（待创建）
-  - [4.1.13 图片处理与文件操作库](docs/stage-04-system/chapter-01-filesystem/section-13-image-processing.md)（待创建）
-- [4.2 网络编程基础](docs/stage-04-system/chapter-02-networking/readme.md)（待创建）
-  - [4.2.1 Socket 编程基础](docs/stage-04-system/chapter-02-networking/section-01-socket-basics.md)（待创建）
-  - [4.2.2 HTTP 客户端编程](docs/stage-04-system/chapter-02-networking/section-02-http-client.md)（待创建）
-  - [4.2.3 网络协议理解](docs/stage-04-system/chapter-02-networking/section-03-network-protocols.md)（待创建）
-- [4.3 CLI 编程](docs/stage-04-system/chapter-03-cli/readme.md)（待创建）
-  - [4.3.1 CLI 基础与参数处理](docs/stage-04-system/chapter-03-cli/section-01-cli-basics.md)（待创建）
-  - [4.3.2 执行外部命令](docs/stage-04-system/chapter-03-cli/section-02-exec-commands.md)（待创建）
-  - [4.3.3 交互式 CLI 与输出格式化](docs/stage-04-system/chapter-03-cli/section-03-interactive-cli.md)（待创建）
-  - [4.3.4 进程管理与守护进程](docs/stage-04-system/chapter-03-cli/section-04-process-management.md)（待创建）
-  - [4.3.5 CLI 工具开发框架](docs/stage-04-system/chapter-03-cli/section-05-cli-frameworks.md)（待创建）
-  - [4.3.6 环境变量与系统信息](docs/stage-04-system/chapter-03-cli/section-06-environment-system.md)（待创建）
-  - [4.3.7 CLI 最佳实践](docs/stage-04-system/chapter-03-cli/section-07-best-practices.md)（待创建）
-- [4.4 内存管理](docs/stage-04-system/chapter-04-memory/readme.md)（待创建）
-  - [4.4.1 内存使用监控](docs/stage-04-system/chapter-04-memory/section-01-memory-monitoring.md)（待创建）
-  - [4.4.2 内存限制设置](docs/stage-04-system/chapter-04-memory/section-02-memory-limits.md)（待创建）
-  - [4.4.3 垃圾回收机制](docs/stage-04-system/chapter-04-memory/section-03-garbage-collection.md)（待创建）
-  - [4.4.4 内存优化实践](docs/stage-04-system/chapter-04-memory/section-04-memory-optimization.md)（待创建）
-- [4.5 加密、哈希与序列化](docs/stage-04-system/chapter-05-crypto-serialization/readme.md)（待创建）
-  - [4.5.1 密码哈希](docs/stage-04-system/chapter-05-crypto-serialization/section-01-password-hashing.md)（待创建）
-  - [4.5.2 数据加密](docs/stage-04-system/chapter-05-crypto-serialization/section-02-data-encryption.md)（待创建）
-  - [4.5.3 哈希函数](docs/stage-04-system/chapter-05-crypto-serialization/section-03-hash-functions.md)（待创建）
-  - [4.5.4 序列化与反序列化](docs/stage-04-system/chapter-05-crypto-serialization/section-04-serialization.md)（待创建）
-  - [4.5.5 数据持久化](docs/stage-04-system/chapter-05-crypto-serialization/section-05-data-persistence.md)（待创建）
-- [4.6 错误与异常处理](docs/stage-04-system/chapter-06-errors/readme.md)（待创建）
-  - [4.6.1 错误处理机制](docs/stage-04-system/chapter-06-errors/section-01-error-handling.md)（待创建）
-  - [4.6.2 异常处理机制](docs/stage-04-system/chapter-06-errors/section-02-exceptions.md)（待创建）
-  - [4.6.3 错误和异常的最佳实践](docs/stage-04-system/chapter-06-errors/section-03-best-practices.md)（待创建）
-- [4.7 调试与问题排查](docs/stage-04-system/chapter-07-debugging/readme.md)（待创建）
-  - [4.7.1 常见错误类型与修复流程](docs/stage-04-system/chapter-07-debugging/section-01-common-errors.md)（待创建）
-  - [4.7.2 Xdebug 配置与使用](docs/stage-04-system/chapter-07-debugging/section-02-xdebug-config.md)（待创建）
-  - [4.7.3 调试技巧与工具链](docs/stage-04-system/chapter-07-debugging/section-03-debugging-techniques.md)（待创建）
-  - [4.7.4 排查清单与最佳实践](docs/stage-04-system/chapter-07-debugging/section-04-troubleshooting-checklist.md)（待创建）
-- [4.8 日志系统](docs/stage-04-system/chapter-08-logging/readme.md)（待创建）
-  - [4.8.1 日志体系设计](docs/stage-04-system/chapter-08-logging/section-01-logging-system.md)（待创建）
-  - [4.8.2 结构化日志](docs/stage-04-system/chapter-08-logging/section-02-structured-logs.md)（待创建）
-  - [4.8.3 链路追踪](docs/stage-04-system/chapter-08-logging/section-03-tracing.md)（待创建）
-  - [4.8.4 日志分析与监控](docs/stage-04-system/chapter-08-logging/section-04-log-analysis.md)（待创建）
+- [4.1 时间与日期处理](docs/stage-04-system/chapter-01-datetime/readme.md)（待创建）
+  - [4.1.1 DateTime 基础](docs/stage-04-system/chapter-01-datetime/section-01-datetime-basics.md)（待创建）
+  - [4.1.2 时区处理](docs/stage-04-system/chapter-01-datetime/section-02-timezone.md)（待创建）
+  - [4.1.3 格式化与解析](docs/stage-04-system/chapter-01-datetime/section-03-formatting-parsing.md)（待创建）
+  - [4.1.4 时间计算与比较](docs/stage-04-system/chapter-01-datetime/section-04-calculations-comparisons.md)（待创建）
+- [4.2 文件系统操作](docs/stage-04-system/chapter-02-filesystem/readme.md)（待创建）
+  - [4.2.1 文件读取](docs/stage-04-system/chapter-02-filesystem/section-01-file-reading.md)（待创建）
+  - [4.2.2 文件写入](docs/stage-04-system/chapter-02-filesystem/section-02-file-writing.md)（待创建）
+  - [4.2.3 文件操作](docs/stage-04-system/chapter-02-filesystem/section-03-file-operations.md)（待创建）
+  - [4.2.4 文件指针操作](docs/stage-04-system/chapter-02-filesystem/section-04-file-pointer.md)（待创建）
+  - [4.2.5 二进制文件处理](docs/stage-04-system/chapter-02-filesystem/section-05-binary-files.md)（待创建）
+  - [4.2.6 文件锁和临时文件](docs/stage-04-system/chapter-02-filesystem/section-06-file-locks-temp.md)（待创建）
+  - [4.2.7 目录操作](docs/stage-04-system/chapter-02-filesystem/section-07-directory-operations.md)（待创建）
+  - [4.2.8 文件信息](docs/stage-04-system/chapter-02-filesystem/section-08-file-info.md)（待创建）
+  - [4.2.9 流式操作与流包装器](docs/stage-04-system/chapter-02-filesystem/section-09-streaming.md)（待创建）
+  - [4.2.10 大文件处理](docs/stage-04-system/chapter-02-filesystem/section-10-large-files.md)（待创建）
+  - [4.2.11 文件权限详解](docs/stage-04-system/chapter-02-filesystem/section-11-file-permissions.md)（待创建）
+  - [4.2.12 路径处理](docs/stage-04-system/chapter-02-filesystem/section-12-path-handling.md)（待创建）
+  - [4.2.13 图片处理与文件操作库](docs/stage-04-system/chapter-02-filesystem/section-13-image-processing.md)（待创建）
+- [4.3 网络编程基础](docs/stage-04-system/chapter-03-networking/readme.md)（待创建）
+  - [4.3.1 Socket 编程基础](docs/stage-04-system/chapter-03-networking/section-01-socket-basics.md)（待创建）
+  - [4.3.2 HTTP 客户端编程](docs/stage-04-system/chapter-03-networking/section-02-http-client.md)（待创建）
+  - [4.3.3 网络协议理解](docs/stage-04-system/chapter-03-networking/section-03-network-protocols.md)（待创建）
+- [4.4 CLI 编程](docs/stage-04-system/chapter-04-cli/readme.md)（待创建）
+  - [4.4.1 CLI 基础与参数处理](docs/stage-04-system/chapter-04-cli/section-01-cli-basics.md)（待创建）
+  - [4.4.2 执行外部命令](docs/stage-04-system/chapter-04-cli/section-02-exec-commands.md)（待创建）
+  - [4.4.3 交互式 CLI 与输出格式化](docs/stage-04-system/chapter-04-cli/section-03-interactive-cli.md)（待创建）
+  - [4.4.4 进程管理与守护进程](docs/stage-04-system/chapter-04-cli/section-04-process-management.md)（待创建）
+  - [4.4.5 CLI 工具开发框架](docs/stage-04-system/chapter-04-cli/section-05-cli-frameworks.md)（待创建）
+  - [4.4.6 环境变量与系统信息](docs/stage-04-system/chapter-04-cli/section-06-environment-system.md)（待创建）
+  - [4.4.7 CLI 最佳实践](docs/stage-04-system/chapter-04-cli/section-07-best-practices.md)（待创建）
+- [4.5 内存管理](docs/stage-04-system/chapter-05-memory/readme.md)（待创建）
+  - [4.5.1 内存使用监控](docs/stage-04-system/chapter-05-memory/section-01-memory-monitoring.md)（待创建）
+  - [4.5.2 内存限制设置](docs/stage-04-system/chapter-05-memory/section-02-memory-limits.md)（待创建）
+  - [4.5.3 垃圾回收机制](docs/stage-04-system/chapter-05-memory/section-03-garbage-collection.md)（待创建）
+  - [4.5.4 内存优化实践](docs/stage-04-system/chapter-05-memory/section-04-memory-optimization.md)（待创建）
+- [4.6 加密、哈希与序列化](docs/stage-04-system/chapter-06-crypto-serialization/readme.md)（待创建）
+  - [4.6.1 密码哈希](docs/stage-04-system/chapter-06-crypto-serialization/section-01-password-hashing.md)（待创建）
+  - [4.6.2 数据加密](docs/stage-04-system/chapter-06-crypto-serialization/section-02-data-encryption.md)（待创建）
+  - [4.6.3 哈希函数](docs/stage-04-system/chapter-06-crypto-serialization/section-03-hash-functions.md)（待创建）
+  - [4.6.4 序列化与反序列化](docs/stage-04-system/chapter-06-crypto-serialization/section-04-serialization.md)（待创建）
+  - [4.6.5 数据持久化](docs/stage-04-system/chapter-06-crypto-serialization/section-05-data-persistence.md)（待创建）
+- [4.7 错误与异常处理](docs/stage-04-system/chapter-07-errors/readme.md)（待创建）
+  - [4.7.1 错误处理机制](docs/stage-04-system/chapter-07-errors/section-01-error-handling.md)（待创建）
+  - [4.7.2 异常处理机制](docs/stage-04-system/chapter-07-errors/section-02-exceptions.md)（待创建）
+  - [4.7.3 错误和异常的最佳实践](docs/stage-04-system/chapter-07-errors/section-03-best-practices.md)（待创建）
+- [4.8 调试与问题排查](docs/stage-04-system/chapter-08-debugging/readme.md)（待创建）
+  - [4.8.1 常见错误类型与修复流程](docs/stage-04-system/chapter-08-debugging/section-01-common-errors.md)（待创建）
+  - [4.8.2 Xdebug 配置与使用](docs/stage-04-system/chapter-08-debugging/section-02-xdebug-config.md)（待创建）
+  - [4.8.3 调试技巧与工具链](docs/stage-04-system/chapter-08-debugging/section-03-debugging-techniques.md)（待创建）
+  - [4.8.4 排查清单与最佳实践](docs/stage-04-system/chapter-08-debugging/section-04-troubleshooting-checklist.md)（待创建）
+- [4.9 日志系统](docs/stage-04-system/chapter-09-logging/readme.md)（待创建）
+  - [4.9.1 日志体系设计](docs/stage-04-system/chapter-09-logging/section-01-logging-system.md)（待创建）
+  - [4.9.2 结构化日志](docs/stage-04-system/chapter-09-logging/section-02-structured-logs.md)（待创建）
+  - [4.9.3 链路追踪](docs/stage-04-system/chapter-09-logging/section-03-tracing.md)（待创建）
+  - [4.9.4 日志分析与监控](docs/stage-04-system/chapter-09-logging/section-04-log-analysis.md)（待创建）
 
 ### 阶段五：Web/API 开发（Web Development）
 
