@@ -1,0 +1,59 @@
+# 2.13 代码规范
+
+## 目标
+
+- 熟悉 PHP 社区常用规范（PSR 系列、PHPDoc、命名约定）。
+- 掌握自动化工具（PHP CS Fixer、PHP_CodeSniffer、PHPStan/Psalm）的使用。
+- 建立统一的代码审查与文档约定。
+
+## 章节内容
+
+本章分为三个独立小节，每节提供详细的概念解释、语法说明、参数列表和完整示例：
+
+1. **[2.13.1 PSR 标准](section-01-psr-standards.md)**：PSR-1 基本编码标准、PSR-4 自动加载标准、PSR-12 编码风格扩展、命名规范及完整示例。
+
+2. **[2.13.2 PHPDoc](section-02-phpdoc.md)**：PHPDoc 基本语法、常用标签（`@param`、`@return`、`@throws`、`@var`、`@deprecated`）、类和方法文档、完整示例。
+
+3. **[2.13.3 静态代码分析](section-03-static-analysis.md)**：PHPStan 配置与使用、Psalm 配置与使用、静态分析与 CI/CD 集成、代码质量提升实践。
+   - [2.13.3.1 PHPStan 配置与使用](section-03-static-analysis/subsection-01-phpstan.md)
+   - [2.13.3.2 Psalm 配置与使用](section-03-static-analysis/subsection-02-psalm.md)
+   - [2.13.3.3 静态分析与 CI/CD 集成](section-03-static-analysis/subsection-03-cicd-integration.md)
+   - [2.13.3.4 代码质量提升实践](section-03-static-analysis/subsection-04-best-practices.md)
+
+## 命名与结构
+
+- **命名空间**：遵循 PSR-4，目录结构与命名空间一致。
+- **类/接口**：`StudlyCase`（`UserService`）。
+- **方法/属性**：`camelCase`（`getTotal`）。
+- **常量**：`UPPER_SNAKE_CASE`。
+- **文件**：单一职责，一个文件一个类。
+
+## 学习建议
+
+1. **按顺序学习**：先理解 PSR 标准，再学习 PHPDoc，最后学习静态代码分析。
+
+2. **重点掌握**：
+   - PSR-1、PSR-4、PSR-12 的基本要求
+   - PHPDoc 的常用标签
+   - 代码格式化工具的使用
+   - 静态分析工具的配置和使用
+
+3. **实践练习**：
+   - 完成每小节后的练习题目
+   - 配置代码检查工具
+   - 为现有代码添加文档
+   - 集成静态分析到 CI/CD
+
+## 完成本章后
+
+- 能够遵循 PSR 编码标准。
+- 能够编写规范的 PHPDoc 注释。
+- 能够使用代码检查工具。
+- 能够使用静态分析工具提升代码质量。
+- 能够在团队中建立统一的编码规范。
+
+## 相关章节
+
+- **2.11 文件引入与模块化**：了解 PSR-4 自动加载。
+- **阶段三：面向对象编程基础**：深入学习代码组织。
+- **阶段十二：附言**：深入学习 PSR 标准规范。

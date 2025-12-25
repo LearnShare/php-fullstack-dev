@@ -64,25 +64,25 @@
 **定位**：环境搭建、工具配置、基础概念
 
 - [阶段一总览](docs/stage-01-foundation/readme.md)（待创建）
-- [1.0 PHP 发展史](docs/stage-01-foundation/chapter-01-history/readme.md)（待创建）
-  - [1.0.1 PHP 起源与发展历程](docs/stage-01-foundation/chapter-01-history/section-01-history.md)（待创建）
-  - [1.0.2 PHP 生态系统](docs/stage-01-foundation/chapter-01-history/section-02-ecosystem.md)（待创建）
-- [1.1 PHP 安装与运行基础](docs/stage-01-foundation/chapter-02-runtime/readme.md)（待创建）
-  - [1.1.1 PHP 安装与版本管理](docs/stage-01-foundation/chapter-02-runtime/section-01-installation.md)（待创建）
-  - [1.1.2 运行模式与验证](docs/stage-01-foundation/chapter-02-runtime/section-02-execution-modes.md)（待创建）
-- [1.2 MySQL 环境搭建与工具](docs/stage-01-foundation/chapter-03-mysql/readme.md)（待创建）
-  - [1.2.1 MySQL 安装与配置](docs/stage-01-foundation/chapter-03-mysql/section-01-installation.md)（待创建）
-  - [1.2.2 客户端工具与命令](docs/stage-01-foundation/chapter-03-mysql/section-02-tools-commands.md)（待创建）
-- [1.3 核心工具链](docs/stage-01-foundation/chapter-04-toolchain/readme.md)（待创建）
-  - [1.3.1 Composer 基础](docs/stage-01-foundation/chapter-04-toolchain/section-01-composer-basics.md)（待创建）
-  - [1.3.2 IDE 与扩展配置](docs/stage-01-foundation/chapter-04-toolchain/section-02-ide-extensions.md)（待创建）
-  - [1.3.3 Git 与任务管理](docs/stage-01-foundation/chapter-04-toolchain/section-03-git-tasks.md)（待创建）
-  - [1.3.4 容器与环境管理](docs/stage-01-foundation/chapter-04-toolchain/section-04-docker-compose.md)（待创建）
-  - [1.3.5 自动化脚本](docs/stage-01-foundation/chapter-04-toolchain/section-05-automation.md)（待创建）
-- [1.4 配置、扩展与调试基础](docs/stage-01-foundation/chapter-05-config-debug/readme.md)（待创建）
-  - [1.4.1 php.ini 配置](docs/stage-01-foundation/chapter-05-config-debug/section-01-php-ini.md)（待创建）
-  - [1.4.2 扩展管理](docs/stage-01-foundation/chapter-05-config-debug/section-02-extensions.md)（待创建）
-  - [1.4.3 调试基础介绍](docs/stage-01-foundation/chapter-05-config-debug/section-03-debugging-basics.md)（待创建）
+- [1.1 PHP 发展史](docs/stage-01-foundation/chapter-01-history/readme.md)（待创建）
+  - [1.1.1 PHP 起源与发展历程](docs/stage-01-foundation/chapter-01-history/section-01-history.md)（待创建）
+  - [1.1.2 PHP 生态系统](docs/stage-01-foundation/chapter-01-history/section-02-ecosystem.md)（待创建）
+- [1.2 PHP 安装与运行基础](docs/stage-01-foundation/chapter-02-runtime/readme.md)（待创建）
+  - [1.2.1 PHP 安装与版本管理](docs/stage-01-foundation/chapter-02-runtime/section-01-installation.md)（待创建）
+  - [1.2.2 运行模式与验证](docs/stage-01-foundation/chapter-02-runtime/section-02-execution-modes.md)（待创建）
+- [1.3 MySQL 环境搭建与工具](docs/stage-01-foundation/chapter-03-mysql/readme.md)（待创建）
+  - [1.3.1 MySQL 安装与配置](docs/stage-01-foundation/chapter-03-mysql/section-01-installation.md)（待创建）
+  - [1.3.2 客户端工具与命令](docs/stage-01-foundation/chapter-03-mysql/section-02-tools-commands.md)（待创建）
+- [1.4 核心工具链](docs/stage-01-foundation/chapter-04-toolchain/readme.md)（待创建）
+  - [1.4.1 Composer 基础](docs/stage-01-foundation/chapter-04-toolchain/section-01-composer-basics.md)（待创建）
+  - [1.4.2 IDE 与扩展配置](docs/stage-01-foundation/chapter-04-toolchain/section-02-ide-extensions.md)（待创建）
+  - [1.4.3 Git 与任务管理](docs/stage-01-foundation/chapter-04-toolchain/section-03-git-tasks.md)（待创建）
+  - [1.4.4 容器与环境管理](docs/stage-01-foundation/chapter-04-toolchain/section-04-docker-compose.md)（待创建）
+  - [1.4.5 自动化脚本](docs/stage-01-foundation/chapter-04-toolchain/section-05-automation.md)（待创建）
+- [1.5 配置、扩展与调试基础](docs/stage-01-foundation/chapter-05-config-debug/readme.md)（待创建）
+  - [1.5.1 php.ini 配置](docs/stage-01-foundation/chapter-05-config-debug/section-01-php-ini.md)（待创建）
+  - [1.5.2 扩展管理](docs/stage-01-foundation/chapter-05-config-debug/section-02-extensions.md)（待创建）
+  - [1.5.3 调试基础介绍](docs/stage-01-foundation/chapter-05-config-debug/section-03-debugging-basics.md)（待创建）
 
 ### 阶段二：PHP 语言特性（Language）
 
