@@ -2,123 +2,219 @@
 
 ## 概述
 
-选择合适的 IDE 和配置必要的扩展可以显著提高开发效率。本节介绍主流的 PHP IDE（PhpStorm、VS Code）的选择、配置和推荐扩展，帮助开发者搭建高效的开发环境。
+选择合适的 IDE 和配置必要的扩展可以显著提高开发效率。本节介绍主流的 PHP IDE（PhpStorm、VS Code）的选择、配置和推荐扩展。
 
-**章节类型**：配置性章节
+## IDE 选择
 
-**主要内容**：
-- IDE 选择（PhpStorm、VS Code）
-- PhpStorm 配置和推荐设置
-- VS Code 配置和推荐扩展
-- EditorConfig 配置
-- 代码格式化工具配置
-- 静态分析工具集成
-- 调试配置
+### PhpStorm
 
-## 特性
-
-- **多种 IDE 选择**：PhpStorm（付费）、VS Code（免费）
-- **丰富的扩展生态**：提供大量扩展提高开发效率
-- **统一配置**：使用 EditorConfig 统一代码风格
-- **工具集成**：集成代码格式化、静态分析等工具
-
-## 配置步骤/语法
-
-### IDE 选择
-
-**PhpStorm**：
+**特点**：
 - 功能强大的商业 IDE
 - 智能代码补全
 - 强大的调试功能
 - 集成版本控制
 
-**VS Code**：
+**下载**：https://www.jetbrains.com/phpstorm/
+
+### VS Code
+
+**特点**：
 - 免费开源的轻量级编辑器
 - 丰富的扩展生态
 - 跨平台支持
-- 推荐扩展：PHP Intelephense、PHP Debug、PHP DocBlocker
+- 轻量快速
 
-### PhpStorm 配置
+**下载**：https://code.visualstudio.com/
 
-**基本设置**：
-- PHP 解释器配置
-- 代码风格设置
-- 代码补全设置
-- 调试配置
+## VS Code 推荐扩展
 
-**推荐设置**：
-- 启用类型提示
-- 配置代码格式化规则
-- 配置代码检查规则
+### PHP Intelephense
 
-### VS Code 配置
+**功能**：
+- 智能代码补全
+- 代码导航
+- 类型检查
 
-**推荐扩展**：
-- PHP Intelephense：智能代码补全
-- PHP Debug：调试支持
-- PHP DocBlocker：文档注释生成
-- EditorConfig：代码风格统一
+**安装**：
 
-**配置方法**：
-- 安装扩展
-- 配置扩展选项
-- 配置调试环境
+```bash
+code --install-extension bmewburn.vscode-intelephense-client
+```
 
-### EditorConfig 配置
+### PHP Debug
 
-**配置文件**：`.editorconfig`
-**配置内容**：
-- 缩进风格（空格/制表符）
-- 缩进大小
-- 行尾风格
-- 字符集
-- 文件末尾换行
+**功能**：
+- Xdebug 调试支持
+- 断点调试
+- 变量查看
 
-### 代码格式化工具
+**安装**：
 
-**PHP CS Fixer**：
-- 安装和配置
-- 使用方法和规则配置
+```bash
+code --install-extension xdebug.php-debug
+```
 
-**PHP_CodeSniffer**：
-- 安装和配置
-- 使用方法和规则配置
+### PHP DocBlocker
 
-### 静态分析工具
+**功能**：
+- 自动生成 PHPDoc 注释
+- 代码文档生成
 
-**PHPStan**：
-- IDE 集成
-- 配置和使用
+**安装**：
 
-**Psalm**：
-- IDE 集成
-- 配置和使用
+```bash
+code --install-extension neilbrayfield.php-docblocker
+```
+
+## EditorConfig 配置
+
+创建 `.editorconfig` 文件：
+
+```ini
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{yml,yaml}]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+```
+
+## 代码格式化
+
+### PHP CS Fixer
+
+**安装**：
+
+```bash
+composer require --dev friendsofphp/php-cs-fixer
+```
+
+**配置** `.php-cs-fixer.php`：
+
+```php
+<?php
+
+$config = new PhpCsFixer\Config();
+return $config
+    ->setRules([
+        '@PSR12' => true,
+        'array_syntax' => ['syntax' => 'short'],
+    ])
+    ->setFinder(
+        PhpCsFixer\Finder::create()
+            ->in(__DIR__)
+            ->exclude('vendor')
+    );
+```
+
+**使用**：
+
+```bash
+vendor/bin/php-cs-fixer fix
+```
+
+## 静态分析工具
+
+### PHPStan
+
+**安装**：
+
+```bash
+composer require --dev phpstan/phpstan
+```
+
+**使用**：
+
+```bash
+vendor/bin/phpstan analyse src
+```
+
+### Psalm
+
+**安装**：
+
+```bash
+composer require --dev vimeo/psalm
+```
+
+**使用**：
+
+```bash
+vendor/bin/psalm
+```
+
+## 完整示例
+
+### 示例 1：VS Code 配置
+
+创建 `.vscode/settings.json`：
+
+```json
+{
+    "php.validate.executablePath": "/usr/local/bin/php",
+    "php.suggest.basic": false,
+    "intelephense.files.maxSize": 5000000,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    }
+}
+```
+
+### 示例 2：调试配置
+
+创建 `.vscode/launch.json`：
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "/var/www/html": "${workspaceFolder}"
+            }
+        }
+    ]
+}
+```
 
 ## 注意事项
 
-- **扩展兼容性**：注意扩展之间的兼容性
-- **性能影响**：某些扩展可能影响 IDE 性能
-- **配置同步**：使用版本控制同步 IDE 配置
-- **团队统一**：团队应使用统一的 IDE 配置
-
-## 常见问题
-
-### 问题 1：代码补全不工作
-- **原因**：PHP 解释器未配置、扩展未安装
-- **解决**：配置 PHP 解释器、安装必要扩展
-
-### 问题 2：调试无法连接
-- **原因**：Xdebug 未配置、端口被占用
-- **解决**：检查 Xdebug 配置、检查端口占用
-
-### 问题 3：代码格式化不一致
-- **原因**：未配置 EditorConfig、格式化工具配置不同
-- **解决**：配置 EditorConfig、统一格式化工具配置
+- **扩展选择**：根据项目需求选择合适的扩展
+- **性能考虑**：避免安装过多扩展影响性能
+- **配置同步**：使用 VS Code 设置同步功能
+- **团队协作**：统一 IDE 配置，使用 EditorConfig
 
 ## 最佳实践
 
-- 根据项目需求选择合适的 IDE
-- 配置 EditorConfig 统一代码风格
-- 使用代码格式化工具保持代码一致性
-- 集成静态分析工具提高代码质量
-- 记录 IDE 配置，便于团队共享
+- 使用 EditorConfig 统一代码风格
+- 配置代码格式化工具，自动格式化代码
+- 使用静态分析工具检查代码质量
+- 配置调试工具，提高调试效率
+- 定期更新扩展和工具
+
+## 相关章节
+
+- **1.5 PHP 配置与扩展**：了解 PHP 配置和扩展
+- **2.13 代码规范**：了解代码规范详细要求
+
+## 练习任务
+
+1. 安装 VS Code 或 PhpStorm，并配置 PHP 开发环境。
+2. 安装推荐的 PHP 扩展（PHP Intelephense、PHP Debug）。
+3. 创建 `.editorconfig` 文件，配置代码风格。
+4. 安装并配置 PHP CS Fixer，设置自动格式化。
+5. 配置 Xdebug 调试环境，尝试断点调试。

@@ -9,9 +9,111 @@
 - 提供语法格式、参数说明
 - 每个知识点都配有完整的代码示例
 - 默认使用 ASCII 字符
-- PHP 代码必须符合 PSR-12 编码规范
+- **PHP 代码必须严格遵守 PSR-1 和 PSR-12 编码规范**
 
-### 代码完整性
+## PSR 标准要求（强制）
+
+### PSR-1 基础编码标准
+
+**必须遵守**：
+
+1. **PHP 标签**：
+   - 纯 PHP 文件必须使用 `<?php` 标签
+   - **纯 PHP 文件不得使用结束标签 `?>`**（这是 PSR-1 强制要求）
+   - 只有包含 HTML 的混合文件才可以使用结束标签
+
+2. **字符编码**：
+   - 必须使用 UTF-8 编码（无 BOM）
+
+3. **副作用**：
+   - 一个文件应该只声明符号（类、函数、常量等）或产生副作用（输出、修改 ini 设置等），不应同时做两件事
+
+**正确示例**：
+
+```php
+<?php
+declare(strict_types=1);
+
+function calculateSum(int $a, int $b): int
+{
+    return $a + $b;
+}
+```
+
+**错误示例**：
+
+```php
+<?php
+echo "Hello";  // 错误：纯 PHP 文件不应产生副作用
+?>
+```
+
+### PSR-12 扩展编码风格指南
+
+**必须遵守**：
+
+1. **缩进**：
+   - 使用 4 个空格缩进（不使用 Tab）
+   - 行尾不能有尾随空格
+
+2. **文件结构**：
+   - 文件必须以 `<?php` 开始
+   - 文件必须以空行结尾
+   - 纯 PHP 文件不得使用结束标签 `?>`
+
+3. **声明和命名空间**：
+   - `declare(strict_types=1);` 必须在文件第一行（`<?php` 之后）
+   - 命名空间声明后必须有一个空行
+   - `use` 声明必须在命名空间声明之后
+
+4. **类和方法的声明**：
+   - 类的左花括号必须在下一行
+   - 方法的左花括号必须在下一行
+   - 右花括号必须在方法体后单独一行
+
+5. **控制结构**：
+   - 控制结构关键字后必须有一个空格
+   - 左花括号必须在同一行
+   - 右花括号必须在主体后单独一行
+
+**正确示例**：
+
+```php
+<?php
+declare(strict_types=1);
+
+namespace App\Services;
+
+use App\Models\User;
+
+class UserService
+{
+    public function getUser(int $id): ?User
+    {
+        if ($id <= 0) {
+            return null;
+        }
+
+        return User::find($id);
+    }
+}
+```
+
+**错误示例**：
+
+```php
+<?php
+declare(strict_types=1);
+namespace App\Services;  // 错误：缺少空行
+class UserService {  // 错误：左花括号应在下一行
+    public function getUser(int $id): ?User {  // 错误：左花括号应在下一行
+        return User::find($id);
+    }
+}
+?>
+```
+
+## 代码完整性
 
 **要求**：
 - 代码示例必须包含必要的上下文
@@ -33,14 +135,6 @@ echo calculateSum(5, 3) . "\n";  // 8
 ```
 
 ## PHP 代码规范
-
-### PSR-12 编码规范
-
-**必须遵守**：
-- 代码必须符合 PSR-12 编码规范
-- 使用 4 个空格缩进（不使用 Tab）
-- 行尾不能有尾随空格
-- 文件必须以空行结尾
 
 ### 类型声明
 
@@ -163,6 +257,8 @@ echo greet("Alice") . "\n";  // 输出: Hello, Alice!
 <?php
 declare(strict_types=1);
 
+namespace App\Services;
+
 class Calculator
 {
     public function add(int $a, int $b): int
@@ -182,6 +278,21 @@ echo $calc->add(5, 3) . "\n";        // 8
 echo $calc->multiply(4, 7) . "\n";  // 28
 ```
 
+## PSR 标准检查清单
+
+在编写 PHP 代码示例时，必须确认：
+
+- [ ] 纯 PHP 文件未使用结束标签 `?>`
+- [ ] 文件使用 UTF-8 编码（无 BOM）
+- [ ] 使用 4 个空格缩进（不使用 Tab）
+- [ ] 行尾无尾随空格
+- [ ] 文件以空行结尾
+- [ ] `declare(strict_types=1);` 在文件第一行
+- [ ] 类和方法的左花括号在下一行
+- [ ] 控制结构的左花括号在同一行
+- [ ] 所有函数包含类型声明
+- [ ] 符合 PSR-1 和 PSR-12 规范
+
 ---
 
-**最后更新**：2025-12-22
+**最后更新**：2025-01-15

@@ -4,95 +4,163 @@
 
 Composer 是 PHP 的依赖管理工具，类似于 Node.js 的 npm 或 Python 的 pip。它不仅可以管理项目依赖，还提供了强大的自动加载功能。掌握 Composer 的使用是现代 PHP 开发的基础。
 
-**章节类型**：工具性章节
+## 安装 Composer
 
-**主要内容**：
-- Composer 的定义和为什么需要 Composer
-- Composer 安装（Windows、Linux/macOS）
-- 基本使用（初始化项目、安装依赖、更新依赖）
-- 常用命令（require、update、install、remove、show、search）
-- 版本约束（精确版本、范围版本、通配符、稳定性标志）
-- composer.json 配置详解
-- 与 npm 的对比
-- 常见问题排查
+### Windows
 
-## 特性
+**使用安装程序（推荐）**：
 
-- **依赖管理**：自动管理项目依赖和版本
-- **自动加载**：自动生成类加载器
-- **版本控制**：灵活的版本约束机制
-- **包管理**：支持发布和分享自己的包
-- **跨平台**：支持 Windows、macOS、Linux
+1. 访问 Composer 官网：https://getcomposer.org/download/
+2. 下载并运行 `Composer-Setup.exe`
+3. 按照安装向导完成安装
 
-## 基本用法/命令
+**验证安装**：
 
-### 安装 Composer
+```bash
+composer --version
+```
 
-**Windows**：
-- 使用安装程序（推荐）
-- 手动安装方法
+### Linux/macOS
 
-**Linux/macOS**：
-- 全局安装方法
-- 验证安装
+**全局安装**：
 
-### 基本使用
+```bash
+# 下载安装脚本
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 
-**初始化项目**：
-- `composer init`：交互式创建 composer.json
-- 手动创建 composer.json
+# 运行安装脚本
+php composer-setup.php
+
+# 移动到全局位置
+sudo mv composer.phar /usr/local/bin/composer
+
+# 验证安装
+composer --version
+```
+
+## 基本使用
+
+### 初始化项目
+
+**交互式创建**：
+
+```bash
+composer init
+```
+
+**手动创建 composer.json**：
+
+```json
+{
+    "name": "vendor/project",
+    "description": "Project description",
+    "type": "project",
+    "require": {
+        "php": "^8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
+```
+
+### 常用命令
 
 **安装依赖**：
-- `composer install`：安装 composer.json 中的依赖
-- `composer require vendor/package`：添加新包并安装
-- `composer update`：更新所有依赖
 
-**常用命令**：
-- `composer require`：添加依赖
-- `composer remove`：移除依赖
-- `composer update`：更新依赖
-- `composer show`：显示已安装的包
-- `composer search`：搜索包
-- `composer dump-autoload`：重新生成自动加载文件
+```bash
+composer install
+```
 
-### 版本约束
+**添加新包并安装**：
 
-**精确版本**：`"vendor/package": "1.2.3"`
-**范围版本**：`"vendor/package": "^1.2"`、`"vendor/package": "~1.2.3"`
-**通配符**：`"vendor/package": "1.2.*"`
-**稳定性标志**：`"vendor/package": "dev-master"`、`"vendor/package": "@dev"`
+```bash
+composer require vendor/package
+```
 
-### composer.json 配置
+**更新所有依赖**：
 
-**基本结构**：
-- name：包名
-- description：描述
-- type：包类型
-- require：生产依赖
-- require-dev：开发依赖
-- autoload：自动加载配置
-- scripts：脚本配置
+```bash
+composer update
+```
 
-## 配置选项
+**移除依赖**：
 
-**composer.json 配置项**：
-- 包信息配置
-- 依赖配置
-- 自动加载配置
-- 脚本配置
-- 仓库配置
+```bash
+composer remove vendor/package
+```
 
-**composer 全局配置**：
-- `composer config`：配置命令
-- 全局配置文件位置
-- 常用配置项
+**显示已安装的包**：
 
-## 使用场景
+```bash
+composer show
+```
 
-- **新项目**：使用 `composer init` 初始化项目
-- **现有项目**：使用 `composer require` 添加依赖
-- **团队协作**：提交 composer.json 和 composer.lock
-- **生产部署**：使用 `composer install --no-dev` 安装生产依赖
+## 完整示例
+
+### 示例 1：创建新项目
+
+```bash
+# 1. 创建项目目录
+mkdir myproject
+cd myproject
+
+# 2. 初始化 Composer
+composer init
+
+# 3. 添加依赖
+composer require monolog/monolog
+
+# 4. 查看安装的包
+composer show
+```
+
+### 示例 2：使用自动加载
+
+创建 `src/App.php`：
+
+```php
+<?php
+declare(strict_types=1);
+
+namespace App;
+
+class App
+{
+    public function run(): void
+    {
+        echo "Hello from App!\n";
+    }
+}
+```
+
+在 `index.php` 中使用：
+
+```php
+<?php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use App\App;
+
+$app = new App();
+$app->run();
+```
+
+运行：
+
+```bash
+php index.php
+```
+
+**输出**：
+
+```
+Hello from App!
+```
 
 ## 注意事项
 
@@ -104,21 +172,46 @@ Composer 是 PHP 的依赖管理工具，类似于 Node.js 的 npm 或 Python �
 ## 常见问题
 
 ### 问题 1：composer install 失败
-- **原因**：网络问题、版本冲突、权限问题
-- **解决**：检查网络、解决版本冲突、检查权限
 
-### 问题 2：版本冲突
-- **原因**：依赖包版本要求冲突
-- **解决**：更新依赖、使用 `composer why-not` 查看冲突原因
+**原因**：网络问题、版本冲突、权限问题
 
-### 问题 3：自动加载不工作
-- **原因**：未引入 autoload.php、命名空间配置错误
-- **解决**：检查 autoload.php 引入、检查命名空间配置
+**解决方法**：
+
+```bash
+# 使用国内镜像
+composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+```
+
+### 问题 2：自动加载不工作
+
+**原因**：未引入 autoload.php、命名空间配置错误
+
+**解决方法**：
+
+```php
+// 确保引入 autoload.php
+require 'vendor/autoload.php';
+
+// 检查命名空间配置
+// composer.json 中的 autoload 配置必须与代码中的命名空间匹配
+```
 
 ## 最佳实践
 
-- 使用精确版本或范围版本，避免使用 `*`
 - 提交 composer.lock 到版本控制
 - 区分生产依赖和开发依赖
-- 定期更新依赖，但要注意兼容性
 - 使用 `composer validate` 验证 composer.json
+
+## 相关章节
+
+- **2.11 文件引入与模块化**：了解模块化开发的基础概念和 PSR-4 自动加载
+- **2.13 代码规范**：了解 PSR-4 自动加载标准的详细规范
+- **12.2 Composer 高级应用**：深入学习 Composer 的高级用法，包括版本约束详解、composer.json 完整配置、包发布等
+
+## 练习任务
+
+1. 安装 Composer，并使用 `composer --version` 验证安装。
+2. 创建一个新项目，使用 `composer init` 初始化，并添加一个依赖包。
+3. 配置自动加载（PSR-4），创建一个类并使用自动加载引入。
+4. 使用 `composer require` 安装一个第三方包（如 monolog/monolog），并在代码中使用。
+5. 查看 `composer.lock` 文件，了解依赖版本锁定机制。

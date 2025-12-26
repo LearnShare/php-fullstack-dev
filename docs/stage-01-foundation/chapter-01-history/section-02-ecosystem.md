@@ -2,111 +2,132 @@
 
 ## 概述
 
-PHP 拥有丰富而活跃的生态系统，包括各种框架、工具、库和社区资源。本节介绍 PHP 生态系统中流行的技术、框架、工具和相关资源，帮助初学者了解 PHP 开发生态的全貌。
+PHP 拥有丰富而活跃的生态系统，包括各种工具、库和社区资源。本节介绍 PHP 生态系统中基础的工具和标准规范，帮助初学者了解 PHP 开发生态的核心组成部分。
 
-**章节类型**：概念性章节
+## 主流工具
 
-**主要内容**：
-- Web 框架（全栈框架、微框架）
-- 内容管理系统（CMS）
-- 包管理和依赖管理
-- 测试框架
-- 开发工具（IDE、调试工具、代码质量工具）
-- 数据库工具（ORM、迁移工具）
-- 缓存和队列
-- 模板引擎
-- API 开发工具
-- 部署和 DevOps 工具
-- 社区和资源
-- 标准规范（PSR）
+### 包管理工具
 
-## 核心内容
+#### Composer
 
-### Web 框架
-- **全栈框架**：Laravel、Symfony、CodeIgniter、Yii
-  - 各框架的特点、适用场景、官方网站
-- **微框架**：Slim、Lumen
-  - 轻量级框架的特点和用途
+- **定位**：PHP 依赖管理工具
+- **功能**：管理项目依赖、自动加载、版本控制
+- **基本用法**：
+  ```bash
+  composer require package/name
+  composer install
+  composer update
+  ```
+- **官方网站**：https://getcomposer.org
 
-### 内容管理系统（CMS）
-- WordPress：全球最流行的 CMS
-- Drupal：企业级 CMS
-- Joomla：功能丰富的 CMS
-- 各 CMS 的特点和适用场景
+#### Packagist
 
-### 包管理和依赖管理
-- **Composer**：PHP 依赖管理工具
-  - 主要功能
-  - 基本用法示例
-- **Packagist**：PHP 包仓库
-  - 特点和资源
+- **定位**：PHP 包仓库
+- **功能**：提供 PHP 包的集中存储和分发
+- **官方网站**：https://packagist.org
 
 ### 测试框架
-- **PHPUnit**：最流行的单元测试框架
-  - 特点和基本用法示例
-- **Codeception**：全栈测试框架
-- **Pest**：现代测试框架
 
-### 开发工具
-- **IDE 和编辑器**：PhpStorm、VS Code
-  - 特点和推荐扩展
-- **调试工具**：Xdebug
-  - 主要功能
-- **代码质量工具**：PHP_CodeSniffer、PHPStan、Psalm
-  - 各工具的特点和用途
+#### PHPUnit
 
-### 数据库工具
-- **ORM**：Eloquent（Laravel）、Doctrine（Symfony）
-  - 特点和示例代码
-- **数据库迁移工具**：Phinx
-  - 特点和用途
+- **定位**：PHP 单元测试框架
+- **特点**：功能完善、广泛使用、文档丰富
+- **官方网站**：https://phpunit.de
 
-### 缓存和队列
-- **缓存**：Redis、Memcached
-  - PHP 客户端和扩展
-- **队列**：Laravel Queue、Symfony Messenger
-  - 支持的驱动和特点
+#### Pest
 
-### 模板引擎
-- **Twig**：Symfony 使用的模板引擎
-- **Blade**：Laravel 的模板引擎
-- 各引擎的特点
+- **定位**：现代 PHP 测试框架
+- **特点**：简洁的语法、基于 PHPUnit
+- **官方网站**：https://pestphp.com
 
-### API 开发
-- **API 框架**：API Platform
-- **API 文档**：Swagger/OpenAPI
-  - PHP 工具和用途
+### 代码质量工具
 
-### 部署和 DevOps
-- **容器化**：Docker
-  - 常用镜像
-- **CI/CD**：GitHub Actions、GitLab CI
-  - 常用操作和特点
+#### PHPStan
 
-### 社区和资源
-- **官方资源**：PHP 官方网站、手册、源码
-- **社区**：PHP 社区、Reddit、Stack Overflow
-- **学习资源**：PHP The Right Way、Laracasts、Symfony 文档
-- **包仓库**：Packagist、Awesome PHP
+- **定位**：PHP 静态分析工具
+- **功能**：检测代码错误、类型检查
+- **官方网站**：https://phpstan.org
 
-### 标准规范
-- **PSR 标准**：PHP-FIG 制定的标准
-  - 主要标准列表（PSR-1、PSR-2、PSR-3、PSR-4、PSR-7、PSR-11、PSR-12）
-  - 官方网站
+#### Psalm
+
+- **定位**：PHP 静态分析工具
+- **功能**：类型检查、错误检测
+- **官方网站**：https://psalm.dev
+
+## 标准规范
+
+### PSR 标准
+
+PSR（PHP Standards Recommendations）是 PHP-FIG（PHP Framework Interop Group）制定的 PHP 编码标准：
+
+- **PSR-1**：基础编码标准
+- **PSR-12**：扩展编码风格指南
+- **PSR-4**：自动加载标准
+- **PSR-3**：日志接口
+- **PSR-7**：HTTP 消息接口
+- **PSR-11**：容器接口
+
+**官方网站**：https://www.php-fig.org
+
+## 开发工具
+
+### IDE 和编辑器
+
+#### PhpStorm
+
+- **定位**：专业 PHP IDE
+- **特点**：功能强大、智能提示、调试支持
+- **官方网站**：https://www.jetbrains.com/phpstorm
+
+#### VS Code
+
+- **定位**：轻量级代码编辑器
+- **特点**：免费、扩展丰富、跨平台
+- **推荐扩展**：PHP Intelephense、PHP Debug
+- **官方网站**：https://code.visualstudio.com
+
+### 调试工具
+
+#### Xdebug
+
+- **定位**：PHP 调试和性能分析工具
+- **功能**：断点调试、性能分析、代码覆盖率
+- **官方网站**：https://xdebug.org
+
+## 生态系统概览
+
+PHP 生态系统非常丰富，除了上述基础工具外，还包括：
+
+- **Web 框架**：Laravel、Symfony、CodeIgniter 等（详细内容见阶段九）
+- **数据库工具**：PDO、ORM 等（详细内容见阶段六）
+- **模板引擎**：Twig、Blade 等（详细内容见阶段五）
+- **缓存系统**：Redis、Memcached 等（详细内容见阶段六）
+
+建议从基础开始，逐步学习这些工具和框架。
 
 ## 总结
 
-- PHP 生态系统丰富，涵盖框架、工具、库等各个方面
-- 选择合适的工具和框架对项目成功至关重要
+- PHP 生态系统丰富，涵盖工具、库、框架等各个方面
+- Composer 是 PHP 包管理的标准工具
+- PHPUnit 是最流行的测试框架
+- 选择合适的工具对项目成功至关重要
 - 建议从基础开始，逐步学习框架和工具
-- 关注代码质量和最佳实践
-- 积极参与社区，学习最佳实践
 
 ## 学习建议
 
-1. 从基础开始：先掌握 PHP 语言基础，再学习框架
-2. 选择一个框架：建议从 Laravel 或 Symfony 开始
-3. 使用 Composer：学会使用 Composer 管理依赖
-4. 编写测试：使用 PHPUnit 编写单元测试
-5. 关注代码质量：使用代码质量工具检查代码
-6. 参与社区：加入 PHP 社区，学习最佳实践
+1. **从基础开始**：先掌握 PHP 语言基础，再学习框架
+2. **使用 Composer**：学会使用 Composer 管理依赖
+3. **编写测试**：使用 PHPUnit 编写单元测试
+4. **关注代码质量**：使用代码质量工具检查代码
+
+## 相关资源
+
+- PHP The Right Way：https://phptherightway.com
+- Awesome PHP：https://github.com/ziadoz/awesome-php
+- Packagist：https://packagist.org
+
+## 相关章节
+
+- **阶段六：数据库与缓存系统**：深入学习数据库操作和缓存系统
+- **阶段九：现代框架深度应用**：深入学习 PHP 框架
+- **阶段五：Web/API 开发**：学习 Web 开发和模板引擎

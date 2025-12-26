@@ -180,10 +180,6 @@
     - [2.13.1 PSR 标准](chapter-13-standards/section-01-psr-standards.md)
     - [2.13.2 PHPDoc](chapter-13-standards/section-02-phpdoc.md)
     - [2.13.3 静态代码分析](chapter-13-standards/section-03-static-analysis.md)
-      - [2.13.3.1 PHPStan 配置与使用](chapter-13-standards/section-03-static-analysis/subsection-01-phpstan.md)
-      - [2.13.3.2 Psalm 配置与使用](chapter-13-standards/section-03-static-analysis/subsection-02-psalm.md)
-      - [2.13.3.3 静态分析与 CI/CD 集成](chapter-13-standards/section-03-static-analysis/subsection-03-cicd-integration.md)
-      - [2.13.3.4 代码质量提升实践](chapter-13-standards/section-03-static-analysis/subsection-04-best-practices.md)
 
 14. **[2.14 PHP 版本新特性](chapter-14-php-versions/readme.md)**：PHP 8.2-8.5 版本新特性与示例、升级指南与最佳实践。
     - [2.14.1 PHP 8.2 新特性与示例](chapter-14-php-versions/section-01-php82.md)

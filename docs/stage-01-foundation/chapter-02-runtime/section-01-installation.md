@@ -2,98 +2,271 @@
 
 ## 概述
 
-PHP 的安装和版本管理是开发的第一步。本节介绍在不同平台上安装 PHP 的方法，以及如何管理多个 PHP 版本。确保 CLI、FPM、容器镜像标签保持一致，避免"线上/线下不一致"问题。
+PHP 的安装和版本管理是开发的第一步。本节介绍在不同平台上安装 PHP 的方法，以及如何管理多个 PHP 版本。
 
-**章节类型**：配置性章节
-
-**主要内容**：
-- 版本策略和推荐版本
-- Windows 平台安装（Herd、Laragon）
-- macOS 平台安装（Homebrew）
-- Linux 平台安装（包管理器、源码、Docker）
-- Docker 安装方式
-- 多版本管理方法
-- 运行验证和常用命令
-- 常见故障排查
-
-## 特性
-
-- **跨平台支持**：Windows、macOS、Linux 均有完善的安装方案
-- **多版本管理**：支持在同一系统上安装和管理多个 PHP 版本
-- **容器化支持**：支持 Docker 容器化部署
-- **版本切换**：可以方便地在不同版本间切换
-
-## 配置步骤/语法
-
-### 版本策略
+## 版本策略
 
 | 场景 | 推荐版本 | 说明 |
-| :--- | :------- | :--- |
-| 本地开发 | 8.2 LTS | 与主流框架兼容，扩展生态成熟 |
-| 新项目 | 8.3 | 获得最新语法特性 |
-| 旧项目维护 | 8.1 | 如依赖旧扩展，可暂时保留 |
+|:-----|:---------|:-----|
+| 本地开发 | 8.2+ | 与主流框架兼容，扩展生态成熟 |
+| 新项目 | 8.3+ | 获得最新语法特性 |
+| 旧项目维护 | 8.1+ | 如依赖旧扩展，可暂时保留 |
 
-### Windows：Herd / Laragon
+## 安装方法
 
-**Herd 安装步骤**：
-1. 访问 Herd 官网，下载安装包
-2. 运行安装向导，完成安装
-3. 打开控制面板，勾选所需 PHP 版本与 Nginx/MySQL 组件
-4. 点击 "Start All" 启动服务
+### Windows 平台
 
-**Laragon 安装步骤**：
-1. 访问 Laragon 官网，下载安装包
-2. 运行安装向导，完成安装
+#### 方法一：Herd（推荐）
+
+**步骤**：
+
+1. 访问 Herd 官网：https://herd.laravel.com
+2. 下载并安装 Herd
+3. 打开控制面板，选择 PHP 版本
+4. 启动服务
+
+**验证**：
+
+```bash
+php -v
+```
+
+**输出示例**：
+
+```
+PHP 8.3.0 (cli) (built: Dec 7 2023 10:30:00) ( NTS )
+Copyright (c) The PHP Group
+Zend Engine v4.3.0, Copyright (c) Zend Technologies
+```
+
+#### 方法二：Laragon
+
+**步骤**：
+
+1. 访问 Laragon 官网：https://laragon.org
+2. 下载并安装 Laragon
 3. 在控制面板中选择 PHP 版本
 4. 启动服务
 
-**多版本管理**：
-- 在 Herd 中添加额外版本
-- 创建不同版本的批处理文件
-- 使用 `php82 -v`、`php83 -v` 验证版本
+### macOS 平台
 
-### macOS：Homebrew
+#### 使用 Homebrew（推荐）
 
 **安装步骤**：
-1. 安装 Homebrew（如果未安装）
-2. 使用 `brew install php@8.3` 安装 PHP
-3. 使用 `brew link --overwrite php@8.3` 链接到系统路径
-4. 配置环境变量（添加到 ~/.zshrc 或 ~/.bash_profile）
-5. 使用 `php -v` 验证安装
+
+```bash
+# 安装 Homebrew（如果未安装）
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# 安装 PHP
+brew install php@8.3
+
+# 链接到系统路径
+brew link --overwrite php@8.3
+
+# 配置环境变量（添加到 ~/.zshrc 或 ~/.bash_profile）
+echo 'export PATH="/opt/homebrew/opt/php@8.3/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+
+# 验证安装
+php -v
+```
 
 **多版本管理**：
-- 安装多个版本：`brew install php@8.2`、`brew install php@8.3`
-- 切换版本：`brew unlink php@8.2`、`brew link php@8.3`
 
-### Linux：包管理器 / 源码 / Docker
+```bash
+# 安装多个版本
+brew install php@8.2
+brew install php@8.3
 
-**Debian/Ubuntu**：
-- 添加 PPA：`sudo add-apt-repository ppa:ondrej/php`
-- 更新包列表：`sudo apt update`
-- 安装 PHP：`sudo apt install php8.2`
-- 安装扩展：`sudo apt install php8.2-mysql php8.2-xml`
+# 切换版本
+brew unlink php@8.2
+brew link php@8.3
+```
 
-**CentOS/RHEL**：
-- 添加 Remi 仓库
-- 安装 PHP：`sudo yum install php82`
+### Linux 平台
 
-**Docker 安装**：
-- 使用官方 PHP 镜像
-- 创建 Dockerfile
-- 运行容器并验证
+#### Debian/Ubuntu
 
-### 运行验证
+**安装步骤**：
 
-**验证命令**：
-- `php -v`：查看 PHP 版本
-- `php -m`：查看已安装的扩展
-- `php -i`：查看 PHP 配置信息
-- `php --ini`：查看配置文件路径
+```bash
+# 添加 PPA 仓库
+sudo add-apt-repository ppa:ondrej/php
+sudo apt update
 
-**常用命令**：
-- `php script.php`：运行 PHP 脚本
-- `php -S localhost:8000`：启动内置 Web 服务器
-- `php -r "echo 'Hello World';"`：执行单行代码
+# 安装 PHP
+sudo apt install php8.3
+
+# 安装常用扩展
+sudo apt install php8.3-mysql php8.3-xml php8.3-curl php8.3-mbstring
+
+# 验证安装
+php -v
+```
+
+#### CentOS/RHEL
+
+**安装步骤**：
+
+```bash
+# 添加 Remi 仓库
+sudo yum install epel-release
+sudo yum install https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+
+# 安装 PHP
+sudo yum install php82
+
+# 验证安装
+php -v
+```
+
+### Docker 安装
+
+**使用官方 PHP 镜像**：
+
+```bash
+# 拉取 PHP 镜像
+docker pull php:8.3-cli
+
+# 运行容器
+docker run -it --rm php:8.3-cli php -v
+```
+
+**创建 Dockerfile**：
+
+```dockerfile
+FROM php:8.3-fpm
+
+# 安装扩展
+RUN docker-php-ext-install pdo_mysql
+
+# 验证
+RUN php -v
+```
+
+## 运行验证
+
+### 验证命令
+
+**查看版本**：
+
+```bash
+php -v
+```
+
+**查看已安装的扩展**：
+
+```bash
+php -m
+```
+
+**输出示例**：
+
+```
+[PHP Modules]
+Core
+ctype
+curl
+date
+...
+```
+
+**查看配置信息**：
+
+```bash
+php -i
+```
+
+**查看配置文件路径**：
+
+```bash
+php --ini
+```
+
+**输出示例**：
+
+```
+Configuration File (php.ini) Path: /etc/php/8.3/cli
+Loaded Configuration File:         /etc/php/8.3/cli/php.ini
+```
+
+### 常用命令
+
+**运行 PHP 脚本**：
+
+```bash
+php script.php
+```
+
+**启动内置 Web 服务器**：
+
+```bash
+php -S localhost:8000
+```
+
+**执行单行代码**：
+
+```bash
+php -r "echo 'Hello World';"
+```
+
+**输出**：
+
+```
+Hello World
+```
+
+## 完整示例
+
+### 示例 1：Windows 安装验证
+
+```bash
+# 检查 PHP 版本
+C:\> php -v
+PHP 8.3.0 (cli) (built: Dec 7 2023 10:30:00) ( NTS )
+Copyright (c) The PHP Group
+Zend Engine v4.3.0, Copyright (c) Zend Technologies
+
+# 检查已安装的扩展
+C:\> php -m
+[PHP Modules]
+Core
+ctype
+curl
+date
+...
+```
+
+### 示例 2：macOS 安装验证
+
+```bash
+# 检查 PHP 版本
+$ php -v
+PHP 8.3.0 (cli) (built: Dec 7 2023 10:30:00) ( NTS )
+Copyright (c) The PHP Group
+Zend Engine v4.3.0, Copyright (c) Zend Technologies
+
+# 检查配置文件路径
+$ php --ini
+Configuration File (php.ini) Path: /opt/homebrew/etc/php/8.3
+Loaded Configuration File:         /opt/homebrew/etc/php/8.3/php.ini
+```
+
+### 示例 3：Linux 安装验证
+
+```bash
+# 检查 PHP 版本
+$ php -v
+PHP 8.3.0 (cli) (built: Dec 7 2023 10:30:00) ( NTS )
+Copyright (c) The PHP Group
+Zend Engine v4.3.0, Copyright (c) Zend Technologies
+
+# 检查已安装的扩展
+$ php -m | grep mysql
+pdo_mysql
+mysqli
+```
 
 ## 注意事项
 
@@ -106,45 +279,91 @@ PHP 的安装和版本管理是开发的第一步。本节介绍在不同平台�
 ## 常见问题
 
 ### 问题 1：找不到 php 命令
-- **原因**：PHP 未添加到系统 PATH
-- **解决**：检查环境变量配置，确保 PHP 可执行文件路径在 PATH 中
 
-### 问题 2：版本不匹配
-- **原因**：多个 PHP 版本安装，PATH 优先级问题
-- **解决**：检查 PATH 顺序，使用完整路径或版本别名
+**原因**：PHP 未添加到系统 PATH
 
-### 问题 3：扩展未加载
-- **原因**：扩展未安装或配置不正确
-- **解决**：检查 php.ini 配置，确保扩展已启用
+**解决方法**：
 
-### 问题 4：Docker 容器中 PHP 版本不一致
-- **原因**：镜像标签或 Dockerfile 配置问题
-- **解决**：检查 Dockerfile，确保使用正确的 PHP 版本标签
+1. 检查 PHP 安装路径
+2. 将 PHP 可执行文件路径添加到系统 PATH
+3. 重启终端或命令行窗口
 
-## 输出结果说明
+**Windows 示例**：
 
-**安装验证示例**：
 ```bash
-$ php -v
-PHP 8.3.0 (cli) (built: Dec 7 2023 10:30:00) ( NTS )
-Copyright (c) The PHP Group
-Zend Engine v4.3.0, Copyright (c) Zend Technologies
+# 检查 PHP 路径
+where php
+
+# 如果未找到，手动添加到 PATH
+set PATH=%PATH%;C:\php
 ```
 
-**扩展列表示例**：
+**macOS/Linux 示例**：
+
 ```bash
-$ php -m
-[PHP Modules]
-Core
-ctype
-curl
-...
+# 检查 PHP 路径
+which php
+
+# 如果未找到，添加到 PATH（添加到 ~/.zshrc 或 ~/.bash_profile）
+export PATH="/opt/homebrew/opt/php@8.3/bin:$PATH"
+```
+
+### 问题 2：版本不匹配
+
+**原因**：多个 PHP 版本安装，PATH 优先级问题
+
+**解决方法**：
+
+1. 检查 PATH 中的 PHP 版本顺序
+2. 使用完整路径或版本别名
+3. 使用版本管理工具（如 phpenv、phpbrew）
+
+**示例**：
+
+```bash
+# 检查当前使用的 PHP 版本
+php -v
+
+# 使用完整路径
+/opt/homebrew/opt/php@8.2/bin/php -v
+/opt/homebrew/opt/php@8.3/bin/php -v
+```
+
+### 问题 3：扩展未加载
+
+**原因**：扩展未安装或配置不正确
+
+**解决方法**：
+
+1. 检查扩展是否已安装
+2. 检查 php.ini 配置文件
+3. 确保扩展已启用
+
+**示例**：
+
+```bash
+# 检查扩展是否已安装
+php -m | grep mysql
+
+# 检查 php.ini 配置
+php --ini
+
+# 编辑 php.ini，确保扩展已启用
+# extension=pdo_mysql
 ```
 
 ## 最佳实践
 
 - 使用版本管理工具（如 phpenv、phpbrew）管理多个版本
-- 在项目中明确指定 PHP 版本要求
+- 在项目中明确指定 PHP 版本要求（使用 `composer.json` 的 `php` 字段）
 - 使用 Docker 确保开发和生产环境一致
 - 定期更新 PHP 版本，但要注意兼容性
 - 记录安装步骤，便于环境复现
+
+## 练习任务
+
+1. 在本地环境安装 PHP 8.3，并使用 `php -v` 验证安装。
+2. 使用 `php -m` 查看已安装的扩展，并记录扩展列表。
+3. 使用 `php --ini` 查看配置文件路径，并打开配置文件查看内容。
+4. 创建一个简单的 PHP 脚本 `test.php`，内容为 `<?php echo "Hello PHP"; ?>`，并使用 `php test.php` 运行。
+5. 如果系统中有多个 PHP 版本，尝试切换版本并验证。

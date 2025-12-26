@@ -56,8 +56,8 @@
 **时间分配建议：**
 - PHP 发展史（1.1）：1 天
 - PHP 和 MySQL 安装（1.2-1.3）：3-5 天
-- 工具链配置（1.4）：3-5 天
-- 配置和调试（1.5）：2-3 天
+- 工具链配置（1.4）：2-3 天
+- 配置和扩展（1.5）：2-3 天
 - 环境验证和练习：2-3 天
 
 ## 练习建议
@@ -70,9 +70,7 @@
    - 测试 Composer 使用
 
 2. **工具使用**
-   - 使用 Git 管理代码
    - 使用 IDE 编写代码
-   - 配置调试环境
 
 ### 综合练习（阶段完成后）
 
@@ -95,27 +93,24 @@
    - [1.3.1 MySQL 安装与配置](chapter-03-mysql/section-01-installation.md)
    - [1.3.2 客户端工具与命令](chapter-03-mysql/section-02-tools-commands.md)
 
-4. **[1.4 核心工具链](chapter-04-toolchain/readme.md)**：配置 Composer、IDE、Git、容器与自动化脚本，形成统一工具链。
+4. **[1.4 核心工具链](chapter-04-toolchain/readme.md)**：配置 Composer 和 IDE，形成基础工具链。
    - [1.4.1 Composer 基础](chapter-04-toolchain/section-01-composer-basics.md)
    - [1.4.2 IDE 与扩展配置](chapter-04-toolchain/section-02-ide-extensions.md)
-   - [1.4.3 Git 与任务管理](chapter-04-toolchain/section-03-git-tasks.md)
-   - [1.4.4 容器与环境管理](chapter-04-toolchain/section-04-docker-compose.md)
-   - [1.4.5 自动化脚本](chapter-04-toolchain/section-05-automation.md)
 
-5. **[1.5 配置、扩展与调试基础](chapter-05-config-debug/readme.md)**：掌握 php.ini、扩展安装、调试基础与配置差异排查。
-   - [1.5.1 php.ini 配置](chapter-05-config-debug/section-01-php-ini.md)
-   - [1.5.2 扩展管理](chapter-05-config-debug/section-02-extensions.md)
-   - [1.5.3 调试基础介绍](chapter-05-config-debug/section-03-debugging-basics.md)
+5. **[1.5 PHP 配置与扩展](chapter-05-config/readme.md)**：掌握 php.ini、扩展安装与配置差异排查。
+   - [1.5.1 php.ini 配置](chapter-05-config/section-01-php-ini.md)
+   - [1.5.2 扩展管理](chapter-05-config/section-02-extensions.md)
 
 完成本阶段后，你将具备：
 
 - 能够在 CLI、FPM、Docker 之间切换 PHP 版本，并保留安装脚本以便复现环境。
 - 独立部署 MySQL 8，配置安全访问策略，熟悉数据备份与恢复流程。
-- 使用 Composer、IDE、Git Hook、容器脚本构建可复制的开发基线。
-- 明确 php.ini、扩展、调试工具的配置路径，遇到问题能主动排查并记录结果。
+- 使用 Composer 和 IDE 构建可复制的开发基线。
+- 明确 php.ini、扩展的配置路径，遇到问题能主动排查并记录结果。
 
 ## 相关章节
 
 - **阶段二：PHP 语言特性**：学习 PHP 语言基础
 - **阶段五：Web/API 开发**：学习 Web 开发基础（包含从本阶段移出的 Web 架构内容）
+- **阶段十：部署、云原生与 DevOps**：学习 Git、Docker Compose、自动化脚本等工具
 - **阶段七：性能优化与安全**：学习现代 PHP 运行时（包含从本阶段移出的运行时内容）

@@ -15,10 +15,6 @@
 2. **[2.13.2 PHPDoc](section-02-phpdoc.md)**：PHPDoc 基本语法、常用标签（`@param`、`@return`、`@throws`、`@var`、`@deprecated`）、类和方法文档、完整示例。
 
 3. **[2.13.3 静态代码分析](section-03-static-analysis.md)**：PHPStan 配置与使用、Psalm 配置与使用、静态分析与 CI/CD 集成、代码质量提升实践。
-   - [2.13.3.1 PHPStan 配置与使用](section-03-static-analysis/subsection-01-phpstan.md)
-   - [2.13.3.2 Psalm 配置与使用](section-03-static-analysis/subsection-02-psalm.md)
-   - [2.13.3.3 静态分析与 CI/CD 集成](section-03-static-analysis/subsection-03-cicd-integration.md)
-   - [2.13.3.4 代码质量提升实践](section-03-static-analysis/subsection-04-best-practices.md)
 
 ## 命名与结构
 
