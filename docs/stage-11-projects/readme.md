@@ -64,10 +64,16 @@
 - 包含项目开发时间
 
 **时间分配建议：**
-- 需求分析与架构设计（11.1.1-11.1.3）：1 周
-- 数据库设计与 API 设计（11.1.4-11.1.5）：1 周
-- 模块实现（11.1.6）：2-3 周
-- 测试与部署（11.1.7-11.1.8）：1 周
+- **项目一（多用户博客系统）**：
+  - 需求分析与架构设计（11.1.1-11.1.3）：1 周
+  - 数据库设计与 API 设计（11.1.4-11.1.5）：1 周
+  - 模块实现（11.1.6）：2-3 周
+  - 测试与部署（11.1.7-11.1.8）：1 周
+- **项目二（网站访问统计服务）**：
+  - 需求分析与架构设计（11.2.1-11.2.3）：1 周
+  - 数据库设计与 API 设计（11.2.4-11.2.5）：1 周
+  - 模块实现（11.2.6）：2-3 周
+  - 测试与部署（11.2.7-11.2.8）：1 周
 - 项目总结与优化：1 周
 
 ## 练习建议
@@ -113,6 +119,16 @@
    - [11.1.6 模块划分与实现指南](chapter-01-multi-user-blog/section-06-module-design.md)
    - [11.1.7 测试策略与实现](chapter-01-multi-user-blog/section-07-testing.md)
    - [11.1.8 部署与运维](chapter-01-multi-user-blog/section-08-deployment.md)
+
+2. **[11.2 网站访问统计服务](chapter-02-analytics-service/readme.md)**：需求分析与功能规划、技术架构设计（前后端分离、API-First）、技术栈选型、数据库设计（MySQL + InfluxDB）、API 接口设计、模块划分与实现指南（统计 SDK、统计 API、数据分析、数据可视化）、测试策略与实现、部署与运维。
+   - [11.2.1 需求分析与功能规划](chapter-02-analytics-service/section-01-requirements.md)
+   - [11.2.2 技术架构设计](chapter-02-analytics-service/section-02-architecture.md)
+   - [11.2.3 技术栈选型](chapter-02-analytics-service/section-03-technology-stack.md)
+   - [11.2.4 数据库设计](chapter-02-analytics-service/section-04-database-design.md)
+   - [11.2.5 API 接口设计](chapter-02-analytics-service/section-05-api-design.md)
+   - [11.2.6 模块划分与实现指南](chapter-02-analytics-service/section-06-module-design.md)
+   - [11.2.7 测试策略与实现](chapter-02-analytics-service/section-07-testing.md)
+   - [11.2.8 部署与运维](chapter-02-analytics-service/section-08-deployment.md)
 
 ## 完成本阶段后，你将具备：
 

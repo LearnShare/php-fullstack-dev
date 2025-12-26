@@ -1,51 +1,9 @@
 # PHP + MySQL 全栈开发指南
 
-## 适用对象
-
-本指南适合以下学习者：
-
-- **前端开发者转后端**：已掌握 HTML/CSS/JavaScript/TypeScript 基础，希望学习 PHP 后端开发
-- **全栈开发初学者**：具备基础编程思维，希望系统学习 PHP 从零到进阶
-- **其他语言开发者**：已有其他编程语言经验（如 Python、Java、C# 等），希望快速掌握 PHP
-
-**不适合**：完全没有编程基础的学习者（建议先学习基础编程概念）
-
-## 学习目标
-
-完成本指南学习后，你将能够：
-
-- 掌握 PHP 8.2+ 语言核心和面向对象编程（OOP）
-- 具备系统编程能力（文件操作、网络编程、CLI 开发、错误处理、调试、日志）
-- 掌握 Web 开发技能（RESTful API、HTTP 协议、会话管理、认证授权、路由、中间件）
-- 掌握数据库操作（PDO、ORM、Redis 缓存、性能优化）
-- 具备架构设计能力（SOLID 原则、设计模式、MVC、六边形架构、DDD）
-- 掌握现代开发工具链（Composer、现代 PHP 运行时、Docker、CI/CD、DevOps）
-- 为学习 Laravel、Symfony 等现代框架和企业级开发奠定基础
-
-## 前置要求
-
-### 必须掌握
-
-- **HTML/CSS 基础**：能够编写基本 HTML 结构和 CSS 样式，理解表单、链接等基本元素
-- **JavaScript 基础**：理解变量、函数、对象、数组等基本概念，能够使用 DOM API 进行基本操作
-- **编程基础**：理解变量、数据类型、运算符、控制结构（if/else、循环）、函数概念
-
-### 建议掌握（可选）
-
-- **命令行基础**：基本命令行操作（cd、ls/dir、mkdir 等），如不熟悉阶段一会讲解
-- **版本控制基础**：Git 基本概念（可选，阶段一会讲解）
-- **数据库基础概念**：数据库、表、字段等基本概念（可选，阶段一会从零讲解）
-
-### 学习环境
-
-- **操作系统**：Windows、macOS 或 Linux 均可（阶段一会讲解各平台安装配置）
-- **硬件要求**：建议至少 4GB 内存（8GB 更佳），至少 10GB 可用磁盘空间
-- **软件要求**：文本编辑器或 IDE（阶段一会推荐配置）、现代浏览器、PHP/MySQL/Composer 等工具（阶段一会指导安装）
-
 ## 开始学习
 
 **如果你是零基础学员，请先阅读：**
-- **[全局学习指南](old/docs/learning-guide.md)**：完整的学习路径、时间估算、检查点、学习方法
+- **[全局学习指南](docs/learning-guide.md)**：完整的学习路径、时间估算、检查点、学习方法
 
 **各阶段前置知识要求：**
 - 每个阶段的 README 都包含详细的前置知识要求和学习时间估算
@@ -610,16 +568,25 @@
 
 **定位**：综合项目实践
 
-- [阶段十一总览](docs/stage-11-projects/readme.md)（待创建）
-- [11.1 多用户博客系统](docs/stage-11-projects/chapter-01-multi-user-blog/readme.md)（待创建）
-  - [11.1.1 需求分析与功能规划](docs/stage-11-projects/chapter-01-multi-user-blog/section-01-requirements.md)（待创建）
-  - [11.1.2 技术架构设计](docs/stage-11-projects/chapter-01-multi-user-blog/section-02-architecture.md)（待创建）
-  - [11.1.3 技术栈选型](docs/stage-11-projects/chapter-01-multi-user-blog/section-03-technology-stack.md)（待创建）
-  - [11.1.4 数据库设计](docs/stage-11-projects/chapter-01-multi-user-blog/section-04-database-design.md)（待创建）
-  - [11.1.5 API 接口设计](docs/stage-11-projects/chapter-01-multi-user-blog/section-05-api-design.md)（待创建）
-  - [11.1.6 模块划分与实现指南](docs/stage-11-projects/chapter-01-multi-user-blog/section-06-module-design.md)（待创建）
-  - [11.1.7 测试策略与实现](docs/stage-11-projects/chapter-01-multi-user-blog/section-07-testing.md)（待创建）
-  - [11.1.8 部署与运维](docs/stage-11-projects/chapter-01-multi-user-blog/section-08-deployment.md)（待创建）
+- [阶段十一总览](docs/stage-11-projects/readme.md)
+- [11.1 多用户博客系统](docs/stage-11-projects/chapter-01-multi-user-blog/readme.md)
+  - [11.1.1 需求分析与功能规划](docs/stage-11-projects/chapter-01-multi-user-blog/section-01-requirements.md)
+  - [11.1.2 技术架构设计](docs/stage-11-projects/chapter-01-multi-user-blog/section-02-architecture.md)
+  - [11.1.3 技术栈选型](docs/stage-11-projects/chapter-01-multi-user-blog/section-03-technology-stack.md)
+  - [11.1.4 数据库设计](docs/stage-11-projects/chapter-01-multi-user-blog/section-04-database-design.md)
+  - [11.1.5 API 接口设计](docs/stage-11-projects/chapter-01-multi-user-blog/section-05-api-design.md)
+  - [11.1.6 模块划分与实现指南](docs/stage-11-projects/chapter-01-multi-user-blog/section-06-module-design.md)
+  - [11.1.7 测试策略与实现](docs/stage-11-projects/chapter-01-multi-user-blog/section-07-testing.md)
+  - [11.1.8 部署与运维](docs/stage-11-projects/chapter-01-multi-user-blog/section-08-deployment.md)
+- [11.2 网站访问统计服务](docs/stage-11-projects/chapter-02-analytics-service/readme.md)
+  - [11.2.1 需求分析与功能规划](docs/stage-11-projects/chapter-02-analytics-service/section-01-requirements.md)
+  - [11.2.2 技术架构设计](docs/stage-11-projects/chapter-02-analytics-service/section-02-architecture.md)
+  - [11.2.3 技术栈选型](docs/stage-11-projects/chapter-02-analytics-service/section-03-technology-stack.md)
+  - [11.2.4 数据库设计](docs/stage-11-projects/chapter-02-analytics-service/section-04-database-design.md)
+  - [11.2.5 API 接口设计](docs/stage-11-projects/chapter-02-analytics-service/section-05-api-design.md)
+  - [11.2.6 模块划分与实现指南](docs/stage-11-projects/chapter-02-analytics-service/section-06-module-design.md)
+  - [11.2.7 测试策略与实现](docs/stage-11-projects/chapter-02-analytics-service/section-07-testing.md)
+  - [11.2.8 部署与运维](docs/stage-11-projects/chapter-02-analytics-service/section-08-deployment.md)
 
 ### 阶段十二：附言（Appendix）
 
@@ -641,31 +608,6 @@
   - [12.2.2 Composer 脚本与插件](docs/stage-12-appendix/chapter-02-composer-advanced/section-02-scripts-plugins.md)（待创建）
   - [12.2.3 Composer 最佳实践](docs/stage-12-appendix/chapter-02-composer-advanced/section-03-best-practices.md)（待创建）
 
-## 学习路径建议
-
-### 初学者路径
-
-1. **阶段一**：搭建开发环境，掌握基础工具（2-3 周）
-2. **阶段二**：系统学习 PHP 语言基础（4-6 周）
-3. **阶段三**：理解面向对象基础（4-6 周）
-4. **阶段四**：学习系统编程（网络、文件系统、错误处理、调试、日志）（3-4 周）
-5. **阶段五**：学习 Web 开发和 API 设计（4-6 周）
-6. **阶段六**：掌握数据库和缓存系统（4-6 周）
-7. **阶段七**：学习高级架构与设计模式（4-6 周）
-8. **阶段八**：了解性能优化和安全防护（4-6 周）
-9. **阶段九**：深入学习现代框架（3-4 周）
-10. **阶段十**：掌握部署和 DevOps（3-4 周）
-11. **阶段十一**：完成实战项目，综合运用所学知识（4-6 周）
-12. **阶段十二**：参考附言内容（PSR 标准规范等），作为补充学习资料
-
-**总学习时间**：35-50 周（约 9-12 个月）
-
-### 有经验开发者路径
-
-- 可直接跳转到感兴趣的阶段
-- 建议重点学习阶段三（OOP基础）、阶段七（高级架构与设计模式）、阶段八（性能优化与安全）、阶段九（框架应用）
-- **阶段十二**：建议深入学习 PSR 标准规范，提升代码质量和团队协作能力
-
 ## 文档特点
 
 - **面向零基础**：所有内容从基础概念开始，循序渐进
@@ -675,6 +617,8 @@
 - **结构清晰**：按阶段、章节、小节分层组织，便于查阅
 - **标准规范**：附言阶段包含 PSR 标准规范等补充内容，帮助提升代码质量
 - **章节类型化**：根据章节类型（概念性、配置性、语法性、工具性、实践性、参考性、最佳实践、对比性）确定必需要素，灵活选择可选要素
+
+**详细的学习路径、时间估算、检查点、学习方法请参考 [全局学习指南](docs/learning-guide.md)。**
 
 ## 贡献与反馈
 
