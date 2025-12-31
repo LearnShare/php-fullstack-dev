@@ -6,7 +6,7 @@
 
 ### `ai-rules/` - AI 规则文档
 
-包含所有编写规则和规范文档，共 16 个文件：
+包含所有编写规则和规范文档，共 17 个文件：
 
 - `01-basic-rules.md` - 基本规则
 - `02-execution-workflow.md` - 执行工作流
@@ -24,6 +24,7 @@
 - `14-syntax-section-standards.md` - 语法/功能小节编写规范
 - `15-content-simplification-rules.md` - 内容简化规则
 - `16-recent-requirements.md` - 近期要求总结
+- `17-document-creation-workflow.md` - 文档创建流程和规范
 
 ### `progress/` - 项目进展文档
 
