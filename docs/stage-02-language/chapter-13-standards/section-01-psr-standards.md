@@ -4,7 +4,7 @@
 
 PSR（PHP Standards Recommendations）是 PHP 社区制定的编码标准，由 PHP-FIG（PHP Framework Interop Group）组织制定。遵循 PSR 标准可以提高代码质量、团队协作效率和代码可读性。
 
-**注意**：本节仅提供 PSR 标准的简要介绍。详细的 PSR 标准规范、实施方法和最佳实践，请参考 [阶段十二：附言 - 12.1 PSR 标准规范](../../stage-12-appendix/chapter-01-psr-standards/readme.md)。
+**注意**：本节仅提供 PSR 标准的简要介绍。详细的 PSR 标准规范、实施方法和最佳实践将在后续阶段（阶段十二：附言）中提供。
 
 ## 核心标准
 
@@ -17,7 +17,7 @@ PSR（PHP Standards Recommendations）是 PHP 社区制定的编码标准，由 
 - 方法名使用 `camelCase`（小驼峰）
 - 常量名使用 `UPPER_SNAKE_CASE`（大写下划线）
 
-**详细内容**：详见 [12.1.2 PSR-1 基础编码标准](../../stage-12-appendix/chapter-01-psr-standards/section-02-psr-1.md)
+**详细内容**：详细的 PSR-1 标准规范、实施方法和最佳实践将在后续阶段（阶段十二：附言）中提供。
 
 ### PSR-4 自动加载标准
 
@@ -26,7 +26,7 @@ PSR（PHP Standards Recommendations）是 PHP 社区制定的编码标准，由 
 - 一个文件一个类，文件名必须与类名匹配
 - 通过 Composer 自动加载
 
-**详细内容**：详见 [12.1.4 PSR-4 自动加载标准](../../stage-12-appendix/chapter-01-psr-standards/section-04-psr-4.md)
+**详细内容**：详细的 PSR-4 标准规范、实施方法和最佳实践将在后续阶段（阶段十二：附言）中提供。
 
 ### PSR-12 编码风格扩展
 
@@ -36,7 +36,7 @@ PSR（PHP Standards Recommendations）是 PHP 社区制定的编码标准，由 
 - 关键字和类型（`true`、`false`、`null`）必须小写
 - 不同部分之间使用空行分隔
 
-**详细内容**：详见 [12.1.3 PSR-12 扩展编码风格指南](../../stage-12-appendix/chapter-01-psr-standards/section-03-psr-12.md)
+**详细内容**：详细的 PSR-12 标准规范、实施方法和最佳实践将在后续阶段（阶段十二：附言）中提供。
 
 ### 其他 PSR 标准
 
@@ -45,7 +45,7 @@ PSR（PHP Standards Recommendations）是 PHP 社区制定的编码标准，由 
 - **PSR-11**：容器接口
 - 其他 PSR 标准
 
-**详细内容**：详见 [12.1 PSR 标准规范](../../stage-12-appendix/chapter-01-psr-standards/readme.md)
+**详细内容**：详细的其他 PSR 标准规范、实施方法和最佳实践将在后续阶段（阶段十二：附言）中提供。
 
 ## 基本示例
 
@@ -76,20 +76,11 @@ class UserService
 
 - **2.1.2 文件结构与编码**：了解文件结构要求
 - **2.11 文件引入与模块化**：了解 PSR-4 自动加载基础
-- **阶段十二：附言 - 12.1 PSR 标准规范**：深入学习 PSR 标准规范
-  - [12.1.1 PSR 标准概述](../../stage-12-appendix/chapter-01-psr-standards/section-01-introduction.md)
-  - [12.1.2 PSR-1 基础编码标准](../../stage-12-appendix/chapter-01-psr-standards/section-02-psr-1.md)
-  - [12.1.3 PSR-12 扩展编码风格指南](../../stage-12-appendix/chapter-01-psr-standards/section-03-psr-12.md)
-  - [12.1.4 PSR-4 自动加载标准](../../stage-12-appendix/chapter-01-psr-standards/section-04-psr-4.md)
-  - [12.1.5 PSR-3 日志接口](../../stage-12-appendix/chapter-01-psr-standards/section-05-psr-3.md)
-  - [12.1.6 PSR-7 HTTP 消息接口](../../stage-12-appendix/chapter-01-psr-standards/section-06-psr-7.md)
-  - [12.1.7 PSR-11 容器接口](../../stage-12-appendix/chapter-01-psr-standards/section-07-psr-11.md)
-  - [12.1.8 其他 PSR 标准](../../stage-12-appendix/chapter-01-psr-standards/section-08-other-psr.md)
-  - [12.1.9 PSR 标准实施](../../stage-12-appendix/chapter-01-psr-standards/section-09-implementation.md)
+- **阶段十二：附言 - 12.1 PSR 标准规范**：深入学习 PSR 标准规范（将在后续阶段提供）
 
 ## 练习任务
 
 1. 创建符合 PSR-1 标准的类，遵循命名规范
 2. 配置 PSR-4 自动加载，测试自动加载功能
 3. 编写符合 PSR-12 的代码，使用代码格式化工具检查
-4. 参考 [阶段十二：附言 - 12.1 PSR 标准规范](../../stage-12-appendix/chapter-01-psr-standards/readme.md) 深入学习
+4. 参考后续阶段（阶段十二：附言）中的 PSR 标准规范深入学习

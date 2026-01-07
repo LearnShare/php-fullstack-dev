@@ -21,287 +21,282 @@
 
 **定位**：环境搭建、工具配置、基础概念
 
-- [阶段一总览](docs/stage-01-foundation/readme.md)（待创建）
-- [1.1 PHP 发展史](docs/stage-01-foundation/chapter-01-history/readme.md)（待创建）
-  - [1.1.1 PHP 起源与发展历程](docs/stage-01-foundation/chapter-01-history/section-01-history.md)（待创建）
-  - [1.1.2 PHP 生态系统](docs/stage-01-foundation/chapter-01-history/section-02-ecosystem.md)（待创建）
-- [1.2 PHP 安装与运行基础](docs/stage-01-foundation/chapter-02-runtime/readme.md)（待创建）
-  - [1.2.1 PHP 安装与版本管理](docs/stage-01-foundation/chapter-02-runtime/section-01-installation.md)（待创建）
-  - [1.2.2 运行模式与验证](docs/stage-01-foundation/chapter-02-runtime/section-02-execution-modes.md)（待创建）
-- [1.3 MySQL 环境搭建与工具](docs/stage-01-foundation/chapter-03-mysql/readme.md)（待创建）
-  - [1.3.1 MySQL 安装与配置](docs/stage-01-foundation/chapter-03-mysql/section-01-installation.md)（待创建）
-  - [1.3.2 客户端工具与命令](docs/stage-01-foundation/chapter-03-mysql/section-02-tools-commands.md)（待创建）
-- [1.4 核心工具链](docs/stage-01-foundation/chapter-04-toolchain/readme.md)（待创建）
-  - [1.4.1 Composer 基础](docs/stage-01-foundation/chapter-04-toolchain/section-01-composer-basics.md)（待创建）
-  - [1.4.2 IDE 与扩展配置](docs/stage-01-foundation/chapter-04-toolchain/section-02-ide-extensions.md)（待创建）
+- [阶段一总览](docs/stage-01-foundation/readme.md)
+- [1.1 PHP 发展史](docs/stage-01-foundation/chapter-01-history/readme.md)
+  - [1.1.1 PHP 起源与发展历程](docs/stage-01-foundation/chapter-01-history/section-01-history.md)
+  - [1.1.2 PHP 生态系统](docs/stage-01-foundation/chapter-01-history/section-02-ecosystem.md)
+- [1.2 PHP 安装与运行基础](docs/stage-01-foundation/chapter-02-runtime/readme.md)
+  - [1.2.1 PHP 安装与版本管理](docs/stage-01-foundation/chapter-02-runtime/section-01-installation.md)
+  - [1.2.2 运行模式与验证](docs/stage-01-foundation/chapter-02-runtime/section-02-execution-modes.md)
+- [1.3 MySQL 环境搭建与工具](docs/stage-01-foundation/chapter-03-mysql/readme.md)
+  - [1.3.1 MySQL 安装与配置](docs/stage-01-foundation/chapter-03-mysql/section-01-installation.md)
+  - [1.3.2 客户端工具与命令](docs/stage-01-foundation/chapter-03-mysql/section-02-tools-commands.md)
+- [1.4 核心工具链](docs/stage-01-foundation/chapter-04-toolchain/readme.md)
+  - [1.4.1 Composer 基础](docs/stage-01-foundation/chapter-04-toolchain/section-01-composer-basics.md)
+  - [1.4.2 IDE 与扩展配置](docs/stage-01-foundation/chapter-04-toolchain/section-02-ide-extensions.md)
   - [1.4.3 Git 与任务管理](docs/stage-01-foundation/chapter-04-toolchain/section-03-git-tasks.md)（待创建）
   - [1.4.4 容器与环境管理](docs/stage-01-foundation/chapter-04-toolchain/section-04-docker-compose.md)（待创建）
   - [1.4.5 自动化脚本](docs/stage-01-foundation/chapter-04-toolchain/section-05-automation.md)（待创建）
-- [1.5 配置、扩展与调试基础](docs/stage-01-foundation/chapter-05-config-debug/readme.md)（待创建）
-  - [1.5.1 php.ini 配置](docs/stage-01-foundation/chapter-05-config-debug/section-01-php-ini.md)（待创建）
-  - [1.5.2 扩展管理](docs/stage-01-foundation/chapter-05-config-debug/section-02-extensions.md)（待创建）
-  - [1.5.3 调试基础介绍](docs/stage-01-foundation/chapter-05-config-debug/section-03-debugging-basics.md)（待创建）
+- [1.5 配置、扩展与调试基础](docs/stage-01-foundation/chapter-05-config/readme.md)
+  - [1.5.1 php.ini 配置](docs/stage-01-foundation/chapter-05-config/section-01-php-ini.md)
+  - [1.5.2 扩展管理](docs/stage-01-foundation/chapter-05-config/section-02-extensions.md)
 
 ### 阶段二：PHP 语言特性（Language）
 
 **定位**：纯语言特性，不涉及 Web、文件系统、网络等
 
-- [阶段二总览](docs/stage-02-language/readme.md)（待创建）
-- [2.1 PHP 基本语法结构](docs/stage-02-language/chapter-01-syntax/readme.md)（待创建）
-  - [2.1.1 第一个 PHP 程序：Hello World](docs/stage-02-language/chapter-01-syntax/section-01-hello-world.md)（待创建）
-  - [2.1.2 文件结构与编码](docs/stage-02-language/chapter-01-syntax/section-02-file-structure.md)（待创建）
-  - [2.1.3 语句与注释](docs/stage-02-language/chapter-01-syntax/section-03-statements-comments.md)（待创建）
-  - [2.1.4 文件执行方式](docs/stage-02-language/chapter-01-syntax/section-04-execution.md)（待创建）
-  - [2.1.5 常见错误与解决方案](docs/stage-02-language/chapter-01-syntax/section-05-common-errors.md)（待创建）
-  - [2.1.6 实践建议与示例](docs/stage-02-language/chapter-01-syntax/section-06-best-practices.md)（待创建）
-- [2.2 输出与调试基础](docs/stage-02-language/chapter-02-output/readme.md)（待创建）
-  - [2.2.1 输出 API](docs/stage-02-language/chapter-02-output/section-01-output-api.md)（待创建）
-  - [2.2.2 格式化占位符详解](docs/stage-02-language/chapter-02-output/section-02-format-placeholders.md)（待创建）
-  - [2.2.3 调试函数和策略](docs/stage-02-language/chapter-02-output/section-03-debugging.md)（待创建）
-- [2.3 变量与常量](docs/stage-02-language/chapter-03-variables/readme.md)（待创建）
-  - [2.3.1 变量基础](docs/stage-02-language/chapter-03-variables/section-01-variable-basics.md)（待创建）
-  - [2.3.2 引用与可变变量](docs/stage-02-language/chapter-03-variables/section-02-references.md)（待创建）
-  - [2.3.3 常量](docs/stage-02-language/chapter-03-variables/section-03-constants.md)（待创建）
-  - [2.3.4 全局与静态](docs/stage-02-language/chapter-03-variables/section-04-scope-static.md)（待创建）
-  - [2.3.5 最佳实践与综合练习](docs/stage-02-language/chapter-03-variables/section-05-best-practices.md)（待创建）
-- [2.4 数据类型](docs/stage-02-language/chapter-04-types/readme.md)（待创建）
-  - [2.4.1 标量类型](docs/stage-02-language/chapter-04-types/section-01-scalar-types.md)（待创建）
-  - [2.4.2 复合类型](docs/stage-02-language/chapter-04-types/section-02-composite-types.md)（待创建）
-  - [2.4.3 特殊类型](docs/stage-02-language/chapter-04-types/section-03-special-types.md)（待创建）
-  - [2.4.4 类型检测](docs/stage-02-language/chapter-04-types/section-04-type-detection.md)（待创建）
-  - [2.4.5 类型声明与联合类型](docs/stage-02-language/chapter-04-types/section-05-type-declarations.md)（待创建）
-  - [2.4.6 JSON 与数组互转](docs/stage-02-language/chapter-04-types/section-06-json.md)（待创建）
-- [2.5 类型转换与比较](docs/stage-02-language/chapter-05-type-casting/readme.md)（待创建）
-  - [2.5.1 隐式转换](docs/stage-02-language/chapter-05-type-casting/section-01-implicit-conversion.md)（待创建）
-  - [2.5.2 显式转换](docs/stage-02-language/chapter-05-type-casting/section-02-explicit-conversion.md)（待创建）
-  - [2.5.3 转换函数](docs/stage-02-language/chapter-05-type-casting/section-03-conversion-functions.md)（待创建）
-  - [2.5.4 比较运算符与函数](docs/stage-02-language/chapter-05-type-casting/section-04-comparison.md)（待创建）
-- [2.6 表达式与运算符](docs/stage-02-language/chapter-06-expressions/readme.md)（待创建）
-  - [2.6.1 算术运算符](docs/stage-02-language/chapter-06-expressions/section-01-arithmetic-operators.md)（待创建）
-  - [2.6.2 赋值运算符](docs/stage-02-language/chapter-06-expressions/section-02-assignment-operators.md)（待创建）
-  - [2.6.3 逻辑运算符](docs/stage-02-language/chapter-06-expressions/section-03-logical-operators.md)（待创建）
-  - [2.6.4 三元运算符与空合并运算符](docs/stage-02-language/chapter-06-expressions/section-04-ternary-null-coalescing.md)（待创建）
-  - [2.6.5 match 表达式](docs/stage-02-language/chapter-06-expressions/section-05-match-expression.md)（待创建）
-  - [2.6.6 运算符优先级与结合性](docs/stage-02-language/chapter-06-expressions/section-06-operator-precedence.md)（待创建）
-- [2.7 字符串操作](docs/stage-02-language/chapter-07-strings/readme.md)（待创建）
-  - [2.7.1 字符串创建方式](docs/stage-02-language/chapter-07-strings/section-01-string-creation.md)（待创建）
-  - [2.7.2 常用字符串函数](docs/stage-02-language/chapter-07-strings/section-02-string-functions.md)（待创建）
-- [2.8 数组完整指南](docs/stage-02-language/chapter-08-arrays/readme.md)（待创建）
-  - [2.8.1 数组基础](docs/stage-02-language/chapter-08-arrays/section-01-array-basics.md)（待创建）
-  - [2.8.2 数组遍历](docs/stage-02-language/chapter-08-arrays/section-02-array-iteration.md)（待创建）
-  - [2.8.3 数组操作函数](docs/stage-02-language/chapter-08-arrays/section-03-array-functions.md)（待创建）
-  - [2.8.4 数组排序](docs/stage-02-language/chapter-08-arrays/section-04-array-sorting.md)（待创建）
-  - [2.8.5 数组解构](docs/stage-02-language/chapter-08-arrays/section-05-array-destructuring.md)（待创建）
-- [2.9 控制结构](docs/stage-02-language/chapter-09-control-flow/readme.md)（待创建）
-  - [2.9.1 条件语句](docs/stage-02-language/chapter-09-control-flow/section-01-conditional-statements.md)（待创建）
-  - [2.9.2 循环结构](docs/stage-02-language/chapter-09-control-flow/section-02-loops.md)（待创建）
-  - [2.9.3 跳转语句](docs/stage-02-language/chapter-09-control-flow/section-03-jump-statements.md)（待创建）
-- [2.10 函数与作用域](docs/stage-02-language/chapter-10-functions/readme.md)（待创建）
-  - [2.10.1 函数基础](docs/stage-02-language/chapter-10-functions/section-01-function-basics.md)（待创建）
-  - [2.10.2 可变参数](docs/stage-02-language/chapter-10-functions/section-02-variable-arguments.md)（待创建）
-  - [2.10.3 引用、箭头函数与闭包](docs/stage-02-language/chapter-10-functions/section-03-references-closures.md)（待创建）
-  - [2.10.4 匿名函数](docs/stage-02-language/chapter-10-functions/section-04-anonymous-functions.md)（待创建）
-  - [2.10.5 可调用类型与内置函数](docs/stage-02-language/chapter-10-functions/section-05-callable-types.md)（待创建）
-- [2.11 文件引入与模块化](docs/stage-02-language/chapter-11-modularity/readme.md)（待创建）
-  - [2.11.1 模块基础](docs/stage-02-language/chapter-11-modularity/section-01-module-basics.md)（待创建）
-  - [2.11.2 include 与 require](docs/stage-02-language/chapter-11-modularity/section-02-include-require.md)（待创建）
-  - [2.11.3 使用导入的内容](docs/stage-02-language/chapter-11-modularity/section-03-using-imported.md)（待创建）
-  - [2.11.4 避免冲突和循环导入](docs/stage-02-language/chapter-11-modularity/section-04-conflicts-circular.md)（待创建）
-  - [2.11.5 路径处理和返回值](docs/stage-02-language/chapter-11-modularity/section-05-paths-returns.md)（待创建）
-- [2.12 isset / empty / Null 体系](docs/stage-02-language/chapter-12-null-system/readme.md)（待创建）
-  - [2.12.1 isset、empty 与 is_null](docs/stage-02-language/chapter-12-null-system/section-01-isset-empty.md)（待创建）
-  - [2.12.2 空合并运算符](docs/stage-02-language/chapter-12-null-system/section-02-null-coalescing.md)（待创建）
-- [2.13 代码规范](docs/stage-02-language/chapter-13-standards/readme.md)（待创建）
-  - [2.13.1 PSR 标准](docs/stage-02-language/chapter-13-standards/section-01-psr-standards.md)（待创建）
-  - [2.13.2 PHPDoc](docs/stage-02-language/chapter-13-standards/section-02-phpdoc.md)（待创建）
-  - [2.13.3 静态代码分析](docs/stage-02-language/chapter-13-standards/section-03-static-analysis.md)（待创建）
-    - [2.13.3.1 PHPStan 配置与使用](docs/stage-02-language/chapter-13-standards/section-03-static-analysis/subsection-01-phpstan.md)（待创建）
-    - [2.13.3.2 Psalm 配置与使用](docs/stage-02-language/chapter-13-standards/section-03-static-analysis/subsection-02-psalm.md)（待创建）
-    - [2.13.3.3 静态分析与 CI/CD 集成](docs/stage-02-language/chapter-13-standards/section-03-static-analysis/subsection-03-cicd-integration.md)（待创建）
-    - [2.13.3.4 代码质量提升实践](docs/stage-02-language/chapter-13-standards/section-03-static-analysis/subsection-04-best-practices.md)（待创建）
-- [2.14 PHP 版本新特性](docs/stage-02-language/chapter-14-php-versions/readme.md)（待创建）
-  - [2.14.1 PHP 8.2 新特性与示例](docs/stage-02-language/chapter-14-php-versions/section-01-php82.md)（待创建）
-  - [2.14.2 PHP 8.3 新特性与示例](docs/stage-02-language/chapter-14-php-versions/section-02-php83.md)（待创建）
-  - [2.14.3 PHP 8.4 新特性与示例](docs/stage-02-language/chapter-14-php-versions/section-03-php84.md)（待创建）
-  - [2.14.4 PHP 8.5 新特性与示例](docs/stage-02-language/chapter-14-php-versions/section-04-php85.md)（待创建）
-  - [2.14.5 升级指南与最佳实践](docs/stage-02-language/chapter-14-php-versions/section-05-upgrade-best-practices.md)（待创建）
+- [阶段二总览](docs/stage-02-language/readme.md)
+- [2.1 PHP 基本语法结构](docs/stage-02-language/chapter-01-syntax/readme.md)
+  - [2.1.1 第一个 PHP 程序：Hello World](docs/stage-02-language/chapter-01-syntax/section-01-hello-world.md)
+  - [2.1.2 文件结构与编码](docs/stage-02-language/chapter-01-syntax/section-02-file-structure.md)
+  - [2.1.3 语句与注释](docs/stage-02-language/chapter-01-syntax/section-03-statements-comments.md)
+  - [2.1.4 文件执行方式](docs/stage-02-language/chapter-01-syntax/section-04-execution.md)
+  - [2.1.5 常见错误与解决方案](docs/stage-02-language/chapter-01-syntax/section-05-common-errors.md)
+  - [2.1.6 实践建议与示例](docs/stage-02-language/chapter-01-syntax/section-06-best-practices.md)
+- [2.2 输出与调试基础](docs/stage-02-language/chapter-02-output/readme.md)
+  - [2.2.1 输出 API](docs/stage-02-language/chapter-02-output/section-01-output-api.md)
+  - [2.2.2 格式化占位符详解](docs/stage-02-language/chapter-02-output/section-02-format-placeholders.md)
+  - [2.2.3 调试函数和策略](docs/stage-02-language/chapter-02-output/section-03-debugging.md)
+- [2.3 变量与常量](docs/stage-02-language/chapter-03-variables/readme.md)
+  - [2.3.1 变量基础](docs/stage-02-language/chapter-03-variables/section-01-variable-basics.md)
+  - [2.3.2 引用与可变变量](docs/stage-02-language/chapter-03-variables/section-02-references.md)
+  - [2.3.3 常量](docs/stage-02-language/chapter-03-variables/section-03-constants.md)
+  - [2.3.4 全局与静态](docs/stage-02-language/chapter-03-variables/section-04-scope-static.md)
+  - [2.3.5 最佳实践与综合练习](docs/stage-02-language/chapter-03-variables/section-05-best-practices.md)
+- [2.4 数据类型](docs/stage-02-language/chapter-04-types/readme.md)
+  - [2.4.1 标量类型](docs/stage-02-language/chapter-04-types/section-01-scalar-types.md)
+  - [2.4.2 复合类型](docs/stage-02-language/chapter-04-types/section-02-composite-types.md)
+  - [2.4.3 特殊类型](docs/stage-02-language/chapter-04-types/section-03-special-types.md)
+  - [2.4.4 类型检测](docs/stage-02-language/chapter-04-types/section-04-type-detection.md)
+  - [2.4.5 类型声明与联合类型](docs/stage-02-language/chapter-04-types/section-05-type-declarations.md)
+  - [2.4.6 JSON 与数组互转](docs/stage-02-language/chapter-04-types/section-06-json.md)
+- [2.5 类型转换与比较](docs/stage-02-language/chapter-05-type-casting/readme.md)
+  - [2.5.1 隐式转换](docs/stage-02-language/chapter-05-type-casting/section-01-implicit-conversion.md)
+  - [2.5.2 显式转换](docs/stage-02-language/chapter-05-type-casting/section-02-explicit-conversion.md)
+  - [2.5.3 转换函数](docs/stage-02-language/chapter-05-type-casting/section-03-conversion-functions.md)
+  - [2.5.4 比较运算符与函数](docs/stage-02-language/chapter-05-type-casting/section-04-comparison.md)
+- [2.6 表达式与运算符](docs/stage-02-language/chapter-06-expressions/readme.md)
+  - [2.6.1 算术运算符](docs/stage-02-language/chapter-06-expressions/section-01-arithmetic-operators.md)
+  - [2.6.2 赋值运算符](docs/stage-02-language/chapter-06-expressions/section-02-assignment-operators.md)
+  - [2.6.3 逻辑运算符](docs/stage-02-language/chapter-06-expressions/section-03-logical-operators.md)
+  - [2.6.4 三元运算符与空合并运算符](docs/stage-02-language/chapter-06-expressions/section-04-ternary-null-coalescing.md)
+  - [2.6.5 match 表达式](docs/stage-02-language/chapter-06-expressions/section-05-match-expression.md)
+  - [2.6.6 运算符优先级与结合性](docs/stage-02-language/chapter-06-expressions/section-06-operator-precedence.md)
+- [2.7 字符串操作](docs/stage-02-language/chapter-07-strings/readme.md)
+  - [2.7.1 字符串创建方式](docs/stage-02-language/chapter-07-strings/section-01-string-creation.md)
+  - [2.7.2 常用字符串函数](docs/stage-02-language/chapter-07-strings/section-02-string-functions.md)
+- [2.8 数组完整指南](docs/stage-02-language/chapter-08-arrays/readme.md)
+  - [2.8.1 数组基础](docs/stage-02-language/chapter-08-arrays/section-01-array-basics.md)
+  - [2.8.2 数组遍历](docs/stage-02-language/chapter-08-arrays/section-02-array-iteration.md)
+  - [2.8.3 数组操作函数](docs/stage-02-language/chapter-08-arrays/section-03-array-functions.md)
+  - [2.8.4 数组排序](docs/stage-02-language/chapter-08-arrays/section-04-array-sorting.md)
+  - [2.8.5 数组解构](docs/stage-02-language/chapter-08-arrays/section-05-array-destructuring.md)
+- [2.9 控制结构](docs/stage-02-language/chapter-09-control-flow/readme.md)
+  - [2.9.1 条件语句](docs/stage-02-language/chapter-09-control-flow/section-01-conditional-statements.md)
+  - [2.9.2 循环结构](docs/stage-02-language/chapter-09-control-flow/section-02-loops.md)
+  - [2.9.3 跳转语句](docs/stage-02-language/chapter-09-control-flow/section-03-jump-statements.md)
+- [2.10 函数与作用域](docs/stage-02-language/chapter-10-functions/readme.md)
+  - [2.10.1 函数基础](docs/stage-02-language/chapter-10-functions/section-01-function-basics.md)
+  - [2.10.2 可变参数](docs/stage-02-language/chapter-10-functions/section-02-variable-arguments.md)
+  - [2.10.3 引用、箭头函数与闭包](docs/stage-02-language/chapter-10-functions/section-03-references-closures.md)
+  - [2.10.4 匿名函数](docs/stage-02-language/chapter-10-functions/section-04-anonymous-functions.md)
+  - [2.10.5 可调用类型与内置函数](docs/stage-02-language/chapter-10-functions/section-05-callable-types.md)
+- [2.11 文件引入与模块化](docs/stage-02-language/chapter-11-modularity/readme.md)
+  - [2.11.1 模块基础](docs/stage-02-language/chapter-11-modularity/section-01-module-basics.md)
+  - [2.11.2 include 与 require](docs/stage-02-language/chapter-11-modularity/section-02-include-require.md)
+  - [2.11.3 使用导入的内容](docs/stage-02-language/chapter-11-modularity/section-03-using-imported.md)
+  - [2.11.4 避免冲突和循环导入](docs/stage-02-language/chapter-11-modularity/section-04-conflicts-circular.md)
+  - [2.11.5 路径处理和返回值](docs/stage-02-language/chapter-11-modularity/section-05-paths-returns.md)
+- [2.12 isset / empty / Null 体系](docs/stage-02-language/chapter-12-null-system/readme.md)
+  - [2.12.1 isset、empty 与 is_null](docs/stage-02-language/chapter-12-null-system/section-01-isset-empty.md)
+  - [2.12.2 空合并运算符](docs/stage-02-language/chapter-12-null-system/section-02-null-coalescing.md)
+- [2.13 代码规范](docs/stage-02-language/chapter-13-standards/readme.md)
+  - [2.13.1 PSR 标准](docs/stage-02-language/chapter-13-standards/section-01-psr-standards.md)
+  - [2.13.2 PHPDoc](docs/stage-02-language/chapter-13-standards/section-02-phpdoc.md)
+  - [2.13.3 静态代码分析](docs/stage-02-language/chapter-13-standards/section-03-static-analysis.md)
+- [2.14 PHP 版本新特性](docs/stage-02-language/chapter-14-php-versions/readme.md)
+  - [2.14.1 PHP 8.2 新特性与示例](docs/stage-02-language/chapter-14-php-versions/section-01-php82.md)
+  - [2.14.2 PHP 8.3 新特性与示例](docs/stage-02-language/chapter-14-php-versions/section-02-php83.md)
+  - [2.14.3 PHP 8.4 新特性与示例](docs/stage-02-language/chapter-14-php-versions/section-03-php84.md)
+  - [2.14.4 PHP 8.5 新特性与示例](docs/stage-02-language/chapter-14-php-versions/section-04-php85.md)
+  - [2.14.5 升级指南与最佳实践](docs/stage-02-language/chapter-14-php-versions/section-05-upgrade-best-practices.md)
 
 ### 阶段三：面向对象编程基础（OOP Basics）
 
 **定位**：基础 OOP 编程（类、对象、继承、接口、Traits、命名空间）
 
-- [阶段三总览](docs/stage-03-oop/readme.md)（待创建）
-- [3.1 类、对象与基础 OOP](docs/stage-03-oop/chapter-01-classes/readme.md)（待创建）
-  - [3.1.1 类与对象基础](docs/stage-03-oop/chapter-01-classes/section-01-basics.md)（待创建）
-  - [3.1.2 可见性修饰符](docs/stage-03-oop/chapter-01-classes/section-02-visibility.md)（待创建）
-  - [3.1.3 构造函数与析构函数](docs/stage-03-oop/chapter-01-classes/section-03-constructors-destructors.md)（待创建）
-  - [3.1.4 对象克隆与引用](docs/stage-03-oop/chapter-01-classes/section-04-clone-references.md)（待创建）
-  - [3.1.5 静态属性与方法、魔术方法](docs/stage-03-oop/chapter-01-classes/section-05-static-magic.md)（待创建）
-- [3.2 现代 PHP 8+ OOP 能力](docs/stage-03-oop/chapter-02-modern-oop/readme.md)（待创建）
-  - [3.2.1 构造器属性提升](docs/stage-03-oop/chapter-02-modern-oop/section-01-constructor-promotion.md)（待创建）
-  - [3.2.2 Readonly 属性](docs/stage-03-oop/chapter-02-modern-oop/section-02-readonly.md)（待创建）
-  - [3.2.3 枚举（Enums）](docs/stage-03-oop/chapter-02-modern-oop/section-03-enums.md)（待创建）
-  - [3.2.4 属性钩子与静态方法](docs/stage-03-oop/chapter-02-modern-oop/section-04-property-hooks.md)（待创建）
-- [3.3 OOP 三大特性](docs/stage-03-oop/chapter-03-oop-features/readme.md)（待创建）
-  - [3.3.1 继承（Inheritance）](docs/stage-03-oop/chapter-03-oop-features/section-01-inheritance.md)（待创建）
-  - [3.3.2 接口（Interface）](docs/stage-03-oop/chapter-03-oop-features/section-02-interfaces.md)（待创建）
-  - [3.3.3 抽象类（Abstract Class）](docs/stage-03-oop/chapter-03-oop-features/section-03-abstract-classes.md)（待创建）
-  - [3.3.4 多态（Polymorphism）](docs/stage-03-oop/chapter-03-oop-features/section-04-polymorphism.md)（待创建）
-- [3.4 代码模块化与元编程](docs/stage-03-oop/chapter-04-metaprogramming/readme.md)（待创建）
-  - [3.4.1 Traits](docs/stage-03-oop/chapter-04-metaprogramming/section-01-traits.md)（待创建）
-  - [3.4.2 Attributes（注解）](docs/stage-03-oop/chapter-04-metaprogramming/section-02-attributes.md)（待创建）
-- [3.5 命名空间与自动加载](docs/stage-03-oop/chapter-05-namespaces/readme.md)（待创建）
-  - [3.5.1 命名空间基础](docs/stage-03-oop/chapter-05-namespaces/section-01-basics.md)（待创建）
-  - [3.5.2 use 语句](docs/stage-03-oop/chapter-05-namespaces/section-02-use-statements.md)（待创建）
-  - [3.5.3 自动加载基础](docs/stage-03-oop/chapter-05-namespaces/section-03-autoloading-basics.md)（待创建）
-  - [3.5.4 Composer 自动加载与 PSR-4](docs/stage-03-oop/chapter-05-namespaces/section-04-composer-psr4.md)（待创建）
+- [阶段三总览](docs/stage-03-oop/readme.md)
+- [3.1 类、对象与基础 OOP](docs/stage-03-oop/chapter-01-classes/readme.md)
+  - [3.1.1 类与对象基础](docs/stage-03-oop/chapter-01-classes/section-01-basics.md)
+  - [3.1.2 可见性修饰符](docs/stage-03-oop/chapter-01-classes/section-02-visibility.md)
+  - [3.1.3 构造函数与析构函数](docs/stage-03-oop/chapter-01-classes/section-03-constructors-destructors.md)
+  - [3.1.4 对象克隆与引用](docs/stage-03-oop/chapter-01-classes/section-04-clone-references.md)
+  - [3.1.5 静态属性与方法、魔术方法](docs/stage-03-oop/chapter-01-classes/section-05-static-magic.md)
+- [3.2 现代 PHP 8+ OOP 能力](docs/stage-03-oop/chapter-02-modern-oop/readme.md)
+  - [3.2.1 构造器属性提升](docs/stage-03-oop/chapter-02-modern-oop/section-01-constructor-promotion.md)
+  - [3.2.2 Readonly 属性](docs/stage-03-oop/chapter-02-modern-oop/section-02-readonly.md)
+  - [3.2.3 枚举（Enums）](docs/stage-03-oop/chapter-02-modern-oop/section-03-enums.md)
+  - [3.2.4 属性钩子与静态方法](docs/stage-03-oop/chapter-02-modern-oop/section-04-property-hooks.md)
+- [3.3 OOP 三大特性](docs/stage-03-oop/chapter-03-oop-features/readme.md)
+  - [3.3.1 继承（Inheritance）](docs/stage-03-oop/chapter-03-oop-features/section-01-inheritance.md)
+  - [3.3.2 接口（Interface）](docs/stage-03-oop/chapter-03-oop-features/section-02-interfaces.md)
+  - [3.3.3 抽象类（Abstract Class）](docs/stage-03-oop/chapter-03-oop-features/section-03-abstract-classes.md)
+  - [3.3.4 多态（Polymorphism）](docs/stage-03-oop/chapter-03-oop-features/section-04-polymorphism.md)
+- [3.4 代码模块化与元编程](docs/stage-03-oop/chapter-04-metaprogramming/readme.md)
+  - [3.4.1 Traits](docs/stage-03-oop/chapter-04-metaprogramming/section-01-traits.md)
+  - [3.4.2 Attributes（注解）](docs/stage-03-oop/chapter-04-metaprogramming/section-02-attributes.md)
+- [3.5 命名空间与自动加载](docs/stage-03-oop/chapter-05-namespaces/readme.md)
+  - [3.5.1 命名空间基础](docs/stage-03-oop/chapter-05-namespaces/section-01-basics.md)
+  - [3.5.2 use 语句](docs/stage-03-oop/chapter-05-namespaces/section-02-use-statements.md)
+  - [3.5.3 自动加载基础](docs/stage-03-oop/chapter-05-namespaces/section-03-autoloading-basics.md)
+  - [3.5.4 Composer 自动加载与 PSR-4](docs/stage-03-oop/chapter-05-namespaces/section-04-composer-psr4.md)
 
 ### 阶段四：系统编程（System Programming）
 
 **定位**：文件系统、网络、CLI 编程、错误处理、调试、日志、内存管理、加密与序列化等系统级编程
 
-- [阶段四总览](docs/stage-04-system/readme.md)（待创建）
-- [4.1 时间与日期处理](docs/stage-04-system/chapter-01-datetime/readme.md)（待创建）
-  - [4.1.1 DateTime 基础](docs/stage-04-system/chapter-01-datetime/section-01-datetime-basics.md)（待创建）
-  - [4.1.2 时区处理](docs/stage-04-system/chapter-01-datetime/section-02-timezone.md)（待创建）
-  - [4.1.3 格式化与解析](docs/stage-04-system/chapter-01-datetime/section-03-formatting-parsing.md)（待创建）
-  - [4.1.4 时间计算与比较](docs/stage-04-system/chapter-01-datetime/section-04-calculations-comparisons.md)（待创建）
-- [4.2 文件系统操作](docs/stage-04-system/chapter-02-filesystem/readme.md)（待创建）
-  - [4.2.1 文件读取](docs/stage-04-system/chapter-02-filesystem/section-01-file-reading.md)（待创建）
-  - [4.2.2 文件写入](docs/stage-04-system/chapter-02-filesystem/section-02-file-writing.md)（待创建）
-  - [4.2.3 文件操作](docs/stage-04-system/chapter-02-filesystem/section-03-file-operations.md)（待创建）
-  - [4.2.4 文件指针操作](docs/stage-04-system/chapter-02-filesystem/section-04-file-pointer.md)（待创建）
-  - [4.2.5 二进制文件处理](docs/stage-04-system/chapter-02-filesystem/section-05-binary-files.md)（待创建）
-  - [4.2.6 文件锁和临时文件](docs/stage-04-system/chapter-02-filesystem/section-06-file-locks-temp.md)（待创建）
-  - [4.2.7 目录操作](docs/stage-04-system/chapter-02-filesystem/section-07-directory-operations.md)（待创建）
-  - [4.2.8 文件信息](docs/stage-04-system/chapter-02-filesystem/section-08-file-info.md)（待创建）
-  - [4.2.9 流式操作与流包装器](docs/stage-04-system/chapter-02-filesystem/section-09-streaming.md)（待创建）
-  - [4.2.10 大文件处理](docs/stage-04-system/chapter-02-filesystem/section-10-large-files.md)（待创建）
-  - [4.2.11 文件权限详解](docs/stage-04-system/chapter-02-filesystem/section-11-file-permissions.md)（待创建）
-  - [4.2.12 路径处理](docs/stage-04-system/chapter-02-filesystem/section-12-path-handling.md)（待创建）
-  - [4.2.13 图片处理与文件操作库](docs/stage-04-system/chapter-02-filesystem/section-13-image-processing.md)（待创建）
-- [4.3 网络编程基础](docs/stage-04-system/chapter-03-networking/readme.md)（待创建）
-  - [4.3.1 Socket 编程基础](docs/stage-04-system/chapter-03-networking/section-01-socket-basics.md)（待创建）
-  - [4.3.2 HTTP 客户端编程](docs/stage-04-system/chapter-03-networking/section-02-http-client.md)（待创建）
-  - [4.3.3 网络协议理解](docs/stage-04-system/chapter-03-networking/section-03-network-protocols.md)（待创建）
-- [4.4 CLI 编程](docs/stage-04-system/chapter-04-cli/readme.md)（待创建）
-  - [4.4.1 CLI 基础与参数处理](docs/stage-04-system/chapter-04-cli/section-01-cli-basics.md)（待创建）
-  - [4.4.2 执行外部命令](docs/stage-04-system/chapter-04-cli/section-02-exec-commands.md)（待创建）
-  - [4.4.3 交互式 CLI 与输出格式化](docs/stage-04-system/chapter-04-cli/section-03-interactive-cli.md)（待创建）
-  - [4.4.4 进程管理与守护进程](docs/stage-04-system/chapter-04-cli/section-04-process-management.md)（待创建）
-  - [4.4.5 CLI 工具开发框架](docs/stage-04-system/chapter-04-cli/section-05-cli-frameworks.md)（待创建）
-  - [4.4.6 环境变量与系统信息](docs/stage-04-system/chapter-04-cli/section-06-environment-system.md)（待创建）
-  - [4.4.7 CLI 最佳实践](docs/stage-04-system/chapter-04-cli/section-07-best-practices.md)（待创建）
-- [4.5 内存管理](docs/stage-04-system/chapter-05-memory/readme.md)（待创建）
-  - [4.5.1 内存使用监控](docs/stage-04-system/chapter-05-memory/section-01-memory-monitoring.md)（待创建）
-  - [4.5.2 内存限制设置](docs/stage-04-system/chapter-05-memory/section-02-memory-limits.md)（待创建）
-  - [4.5.3 垃圾回收机制](docs/stage-04-system/chapter-05-memory/section-03-garbage-collection.md)（待创建）
-  - [4.5.4 内存优化实践](docs/stage-04-system/chapter-05-memory/section-04-memory-optimization.md)（待创建）
-- [4.6 加密、哈希与序列化](docs/stage-04-system/chapter-06-crypto-serialization/readme.md)（待创建）
-  - [4.6.1 密码哈希](docs/stage-04-system/chapter-06-crypto-serialization/section-01-password-hashing.md)（待创建）
-  - [4.6.2 数据加密](docs/stage-04-system/chapter-06-crypto-serialization/section-02-data-encryption.md)（待创建）
-  - [4.6.3 哈希函数](docs/stage-04-system/chapter-06-crypto-serialization/section-03-hash-functions.md)（待创建）
-  - [4.6.4 序列化与反序列化](docs/stage-04-system/chapter-06-crypto-serialization/section-04-serialization.md)（待创建）
-  - [4.6.5 数据持久化](docs/stage-04-system/chapter-06-crypto-serialization/section-05-data-persistence.md)（待创建）
-- [4.7 错误与异常处理](docs/stage-04-system/chapter-07-errors/readme.md)（待创建）
-  - [4.7.1 错误处理机制](docs/stage-04-system/chapter-07-errors/section-01-error-handling.md)（待创建）
-  - [4.7.2 异常处理机制](docs/stage-04-system/chapter-07-errors/section-02-exceptions.md)（待创建）
-  - [4.7.3 错误和异常的最佳实践](docs/stage-04-system/chapter-07-errors/section-03-best-practices.md)（待创建）
-- [4.8 调试与问题排查](docs/stage-04-system/chapter-08-debugging/readme.md)（待创建）
-  - [4.8.1 常见错误类型与修复流程](docs/stage-04-system/chapter-08-debugging/section-01-common-errors.md)（待创建）
-  - [4.8.2 Xdebug 配置与使用](docs/stage-04-system/chapter-08-debugging/section-02-xdebug-config.md)（待创建）
-  - [4.8.3 调试技巧与工具链](docs/stage-04-system/chapter-08-debugging/section-03-debugging-techniques.md)（待创建）
-  - [4.8.4 排查清单与最佳实践](docs/stage-04-system/chapter-08-debugging/section-04-troubleshooting-checklist.md)（待创建）
-- [4.9 日志系统](docs/stage-04-system/chapter-09-logging/readme.md)（待创建）
-  - [4.9.1 日志体系设计](docs/stage-04-system/chapter-09-logging/section-01-logging-system.md)（待创建）
-  - [4.9.2 结构化日志](docs/stage-04-system/chapter-09-logging/section-02-structured-logs.md)（待创建）
-  - [4.9.3 链路追踪](docs/stage-04-system/chapter-09-logging/section-03-tracing.md)（待创建）
-  - [4.9.4 日志分析与监控](docs/stage-04-system/chapter-09-logging/section-04-log-analysis.md)（待创建）
+- [阶段四总览](docs/stage-04-system/readme.md)
+- [4.1 时间与日期处理](docs/stage-04-system/chapter-01-datetime/readme.md)
+  - [4.1.1 DateTime 基础](docs/stage-04-system/chapter-01-datetime/section-01-datetime-basics.md)
+  - [4.1.2 时区处理](docs/stage-04-system/chapter-01-datetime/section-02-timezone.md)
+  - [4.1.3 格式化与解析](docs/stage-04-system/chapter-01-datetime/section-03-formatting-parsing.md)
+  - [4.1.4 时间计算与比较](docs/stage-04-system/chapter-01-datetime/section-04-calculations-comparisons.md)
+- [4.2 文件系统操作](docs/stage-04-system/chapter-02-filesystem/readme.md)
+  - [4.2.1 文件读取](docs/stage-04-system/chapter-02-filesystem/section-01-file-reading.md)
+  - [4.2.2 文件写入](docs/stage-04-system/chapter-02-filesystem/section-02-file-writing.md)
+  - [4.2.3 文件操作](docs/stage-04-system/chapter-02-filesystem/section-03-file-operations.md)
+  - [4.2.4 文件指针操作](docs/stage-04-system/chapter-02-filesystem/section-04-file-pointer.md)
+  - [4.2.5 二进制文件处理](docs/stage-04-system/chapter-02-filesystem/section-05-binary-files.md)
+  - [4.2.6 文件锁和临时文件](docs/stage-04-system/chapter-02-filesystem/section-06-file-locks-temp.md)
+  - [4.2.7 目录操作](docs/stage-04-system/chapter-02-filesystem/section-07-directory-operations.md)
+  - [4.2.8 文件信息](docs/stage-04-system/chapter-02-filesystem/section-08-file-info.md)
+  - [4.2.9 流式操作与流包装器](docs/stage-04-system/chapter-02-filesystem/section-09-streaming.md)
+  - [4.2.10 大文件处理](docs/stage-04-system/chapter-02-filesystem/section-10-large-files.md)
+  - [4.2.11 文件权限详解](docs/stage-04-system/chapter-02-filesystem/section-11-file-permissions.md)
+  - [4.2.12 路径处理](docs/stage-04-system/chapter-02-filesystem/section-12-path-handling.md)
+  - [4.2.13 图片处理与文件操作库](docs/stage-04-system/chapter-02-filesystem/section-13-image-processing.md)
+- [4.3 网络编程基础](docs/stage-04-system/chapter-03-networking/readme.md)
+  - [4.3.1 Socket 编程基础](docs/stage-04-system/chapter-03-networking/section-01-socket-basics.md)
+  - [4.3.2 HTTP 客户端编程](docs/stage-04-system/chapter-03-networking/section-02-http-client.md)
+  - [4.3.3 网络协议理解](docs/stage-04-system/chapter-03-networking/section-03-network-protocols.md)
+- [4.4 CLI 编程](docs/stage-04-system/chapter-04-cli/readme.md)
+  - [4.4.1 CLI 基础与参数处理](docs/stage-04-system/chapter-04-cli/section-01-cli-basics.md)
+  - [4.4.2 执行外部命令](docs/stage-04-system/chapter-04-cli/section-02-exec-commands.md)
+  - [4.4.3 交互式 CLI 与输出格式化](docs/stage-04-system/chapter-04-cli/section-03-interactive-cli.md)
+  - [4.4.4 进程管理与守护进程](docs/stage-04-system/chapter-04-cli/section-04-process-management.md)
+  - [4.4.5 CLI 工具开发框架](docs/stage-04-system/chapter-04-cli/section-05-cli-frameworks.md)
+  - [4.4.6 环境变量与系统信息](docs/stage-04-system/chapter-04-cli/section-06-environment-system.md)
+  - [4.4.7 CLI 最佳实践](docs/stage-04-system/chapter-04-cli/section-07-best-practices.md)
+- [4.5 内存管理](docs/stage-04-system/chapter-05-memory/readme.md)
+  - [4.5.1 内存使用监控](docs/stage-04-system/chapter-05-memory/section-01-memory-monitoring.md)
+  - [4.5.2 内存限制设置](docs/stage-04-system/chapter-05-memory/section-02-memory-limits.md)
+  - [4.5.3 垃圾回收机制](docs/stage-04-system/chapter-05-memory/section-03-garbage-collection.md)
+  - [4.5.4 内存优化实践](docs/stage-04-system/chapter-05-memory/section-04-memory-optimization.md)
+- [4.6 加密、哈希与序列化](docs/stage-04-system/chapter-06-crypto-serialization/readme.md)
+  - [4.6.1 密码哈希](docs/stage-04-system/chapter-06-crypto-serialization/section-01-password-hashing.md)
+  - [4.6.2 数据加密](docs/stage-04-system/chapter-06-crypto-serialization/section-02-data-encryption.md)
+  - [4.6.3 哈希函数](docs/stage-04-system/chapter-06-crypto-serialization/section-03-hash-functions.md)
+  - [4.6.4 序列化与反序列化](docs/stage-04-system/chapter-06-crypto-serialization/section-04-serialization.md)
+  - [4.6.5 数据持久化](docs/stage-04-system/chapter-06-crypto-serialization/section-05-data-persistence.md)
+- [4.7 错误与异常处理](docs/stage-04-system/chapter-07-errors/readme.md)
+  - [4.7.1 错误处理机制](docs/stage-04-system/chapter-07-errors/section-01-error-handling.md)
+  - [4.7.2 异常处理机制](docs/stage-04-system/chapter-07-errors/section-02-exceptions.md)
+  - [4.7.3 错误和异常的最佳实践](docs/stage-04-system/chapter-07-errors/section-03-best-practices.md)
+- [4.8 调试与问题排查](docs/stage-04-system/chapter-08-debugging/readme.md)
+  - [4.8.1 常见错误类型与修复流程](docs/stage-04-system/chapter-08-debugging/section-01-common-errors.md)
+  - [4.8.2 Xdebug 配置与使用](docs/stage-04-system/chapter-08-debugging/section-02-xdebug-config.md)
+  - [4.8.3 调试技巧与工具链](docs/stage-04-system/chapter-08-debugging/section-03-debugging-techniques.md)
+  - [4.8.4 排查清单与最佳实践](docs/stage-04-system/chapter-08-debugging/section-04-troubleshooting-checklist.md)
+- [4.9 日志系统](docs/stage-04-system/chapter-09-logging/readme.md)
+  - [4.9.1 日志体系设计](docs/stage-04-system/chapter-09-logging/section-01-logging-system.md)
+  - [4.9.2 结构化日志](docs/stage-04-system/chapter-09-logging/section-02-structured-logs.md)
+  - [4.9.3 链路追踪](docs/stage-04-system/chapter-09-logging/section-03-tracing.md)
+  - [4.9.4 日志分析与监控](docs/stage-04-system/chapter-09-logging/section-04-log-analysis.md)
 
 ### 阶段五：Web/API 开发（Web Development）
 
 **定位**：Web 开发、API 设计、HTTP 协议、会话管理等
 
-- [阶段五总览](docs/stage-05-web/readme.md)（待创建）
-- [5.1 Web 交互基础：从请求到响应](docs/stage-05-web/chapter-01-request-response/readme.md)（待创建）
-  - [5.1.1 HTTP 请求响应流程](docs/stage-05-web/chapter-01-request-response/section-01-http-flow.md)（待创建）
-  - [5.1.2 Web Server 与 PHP-FPM 协作](docs/stage-05-web/chapter-01-request-response/section-02-web-server-fpm.md)（待创建）
-  - [5.1.3 Shared Nothing 架构](docs/stage-05-web/chapter-01-request-response/section-03-shared-nothing.md)（待创建）
-- [5.2 HTML 渲染与输出控制](docs/stage-05-web/chapter-02-html-rendering/readme.md)（待创建）
-  - [5.2.1 HTML 渲染与模板引擎](docs/stage-05-web/chapter-02-html-rendering/section-01-rendering-templates.md)（待创建）
-  - [5.2.2 输出缓冲与控制](docs/stage-05-web/chapter-02-html-rendering/section-02-output-buffering.md)（待创建）
-- [5.3 超全局变量：Web 输入的核心](docs/stage-05-web/chapter-03-superglobals/readme.md)（待创建）
-  - [5.3.1 $_GET、$_POST 与 $_REQUEST](docs/stage-05-web/chapter-03-superglobals/section-01-get-post-request.md)（待创建）
-  - [5.3.2 $_SERVER、$_SESSION 与 $_COOKIE](docs/stage-05-web/chapter-03-superglobals/section-02-server-session-cookie.md)（待创建）
-  - [5.3.3 $_FILES 与安全处理](docs/stage-05-web/chapter-03-superglobals/section-03-files-security.md)（待创建）
-- [5.4 URL 处理](docs/stage-05-web/chapter-04-url-handling/readme.md)（待创建）
-  - [5.4.1 URL 解析与构建](docs/stage-05-web/chapter-04-url-handling/section-01-url-parsing.md)（待创建）
-  - [5.4.2 URL 编码与解码](docs/stage-05-web/chapter-04-url-handling/section-02-url-encoding.md)（待创建）
-  - [5.4.3 查询字符串处理](docs/stage-05-web/chapter-04-url-handling/section-03-query-string.md)（待创建）
-  - [5.4.4 URL 路由与重写](docs/stage-05-web/chapter-04-url-handling/section-04-url-routing.md)（待创建）
-- [5.5 请求体解析：处理 JSON / API 请求](docs/stage-05-web/chapter-05-json-requests/readme.md)（待创建）
-  - [5.5.1 JSON 请求解析](docs/stage-05-web/chapter-05-json-requests/section-01-json-parsing.md)（待创建）
-  - [5.5.2 API 请求处理](docs/stage-05-web/chapter-05-json-requests/section-02-api-requests.md)（待创建）
-- [5.6 文件上传处理](docs/stage-05-web/chapter-06-file-upload/readme.md)（待创建）
-  - [5.6.1 文件上传基础](docs/stage-05-web/chapter-06-file-upload/section-01-upload-basics.md)（待创建）
-  - [5.6.2 文件验证与安全](docs/stage-05-web/chapter-06-file-upload/section-02-validation-security.md)（待创建）
-  - [5.6.3 文件存储策略](docs/stage-05-web/chapter-06-file-upload/section-03-storage-strategy.md)（待创建）
-- [5.7 RESTful API 设计与接口规范](docs/stage-05-web/chapter-07-restful-api/readme.md)（待创建）
-  - [5.7.1 RESTful 设计原则](docs/stage-05-web/chapter-07-restful-api/section-01-restful-principles.md)（待创建）
-  - [5.7.2 API 路由与版本控制](docs/stage-05-web/chapter-07-restful-api/section-02-routing-versioning.md)（待创建）
-  - [5.7.3 API 文档与测试](docs/stage-05-web/chapter-07-restful-api/section-03-documentation-testing.md)（待创建）
-  - [5.7.4 API 测试工具](docs/stage-05-web/chapter-07-restful-api/section-04-api-testing.md)（待创建）
-  - [5.7.5 API 文档](docs/stage-05-web/chapter-07-restful-api/section-05-api-documentation.md)（待创建）
-- [5.8 响应处理与跨域（CORS）](docs/stage-05-web/chapter-08-response-cors/readme.md)（待创建）
-  - [5.8.1 响应处理](docs/stage-05-web/chapter-08-response-cors/section-01-response-handling.md)（待创建）
-  - [5.8.2 CORS 跨域处理](docs/stage-05-web/chapter-08-response-cors/section-02-cors.md)（待创建）
-- [5.9 会话与状态管理](docs/stage-05-web/chapter-09-session/readme.md)（待创建）
-  - [5.9.1 Session 基础](docs/stage-05-web/chapter-09-session/section-01-session-basics.md)（待创建）
-  - [5.9.2 Cookie 管理](docs/stage-05-web/chapter-09-session/section-02-cookie-management.md)（待创建）
-  - [5.9.3 状态管理最佳实践](docs/stage-05-web/chapter-09-session/section-03-state-management.md)（待创建）
-- [5.10 鉴权与授权模型（AuthN & AuthZ）](docs/stage-05-web/chapter-10-auth/readme.md)（待创建）
-  - [5.10.1 认证基础（AuthN）](docs/stage-05-web/chapter-10-auth/section-01-authentication.md)（待创建）
-  - [5.10.2 授权模型（AuthZ）](docs/stage-05-web/chapter-10-auth/section-02-authorization.md)（待创建）
-  - [5.10.3 JWT 与 Token](docs/stage-05-web/chapter-10-auth/section-03-jwt-token.md)（待创建）
-  - [5.10.4 OAuth2 实现](docs/stage-05-web/chapter-10-auth/section-04-oauth2.md)（待创建）
-- [5.11 流量治理与安全](docs/stage-05-web/chapter-11-traffic-security/readme.md)（待创建）
-  - [5.11.1 Rate Limiting](docs/stage-05-web/chapter-11-traffic-security/section-01-rate-limiting.md)（待创建）
-  - [5.11.2 请求签名与验证](docs/stage-05-web/chapter-11-traffic-security/section-02-request-signing.md)（待创建）
-  - [5.11.3 安全最佳实践](docs/stage-05-web/chapter-11-traffic-security/section-03-security-best-practices.md)（待创建）
-- [5.12 HTTP 客户端](docs/stage-05-web/chapter-12-http-client/readme.md)（待创建）
-  - [5.12.1 Guzzle 基础](docs/stage-05-web/chapter-12-http-client/section-01-guzzle-basics.md)（待创建）
-  - [5.12.2 异步请求](docs/stage-05-web/chapter-12-http-client/section-02-async-requests.md)（待创建）
-  - [5.12.3 错误处理与重试](docs/stage-05-web/chapter-12-http-client/section-03-error-handling-retry.md)（待创建）
-- [5.13 中间件深入](docs/stage-05-web/chapter-13-middleware/readme.md)（待创建）
-  - [5.13.1 中间件概述](docs/stage-05-web/chapter-13-middleware/section-01-overview.md)（待创建）
-  - [5.13.2 中间件模式](docs/stage-05-web/chapter-13-middleware/section-02-patterns.md)（待创建）
-  - [5.13.3 编写自定义中间件](docs/stage-05-web/chapter-13-middleware/section-03-custom.md)（待创建）
-  - [5.13.4 中间件最佳实践](docs/stage-05-web/chapter-13-middleware/section-04-best-practices.md)（待创建）
-- [5.14 路由设计](docs/stage-05-web/chapter-14-routing/readme.md)（待创建）
-  - [5.14.1 路由设计概述](docs/stage-05-web/chapter-14-routing/section-01-overview.md)（待创建）
-  - [5.14.2 路由组织与模块化](docs/stage-05-web/chapter-14-routing/section-02-organization.md)（待创建）
-  - [5.14.3 动态路由与参数](docs/stage-05-web/chapter-14-routing/section-03-dynamic.md)（待创建）
-  - [5.14.4 路由守卫与权限控制](docs/stage-05-web/chapter-14-routing/section-04-guards.md)（待创建）
-- [5.15 请求验证与数据校验](docs/stage-05-web/chapter-15-validation/readme.md)（待创建）
-  - [5.15.1 请求验证概述](docs/stage-05-web/chapter-15-validation/section-01-overview.md)（待创建）
-  - [5.15.2 Symfony Validator](docs/stage-05-web/chapter-15-validation/section-02-symfony-validator.md)（待创建）
-  - [5.15.3 Respect/Validation](docs/stage-05-web/chapter-15-validation/section-03-respect-validation.md)（待创建）
-  - [5.15.4 自定义验证规则](docs/stage-05-web/chapter-15-validation/section-04-custom-rules.md)（待创建）
-- [5.16 错误处理最佳实践（Web 层面）](docs/stage-05-web/chapter-16-error-handling/readme.md)（待创建）
-  - [5.16.1 错误处理概述](docs/stage-05-web/chapter-16-error-handling/section-01-overview.md)（待创建）
-  - [5.16.2 错误分类与自定义错误](docs/stage-05-web/chapter-16-error-handling/section-02-error-types.md)（待创建）
-  - [5.16.3 错误中间件](docs/stage-05-web/chapter-16-error-handling/section-03-error-middleware.md)（待创建）
-  - [5.16.4 错误响应格式](docs/stage-05-web/chapter-16-error-handling/section-04-response-format.md)（待创建）
-- [5.17 WebSocket 服务器](docs/stage-05-web/chapter-17-websocket/readme.md)（待创建）
-  - [5.17.1 WebSocket 概述](docs/stage-05-web/chapter-17-websocket/section-01-overview.md)（待创建）
-  - [5.17.2 Ratchet](docs/stage-05-web/chapter-17-websocket/section-02-ratchet.md)（待创建）
-  - [5.17.3 ReactPHP WebSocket](docs/stage-05-web/chapter-17-websocket/section-03-reactphp.md)（待创建）
-  - [5.17.4 WebSocket 最佳实践](docs/stage-05-web/chapter-17-websocket/section-04-best-practices.md)（待创建）
-- [5.18 GraphQL API](docs/stage-05-web/chapter-18-graphql/readme.md)（待创建）
-  - [5.18.1 GraphQL 概述](docs/stage-05-web/chapter-18-graphql/section-01-overview.md)（待创建）
-  - [5.18.2 GraphQLite](docs/stage-05-web/chapter-18-graphql/section-02-graphqlite.md)（待创建）
-  - [5.18.3 Lighthouse](docs/stage-05-web/chapter-18-graphql/section-03-lighthouse.md)（待创建）
-  - [5.18.4 GraphQL 最佳实践](docs/stage-05-web/chapter-18-graphql/section-04-best-practices.md)（待创建）
+- [阶段五总览](docs/stage-05-web/readme.md)
+- [5.1 Web 交互基础：从请求到响应](docs/stage-05-web/chapter-01-request-response/readme.md)
+  - [5.1.1 HTTP 请求响应流程](docs/stage-05-web/chapter-01-request-response/section-01-http-flow.md)
+  - [5.1.2 Web 服务器与 FPM](docs/stage-05-web/chapter-01-request-response/section-02-web-server-fpm.md)
+  - [5.1.3 Shared-Nothing 架构](docs/stage-05-web/chapter-01-request-response/section-03-shared-nothing.md)
+- [5.2 HTML 渲染与输出缓冲](docs/stage-05-web/chapter-02-html-rendering/readme.md)
+  - [5.2.1 渲染模板](docs/stage-05-web/chapter-02-html-rendering/section-01-rendering-templates.md)
+  - [5.2.2 输出缓冲](docs/stage-05-web/chapter-02-html-rendering/section-02-output-buffering.md)
+- [5.3 超全局变量](docs/stage-05-web/chapter-03-superglobals/readme.md)
+  - [5.3.1 GET/POST/REQUEST](docs/stage-05-web/chapter-03-superglobals/section-01-get-post-request.md)
+  - [5.3.2 SERVER/SESSION/COOKIE](docs/stage-05-web/chapter-03-superglobals/section-02-server-session-cookie.md)
+  - [5.3.3 FILES 与安全](docs/stage-05-web/chapter-03-superglobals/section-03-files-security.md)
+- [5.4 URL 处理](docs/stage-05-web/chapter-04-url-handling/readme.md)
+  - [5.4.1 URL 解析](docs/stage-05-web/chapter-04-url-handling/section-01-url-parsing.md)
+  - [5.4.2 URL 编码](docs/stage-05-web/chapter-04-url-handling/section-02-url-encoding.md)
+  - [5.4.3 查询字符串](docs/stage-05-web/chapter-04-url-handling/section-03-query-string.md)
+  - [5.4.4 URL 路由](docs/stage-05-web/chapter-04-url-handling/section-04-url-routing.md)
+- [5.5 JSON 请求处理](docs/stage-05-web/chapter-05-json-requests/readme.md)
+  - [5.5.1 JSON 解析](docs/stage-05-web/chapter-05-json-requests/section-01-json-parsing.md)
+  - [5.5.2 API 请求](docs/stage-05-web/chapter-05-json-requests/section-02-api-requests.md)
+- [5.6 文件上传](docs/stage-05-web/chapter-06-file-upload/readme.md)
+  - [5.6.1 上传基础](docs/stage-05-web/chapter-06-file-upload/section-01-upload-basics.md)
+  - [5.6.2 验证与安全](docs/stage-05-web/chapter-06-file-upload/section-02-validation-security.md)
+  - [5.6.3 存储策略](docs/stage-05-web/chapter-06-file-upload/section-03-storage-strategy.md)
+- [5.7 RESTful API](docs/stage-05-web/chapter-07-restful-api/readme.md)
+  - [5.7.1 RESTful 原则](docs/stage-05-web/chapter-07-restful-api/section-01-restful-principles.md)
+  - [5.7.2 路由与版本控制](docs/stage-05-web/chapter-07-restful-api/section-02-routing-versioning.md)
+  - [5.7.3 文档与测试](docs/stage-05-web/chapter-07-restful-api/section-03-documentation-testing.md)
+  - [5.7.4 API 测试](docs/stage-05-web/chapter-07-restful-api/section-04-api-testing.md)
+  - [5.7.5 API 文档](docs/stage-05-web/chapter-07-restful-api/section-05-api-documentation.md)
+- [5.8 响应与 CORS](docs/stage-05-web/chapter-08-response-cors/readme.md)
+  - [5.8.1 响应处理](docs/stage-05-web/chapter-08-response-cors/section-01-response-handling.md)
+  - [5.8.2 CORS](docs/stage-05-web/chapter-08-response-cors/section-02-cors.md)
+- [5.9 会话管理](docs/stage-05-web/chapter-09-session/readme.md)
+  - [5.9.1 会话基础](docs/stage-05-web/chapter-09-session/section-01-session-basics.md)
+  - [5.9.2 Cookie 管理](docs/stage-05-web/chapter-09-session/section-02-cookie-management.md)
+  - [5.9.3 状态管理](docs/stage-05-web/chapter-09-session/section-03-state-management.md)
+- [5.10 认证与授权](docs/stage-05-web/chapter-10-auth/readme.md)
+  - [5.10.1 认证](docs/stage-05-web/chapter-10-auth/section-01-authentication.md)
+  - [5.10.2 授权](docs/stage-05-web/chapter-10-auth/section-02-authorization.md)
+  - [5.10.3 JWT Token](docs/stage-05-web/chapter-10-auth/section-03-jwt-token.md)
+  - [5.10.4 OAuth2](docs/stage-05-web/chapter-10-auth/section-04-oauth2.md)
+- [5.11 流量与安全](docs/stage-05-web/chapter-11-traffic-security/readme.md)
+  - [5.11.1 速率限制](docs/stage-05-web/chapter-11-traffic-security/section-01-rate-limiting.md)
+  - [5.11.2 请求签名](docs/stage-05-web/chapter-11-traffic-security/section-02-request-signing.md)
+  - [5.11.3 安全最佳实践](docs/stage-05-web/chapter-11-traffic-security/section-03-security-best-practices.md)
+- [5.12 HTTP 客户端](docs/stage-05-web/chapter-12-http-client/readme.md)
+  - [5.12.1 Guzzle 基础](docs/stage-05-web/chapter-12-http-client/section-01-guzzle-basics.md)
+  - [5.12.2 异步请求](docs/stage-05-web/chapter-12-http-client/section-02-async-requests.md)
+  - [5.12.3 错误处理与重试](docs/stage-05-web/chapter-12-http-client/section-03-error-handling-retry.md)
+- [5.13 中间件](docs/stage-05-web/chapter-13-middleware/readme.md)
+  - [5.13.1 概述](docs/stage-05-web/chapter-13-middleware/section-01-overview.md)
+  - [5.13.2 模式](docs/stage-05-web/chapter-13-middleware/section-02-patterns.md)
+  - [5.13.3 自定义](docs/stage-05-web/chapter-13-middleware/section-03-custom.md)
+  - [5.13.4 最佳实践](docs/stage-05-web/chapter-13-middleware/section-04-best-practices.md)
+- [5.14 路由](docs/stage-05-web/chapter-14-routing/readme.md)
+  - [5.14.1 概述](docs/stage-05-web/chapter-14-routing/section-01-overview.md)
+  - [5.14.2 组织](docs/stage-05-web/chapter-14-routing/section-02-organization.md)
+  - [5.14.3 动态](docs/stage-05-web/chapter-14-routing/section-03-dynamic.md)
+  - [5.14.4 守卫](docs/stage-05-web/chapter-14-routing/section-04-guards.md)
+- [5.15 验证](docs/stage-05-web/chapter-15-validation/readme.md)
+  - [5.15.1 概述](docs/stage-05-web/chapter-15-validation/section-01-overview.md)
+  - [5.15.2 Symfony Validator](docs/stage-05-web/chapter-15-validation/section-02-symfony-validator.md)
+  - [5.15.3 Respect Validation](docs/stage-05-web/chapter-15-validation/section-03-respect-validation.md)
+  - [5.15.4 自定义规则](docs/stage-05-web/chapter-15-validation/section-04-custom-rules.md)
+- [5.16 错误处理](docs/stage-05-web/chapter-16-error-handling/readme.md)
+  - [5.16.1 概述](docs/stage-05-web/chapter-16-error-handling/section-01-overview.md)
+  - [5.16.2 错误类型](docs/stage-05-web/chapter-16-error-handling/section-02-error-types.md)
+  - [5.16.3 错误中间件](docs/stage-05-web/chapter-16-error-handling/section-03-error-middleware.md)
+  - [5.16.4 响应格式](docs/stage-05-web/chapter-16-error-handling/section-04-response-format.md)
+- [5.17 WebSocket](docs/stage-05-web/chapter-17-websocket/readme.md)
+  - [5.17.1 概述](docs/stage-05-web/chapter-17-websocket/section-01-overview.md)
+  - [5.17.2 Ratchet](docs/stage-05-web/chapter-17-websocket/section-02-ratchet.md)
+  - [5.17.3 ReactPHP](docs/stage-05-web/chapter-17-websocket/section-03-reactphp.md)
+  - [5.17.4 最佳实践](docs/stage-05-web/chapter-17-websocket/section-04-best-practices.md)
+- [5.18 GraphQL](docs/stage-05-web/chapter-18-graphql/readme.md)
+  - [5.18.1 概述](docs/stage-05-web/chapter-18-graphql/section-01-overview.md)
+  - [5.18.2 GraphQLite](docs/stage-05-web/chapter-18-graphql/section-02-graphqlite.md)
+  - [5.18.3 Lighthouse](docs/stage-05-web/chapter-18-graphql/section-03-lighthouse.md)
+  - [5.18.4 最佳实践](docs/stage-05-web/chapter-18-graphql/section-04-best-practices.md)
 
 ### 阶段六：数据库与缓存系统（Database & Cache）
 
