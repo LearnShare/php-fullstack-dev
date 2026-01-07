@@ -1,38 +1,30 @@
 # 文档目录说明
 
-**最后更新**：2025-12-29
+**最后更新**：2025-01-07
 
 ## 目录结构
 
 ### `ai-rules/` - AI 规则文档
 
-包含所有编写规则和规范文档，共 17 个文件：
+包含所有编写规则和规范文档，共 9 个文件：
 
+- `00-current-tasks.md` - 当前任务与进展
 - `01-basic-rules.md` - 基本规则
 - `02-execution-workflow.md` - 执行工作流
-- `03-markdown-format.md` - Markdown 格式规范
-- `04-code-format.md` - 代码格式规范
-- `05-content-completeness.md` - 内容完整性要求
-- `06-content-structure.md` - 内容结构标准
-- `07-function-documentation.md` - 函数文档规范
-- `08-document-structure.md` - 文档结构规范
-- `09-learning-path.md` - 学习路径规划
-- `10-tools-commands.md` - 工具和命令
-- `11-checklist.md` - 检查清单
-- `12-common-issues.md` - 常见问题
-- `13-error-reflection.md` - 错误反思
-- `14-syntax-section-standards.md` - 语法/功能小节编写规范
-- `15-content-simplification-rules.md` - 内容简化规则
-- `16-recent-requirements.md` - 近期要求总结
-- `17-document-creation-workflow.md` - 文档创建流程和规范
+- `03-format-standards.md` - 格式规范（Markdown格式、代码格式）
+- `04-content-standards.md` - 内容规范（完整性、结构、函数文档等）
+- `05-document-organization.md` - 文档组织规范（创建流程、命名规范）
+- `06-tools-operations.md` - 工具和操作规范
+- `07-checklist.md` - 检查清单
+- `08-common-issues.md` - 常见问题
 
 ### `progress/` - 项目进展文档
 
 包含项目进展和阶段完成总结：
 
 - `project-overview.md` - 项目进展总览（当前状态）
-- `stage-02-completion-summary.md` - 阶段二完成情况总结
-- `stage-05-completion-summary.md` - 阶段五完成情况总结
+- `current-status.md` - 当前进度状态
+- `stage-03-04-completion-summary.md` - 阶段三、四完成情况总结
 
 ### 根目录文件
 
