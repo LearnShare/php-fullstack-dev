@@ -1,733 +1,144 @@
-# 6.1.3 索引设计
+# 6.1.3 索引设计与优化 (Index Design and Optimization)
 
 ## 概述
 
-索引是提高数据库查询性能的关键。本节介绍索引的概念、类型、设计原则等，帮助零基础学员掌握索引设计技术。
+如果说规范化是为了保证数据的质量，那么**索引 (Index)** 就是为了提升数据的访问**速度**。索引是数据库中一种特殊的数据结构，它允许数据库引擎在不扫描整个表的情况下，快速定位到符合条件的记录。这极大地提升了数据检索（`SELECT` 查询）的性能。
 
-**章节类型**：配置性章节
+可以将数据库索引类比为一本书的目录。如果没有目录，要找到某个特定的主题，你需要从头到尾翻阅整本书。而有了目录，你可以直接根据主题查到对应的页码，然后快速翻到那一页。在数据库中，这个“页码”就相当于指向数据行物理位置的指针。
 
-**主要内容**：
-- 索引概念
-- 索引类型（B-Tree、Hash、全文索引）
-- 索引设计原则
-- 单列索引和复合索引
-- 索引优化
-- 索引维护
-- 完整示例
+本节将深入探讨索引的工作原理、不同类型的索引、设计索引的最佳实践，以及如何避免常见的索引失效场景。掌握索引是数据库性能优化的核心技能。
 
 ---
 
-## 索引概念
+## 索引的工作原理
 
-### 什么是索引
+### 核心数据结构：B-Tree
 
-索引（Index）是数据库中用于快速查找数据的数据结构，类似于书籍的目录。索引包含表中一列或多列的值，以及指向表中对应行的指针。
+大多数关系型数据库（如 MySQL 的 InnoDB 存储引擎）主要使用 **B-Tree** (或其变体 B+Tree) 作为索引的数据结构。B-Tree 是一种自平衡的树，它能够保持数据有序，并允许在对数时间内进行查找、顺序访问、插入和删除操作。
 
-**索引的类比**：
+**B-Tree 的特点**：
+-   **节点存储数据**：每个节点不仅包含键（如 `id` 的值），还包含指向数据行物理地址的指针。
+-   **平衡性**：树的所有叶子节点都处于同一层级，这保证了从根节点到任何一个叶子节点的路径长度都大致相同，从而确保了查询性能的稳定性。
+-   **多路查找**：每个节点可以有多个子节点，这减少了树的高度，从而减少了磁盘 I/O 的次数。
 
-- 书籍目录：帮助快速找到章节位置
-- 字典索引：帮助快速找到单词位置
-- 数据库索引：帮助快速找到数据行
+**查询过程**：
+当你在一个建立了 B-Tree 索引的列上执行查询时（例如 `SELECT * FROM users WHERE id = 100;`），数据库引擎会：
+1.  从 B-Tree 的根节点开始。
+2.  通过比较 `100` 和节点中存储的键值，决定下一步要去哪个子节点。
+3.  重复此过程，直到找到包含 `100` 这个键的叶子节点。
+4.  从该叶子节点中获取到对应数据行的物理地址。
+5.  根据物理地址，直接从磁盘中读取数据行。
 
-### 索引的作用
-
-索引的主要作用包括：
-
-1. **提高查询速度**：通过索引快速定位数据，避免全表扫描
-2. **加速排序**：索引已排序，可以加速 ORDER BY 操作
-3. **加速连接**：外键索引可以加速表连接操作
-4. **保证唯一性**：唯一索引保证字段值的唯一性
-
-**示例**：
-
-```sql
--- 没有索引：需要全表扫描
-SELECT * FROM users WHERE email = 'user@example.com';
--- 执行计划：全表扫描，扫描 10000 行
-
--- 有索引：使用索引查找
-CREATE INDEX idx_email ON users(email);
-SELECT * FROM users WHERE email = 'user@example.com';
--- 执行计划：使用索引，只扫描 1 行
-```
-
-### 索引的代价
-
-索引虽然能提高查询性能，但也有代价：
-
-1. **存储空间**：索引需要额外的存储空间
-2. **维护成本**：插入、更新、删除操作需要维护索引
-3. **创建时间**：创建索引需要时间
-4. **内存占用**：索引会占用内存空间
-
-**权衡**：
-
-- **读多写少**：索引收益大于代价，适合创建索引
-- **写多读少**：索引代价大于收益，谨慎创建索引
-- **平衡场景**：根据实际业务场景权衡
+这个过程非常快，因为它避免了逐行扫描整张表的“全表扫描 (Full Table Scan)”。
 
 ---
 
-## 索引类型
+## 索引的类型
 
-### B-Tree 索引
+根据不同的应用场景和约束，索引可以分为多种类型：
 
-B-Tree（平衡树）索引是 MySQL 默认的索引类型，适用于大多数场景。
+1.  **主键索引 (Primary Key Index)**
+    -   **定义**：一种特殊的唯一索引，它不允许有空值。每个表只能有一个主键索引。在创建主键时，数据库会自动创建对应的主键索引。
+    -   **特点**：在 MySQL InnoDB 中，主键索引是**聚簇索引 (Clustered Index)**，这意味着数据表的物理存储顺序与主键的顺序是一致的。因此，基于主键的查询速度最快。
 
-**B-Tree 索引的特点**：
+2.  **唯一索引 (Unique Index)**
+    -   **定义**：确保索引列的所有值都是唯一的，但允许有空值（`NULL`）。一个表可以有多个唯一索引。
+    -   **应用场景**：当业务上要求某个字段（如用户邮箱、身份证号）不能重复时使用。
 
-- 支持范围查询：`WHERE age > 18 AND age < 65`
-- 支持排序：`ORDER BY age`
-- 支持前缀匹配：`WHERE name LIKE 'John%'`
-- 支持等值查询：`WHERE id = 1`
+3.  **普通索引 (Normal Index / Non-unique Index)**
+    -   **定义**：最基本的索引类型，它不要求索引列的值具有唯一性。
+    -   **应用场景**：用于加速任何非唯一字段的查询，例如用户姓名、城市等。
 
-**示例**：
+4.  **复合索引 (Composite Index / Multi-column Index)**
+    -   **定义**：在一个索引中包含多个列。
+    -   **应用场景**：当查询条件（`WHERE` 子句）经常涉及到多个列时，复合索引非常有效。
+    -   **重要原则**：**最左前缀原则 (Leftmost Prefix Principle)**。一个复合索引 `(col1, col2, col3)`，相当于创建了 `(col1)`、`(col1, col2)` 和 `(col1, col2, col3)` 三个索引。查询条件必须从索引的最左边的列开始，才能有效利用索引。例如，`WHERE col1 = ?` 或 `WHERE col1 = ? AND col2 = ?` 可以使用该索引，但 `WHERE col2 = ?` 则无法使用。
 
-```sql
--- 创建 B-Tree 索引
-CREATE INDEX idx_age ON users(age);
-
--- 使用索引的查询
-SELECT * FROM users WHERE age > 18 AND age < 65;  -- 范围查询
-SELECT * FROM users ORDER BY age;  -- 排序
-SELECT * FROM users WHERE name LIKE 'John%';  -- 前缀匹配
-```
-
-### Hash 索引
-
-Hash 索引使用哈希表存储索引值，适用于等值查询。
-
-**Hash 索引的特点**：
-
-- 只支持等值查询：`WHERE id = 1`
-- 不支持范围查询：`WHERE age > 18`
-- 不支持排序：`ORDER BY age`
-- 查询速度极快：O(1) 时间复杂度
-
-**示例**：
-
-```sql
--- 创建 Hash 索引（Memory 存储引擎）
-CREATE TABLE users_memory (
-    id INT PRIMARY KEY,
-    username VARCHAR(50),
-    INDEX USING HASH (username)
-) ENGINE=MEMORY;
-
--- 使用 Hash 索引的查询
-SELECT * FROM users_memory WHERE username = 'john';  -- 等值查询
-```
-
-### 全文索引
-
-全文索引（FULLTEXT）用于全文搜索，支持文本内容的搜索。
-
-**全文索引的特点**：
-
-- 支持全文搜索：`MATCH ... AGAINST`
-- 支持相关性排序
-- 支持中文分词（需要配置）
-- 只适用于 MyISAM 和 InnoDB 存储引擎
-
-**示例**：
-
-```sql
--- 创建全文索引
-CREATE TABLE articles (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    title VARCHAR(200),
-    content TEXT,
-    FULLTEXT INDEX idx_content (content)
-) ENGINE=InnoDB;
-
--- 使用全文索引搜索
-SELECT * FROM articles
-WHERE MATCH(content) AGAINST('PHP MySQL' IN NATURAL LANGUAGE MODE);
-```
-
-### 空间索引
-
-空间索引（SPATIAL）用于地理空间数据，支持地理位置查询。
-
-**空间索引的特点**：
-
-- 支持地理位置查询
-- 支持距离计算
-- 支持范围查询
-- 只适用于 MyISAM 存储引擎
-
-**示例**：
-
-```sql
--- 创建空间索引
-CREATE TABLE locations (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100),
-    location POINT NOT NULL,
-    SPATIAL INDEX idx_location (location)
-) ENGINE=MyISAM;
-
--- 使用空间索引查询
-SELECT * FROM locations
-WHERE ST_Distance_Sphere(location, POINT(116.3974, 39.9093)) < 1000;
-```
+5.  **全文索引 (Full-text Index)**
+    -   **定义**：专门用于在大量文本数据中进行关键词搜索的索引。它不像 `LIKE '%keyword%'` 那样进行全表扫描，而是通过分词和倒排索引等技术实现快速搜索。
+    -   **应用场景**：文章内容、商品描述等文本字段的搜索。
 
 ---
 
-## 索引设计原则
+## 索引设计原则与最佳实践
 
-### 选择性高的列
+创建索引并非没有成本。索引会占用额外的磁盘空间，并且在进行插入、更新、删除操作时，数据库引擎也需要花费额外的时间来维护索引结构。因此，创建“好”的索引至关重要。
 
-选择性（Selectivity）是指索引列中不同值的比例。选择性越高，索引效果越好。
+1.  **为频繁作为查询条件的列创建索引**
+    -   **规则**：经常出现在 `WHERE` 子句、`JOIN` 的连接条件 (`ON` 子句) 和 `ORDER BY` 子句中的列，是索引的首选。
+    -   **示例**：`SELECT * FROM orders WHERE customer_id = ? ORDER BY order_date DESC;`，应该为 `customer_id` 和 `order_date` 创建索引。一个 `(customer_id, order_date)` 的复合索引会是最佳选择。
 
-**选择性计算**：
+2.  **选择高区分度的列 (High Selectivity)**
+    -   **规则**：列中不同值的数量（基数, Cardinality）越多，区分度就越高，索引的效果就越好。
+    -   **示例**：`身份证号` 几乎是全唯一的，区分度极高，非常适合做索引。而 `性别` 字段只有“男”、“女”等几个值，区分度很低，为其创建索引几乎没有性能提升，因为每次查询可能会返回表中近一半的数据，数据库引擎可能宁愿选择全表扫描。
 
-```
-选择性 = 不同值的数量 / 总行数
-```
+3.  **利用最左前缀原则设计复合索引**
+    -   **规则**：在创建复合索引时，应将最常用、区分度最高的列放在最左边。
+    -   **示例**：如果查询经常是 `WHERE name = ? AND age = ?`，并且 `name` 的区分度高于 `age`，那么 `(name, age)` 是一个比 `(age, name)` 更好的复合索引。
 
-**示例**：
+4.  **避免创建过多索引**
+    -   **规则**：索引会增加写操作（`INSERT`, `UPDATE`, `DELETE`）的成本。每个额外的索引都会拖慢写操作的速度。因此，只保留那些真正被频繁使用的、能带来显著性能提升的索引。定期审查并删除无用的索引。
 
-```sql
--- 选择性高的列：email（每个值都不同）
-CREATE INDEX idx_email ON users(email);
--- 选择性：10000 / 10000 = 1.0（完美）
-
--- 选择性低的列：gender（只有两个值）
-CREATE INDEX idx_gender ON users(gender);
--- 选择性：2 / 10000 = 0.0002（很差）
-```
-
-**建议**：
-
-- 选择性 > 0.1：适合创建索引
-- 选择性 < 0.1：不适合创建索引
-
-### 经常查询的列
-
-为经常在 WHERE 子句中使用的列创建索引。
-
-**示例**：
-
-```sql
--- 经常查询的列
-CREATE INDEX idx_user_id ON orders(user_id);
-CREATE INDEX idx_status ON orders(status);
-CREATE INDEX idx_created_at ON orders(created_at);
-
--- 使用索引的查询
-SELECT * FROM orders WHERE user_id = 1;
-SELECT * FROM orders WHERE status = 'pending';
-SELECT * FROM orders WHERE created_at > '2024-01-01';
-```
-
-### 外键列
-
-为外键列创建索引，可以加速表连接操作。
-
-**示例**：
-
-```sql
--- 外键列索引
-CREATE TABLE orders (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    product_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (product_id) REFERENCES products(id),
-    INDEX idx_user_id (user_id),  -- 外键索引
-    INDEX idx_product_id (product_id)  -- 外键索引
-);
-```
-
-### 排序和分组列
-
-为经常用于 ORDER BY 和 GROUP BY 的列创建索引。
-
-**示例**：
-
-```sql
--- 排序和分组列索引
-CREATE INDEX idx_created_at ON orders(created_at);
-CREATE INDEX idx_status ON orders(status);
-
--- 使用索引的查询
-SELECT * FROM orders ORDER BY created_at DESC;
-SELECT status, COUNT(*) FROM orders GROUP BY status;
-```
+5.  **索引列不应过长**
+    -   **规则**：索引键越长，B-Tree 的节点占用的空间就越大，导致树的高度增加，磁盘 I/O 次数增多。
+    -   **实践**：对于 `VARCHAR` 类型的长字段，可以考虑使用**前缀索引**，只索引字段的前 N 个字符。例如 `CREATE INDEX idx_title ON posts (title(20));`。但这会降低索引的区分度，需要权衡。
 
 ---
 
-## 单列索引和复合索引
+## 索引失效的常见场景
 
-### 单列索引
+即使创建了索引，某些查询的写法也可能导致数据库引擎放弃使用索引，转而进行全表扫描。
 
-单列索引只包含一个列，适用于单列查询。
+1.  **在索引列上使用函数或表达式**
+    -   **反例**: `SELECT * FROM users WHERE YEAR(created_at) = 2026;`
+    -   **原因**: `YEAR()` 函数作用于 `created_at` 列上，数据库无法直接使用 `created_at` 的索引。
+    -   **优化**: 将查询改写为范围查询。`SELECT * FROM users WHERE created_at >= '2026-01-01' AND created_at < '2027-01-01';`
 
-**示例**：
+2.  **使用 `LIKE` 并且以通配符 `%` 开头**
+    -   **反例**: `SELECT * FROM articles WHERE content LIKE '%database%';`
+    -   **原因**: 查询以通配符开头，索引无法确定起始点，只能进行全表扫描。
+    -   **优化**: 如果业务允许，尽量使用后缀匹配 `content LIKE 'database%';`，这样索引仍然有效。对于全文搜索需求，应使用全文索引。
 
-```sql
--- 单列索引
-CREATE INDEX idx_email ON users(email);
-CREATE INDEX idx_username ON users(username);
+3.  **使用 `OR` 连接非索引列**
+    -   **反例**: `SELECT * FROM orders WHERE customer_id = 100 OR amount > 5000;` (假设 `amount` 列没有索引)
+    -   **原因**: 优化器可能会认为，扫描 `customer_id` 的索引结果集，再扫描全表找出 `amount > 5000` 的记录，最后合并结果，这个过程比直接全表扫描一次更复杂。
+    -   **优化**: 确保 `OR` 两边的条件列都有索引。
 
--- 使用单列索引的查询
-SELECT * FROM users WHERE email = 'user@example.com';
-SELECT * FROM users WHERE username = 'john';
-```
+4.  **数据类型不匹配**
+    -   **反例**: 假设 `phone` 字段是 `VARCHAR` 类型并有索引。`SELECT * FROM users WHERE phone = 13800138000;`
+    -   **原因**: 查询中的 `13800138000` 是一个数字，而索引列是字符串。数据库会进行隐式类型转换，这可能导致索引失效。
+    -   **优化**: 确保查询值的数据类型与列定义一致。`SELECT * FROM users WHERE phone = '13800138000';`
 
-### 复合索引
+### 分析索引使用情况：EXPLAIN 命令
 
-复合索引包含多个列，适用于多列查询。
+在 MySQL 中，`EXPLAIN` 命令是性能优化的利器。将它放在 `SELECT` 语句前，可以分析查询的执行计划，告诉你数据库将如何执行这个查询。
 
-**示例**：
+`EXPLAIN SELECT * FROM users WHERE id = 10;`
 
-```sql
--- 复合索引
-CREATE INDEX idx_user_status ON orders(user_id, status);
-
--- 使用复合索引的查询
-SELECT * FROM orders WHERE user_id = 1 AND status = 'pending';
-SELECT * FROM orders WHERE user_id = 1;  -- 可以使用索引的前缀
-```
-
-### 列顺序选择
-
-复合索引的列顺序很重要，应遵循以下原则：
-
-1. **最左前缀原则**：索引只能从左到右使用
-2. **选择性高的列在前**：选择性高的列放在前面
-3. **等值查询在前**：等值查询的列放在范围查询的列前面
-
-**示例**：
-
-```sql
--- 好的列顺序：选择性高的列在前
-CREATE INDEX idx_user_status ON orders(user_id, status);
--- user_id 选择性高，status 选择性低
-
--- 不好的列顺序
-CREATE INDEX idx_status_user ON orders(status, user_id);
--- status 选择性低，user_id 选择性高
-```
-
-### 最左前缀原则
-
-最左前缀原则是指复合索引只能从左到右使用，不能跳过左边的列。
-
-**示例**：
-
-```sql
--- 复合索引
-CREATE INDEX idx_user_status_created ON orders(user_id, status, created_at);
-
--- 可以使用索引的查询
-SELECT * FROM orders WHERE user_id = 1;  -- 使用索引的第一列
-SELECT * FROM orders WHERE user_id = 1 AND status = 'pending';  -- 使用索引的前两列
-SELECT * FROM orders WHERE user_id = 1 AND status = 'pending' AND created_at > '2024-01-01';  -- 使用所有列
-
--- 不能使用索引的查询
-SELECT * FROM orders WHERE status = 'pending';  -- 跳过了第一列
-SELECT * FROM orders WHERE created_at > '2024-01-01';  -- 跳过了前两列
-```
-
-### 覆盖索引
-
-覆盖索引（Covering Index）是指索引包含了查询所需的所有列，不需要回表查询。
-
-**示例**：
-
-```sql
--- 覆盖索引
-CREATE INDEX idx_user_status ON orders(user_id, status, total_amount);
-
--- 使用覆盖索引的查询
-SELECT user_id, status, total_amount FROM orders WHERE user_id = 1;
--- 不需要回表查询，直接从索引获取数据
-```
-
-**优势**：
-
-- 减少 I/O 操作：不需要访问数据表
-- 提高查询速度：减少磁盘读取
-- 减少内存占用：索引通常比数据表小
-
----
-
-## 索引优化
-
-### 索引选择性分析
-
-分析索引的选择性，确定是否需要创建索引。
-
-**示例**：
-
-```sql
--- 分析索引选择性
-SELECT
-    COUNT(DISTINCT email) / COUNT(*) AS email_selectivity,
-    COUNT(DISTINCT gender) / COUNT(*) AS gender_selectivity
-FROM users;
-
--- email_selectivity: 1.0（完美，适合创建索引）
--- gender_selectivity: 0.0002（很差，不适合创建索引）
-```
-
-### 索引使用分析
-
-使用 EXPLAIN 分析索引的使用情况。
-
-**示例**：
-
-```sql
--- 分析索引使用
-EXPLAIN SELECT * FROM users WHERE email = 'user@example.com';
-
--- 结果：
--- type: ref（使用索引）
--- key: idx_email（使用的索引）
--- rows: 1（扫描的行数）
-```
-
-### 索引优化建议
-
-根据查询模式优化索引：
-
-1. **分析慢查询日志**：找出慢查询，优化索引
-2. **使用 EXPLAIN**：分析查询执行计划
-3. **监控索引使用**：定期检查索引使用情况
-4. **删除无用索引**：删除未使用的索引
-
-**示例**：
-
-```sql
--- 查看索引使用情况
-SELECT
-    object_schema,
-    object_name,
-    index_name,
-    count_read,
-    count_write
-FROM performance_schema.table_io_waits_summary_by_index_usage
-WHERE object_schema = 'mydb'
-ORDER BY count_read DESC;
-
--- 删除未使用的索引
-DROP INDEX idx_unused ON users;
-```
-
----
-
-## 索引维护
-
-### 索引重建
-
-定期重建索引，优化索引性能。
-
-**示例**：
-
-```sql
--- 重建索引
-ALTER TABLE users DROP INDEX idx_email;
-CREATE INDEX idx_email ON users(email);
-
--- 或者使用 OPTIMIZE TABLE
-OPTIMIZE TABLE users;
-```
-
-### 索引统计信息更新
-
-更新索引统计信息，帮助优化器选择最佳执行计划。
-
-**示例**：
-
-```sql
--- 更新索引统计信息
-ANALYZE TABLE users;
-
--- 查看索引统计信息
-SHOW INDEX FROM users;
-```
-
-### 索引监控
-
-监控索引的使用情况和性能。
-
-**示例**：
-
-```sql
--- 查看索引大小
-SELECT
-    table_name,
-    index_name,
-    ROUND(stat_value * @@innodb_page_size / 1024 / 1024, 2) AS index_size_mb
-FROM mysql.innodb_index_stats
-WHERE database_name = 'mydb'
-ORDER BY index_size_mb DESC;
-```
-
----
-
-## 完整示例
-
-### 电商系统索引设计
-
-**需求**：
-
-- 用户表：按 email 查询，按 created_at 排序
-- 订单表：按 user_id 查询，按 status 和 created_at 查询
-- 商品表：按 name 搜索，按 price 排序
-
-**索引设计**：
-
-```sql
--- 用户表索引
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_email (email),  -- 按 email 查询
-    INDEX idx_created_at (created_at)  -- 按 created_at 排序
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 订单表索引
-CREATE TABLE orders (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    status VARCHAR(20) NOT NULL,
-    total_amount DECIMAL(10,2) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    INDEX idx_user_id (user_id),  -- 按 user_id 查询
-    INDEX idx_status_created (status, created_at),  -- 按 status 和 created_at 查询
-    INDEX idx_created_at (created_at)  -- 按 created_at 排序
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 商品表索引
-CREATE TABLE products (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(200) NOT NULL,
-    price DECIMAL(10,2) NOT NULL,
-    stock INT NOT NULL DEFAULT 0,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FULLTEXT INDEX idx_name (name),  -- 全文搜索
-    INDEX idx_price (price)  -- 按 price 排序
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-```
-
-**查询优化**：
-
-```sql
--- 使用索引的查询
-SELECT * FROM users WHERE email = 'user@example.com';  -- 使用 idx_email
-SELECT * FROM users ORDER BY created_at DESC;  -- 使用 idx_created_at
-
-SELECT * FROM orders WHERE user_id = 1;  -- 使用 idx_user_id
-SELECT * FROM orders WHERE status = 'pending' ORDER BY created_at DESC;  -- 使用 idx_status_created
-
-SELECT * FROM products WHERE MATCH(name) AGAINST('laptop');  -- 使用全文索引
-SELECT * FROM products ORDER BY price;  -- 使用 idx_price
-```
-
----
-
-## 使用场景
-
-### 查询优化
-
-为经常查询的列创建索引，提高查询速度。
-
-**示例**：
-
-```sql
--- 为经常查询的列创建索引
-CREATE INDEX idx_user_id ON orders(user_id);
-CREATE INDEX idx_status ON orders(status);
-```
-
-### 排序优化
-
-为经常用于排序的列创建索引，加速排序操作。
-
-**示例**：
-
-```sql
--- 为排序列创建索引
-CREATE INDEX idx_created_at ON orders(created_at);
-SELECT * FROM orders ORDER BY created_at DESC;
-```
-
-### 连接优化
-
-为外键列创建索引，加速表连接操作。
-
-**示例**：
-
-```sql
--- 为外键列创建索引
-CREATE INDEX idx_user_id ON orders(user_id);
-SELECT o.*, u.username
-FROM orders o
-JOIN users u ON o.user_id = u.id;
-```
-
----
-
-## 注意事项
-
-### 索引的维护成本
-
-索引需要维护，插入、更新、删除操作会更新索引。
-
-**影响**：
-
-- 插入操作：需要更新索引
-- 更新操作：如果更新索引列，需要更新索引
-- 删除操作：需要更新索引
-
-**建议**：
-
-- 读多写少的表：适合创建多个索引
-- 写多读少的表：谨慎创建索引
-
-### 索引的选择性
-
-选择性低的列不适合创建索引。
-
-**示例**：
-
-```sql
--- 选择性低的列：gender（只有两个值）
-CREATE INDEX idx_gender ON users(gender);
--- 不建议：选择性太低，索引效果差
-```
-
-### 索引的数量
-
-索引数量过多会影响写入性能。
-
-**建议**：
-
-- 每个表索引数量不超过 5-10 个
-- 根据实际查询需求创建索引
-- 定期审查和删除无用索引
-
-### 索引的使用
-
-不是所有查询都能使用索引。
-
-**限制**：
-
-- 函数操作：`WHERE UPPER(name) = 'JOHN'` 不能使用索引
-- 类型转换：`WHERE id = '1'` 可能不能使用索引
-- 前导模糊查询：`WHERE name LIKE '%john'` 不能使用索引
-
----
-
-## 常见问题
-
-### 如何选择索引列？
-
-选择索引列的原则：
-
-1. 选择性高的列
-2. 经常查询的列
-3. 外键列
-4. 排序和分组列
-
-### 复合索引如何设计？
-
-复合索引设计原则：
-
-1. 最左前缀原则：索引只能从左到右使用
-2. 选择性高的列在前
-3. 等值查询的列在范围查询的列前面
-
-### 索引对性能的影响？
-
-索引的影响：
-
-- **查询性能**：提高查询速度
-- **写入性能**：降低写入速度（需要维护索引）
-- **存储空间**：占用额外存储空间
-
-### 如何优化索引？
-
-索引优化方法：
-
-1. 分析慢查询日志
-2. 使用 EXPLAIN 分析查询执行计划
-3. 监控索引使用情况
-4. 删除无用索引
-5. 重建和优化索引
-
----
-
-## 最佳实践
-
-### 为经常查询的列创建索引
-
-- 分析查询模式，识别经常查询的列
-- 为这些列创建索引
-- 定期审查索引使用情况
-
-### 使用复合索引优化多列查询
-
-- 为多列查询创建复合索引
-- 遵循最左前缀原则
-- 考虑覆盖索引
-
-### 避免过度索引
-
-- 不要为每个列都创建索引
-- 根据实际查询需求创建索引
-- 定期审查和删除无用索引
-
-### 定期分析索引使用情况
-
-- 使用 EXPLAIN 分析查询执行计划
-- 监控索引使用情况
-- 根据使用情况优化索引
+输出结果中的 `type` 和 `key` 字段非常关键：
+-   `type`: 显示连接类型。常见的值从好到坏依次是 `system` > `const` > `eq_ref` > `ref` > `range` > `index` > `ALL`。`ALL` 表示全表扫描，是需要重点优化的对象。
+-   `key`: 显示实际使用的索引。如果为 `NULL`，则表示没有使用索引。
 
 ---
 
 ## 练习任务
 
-1. **索引设计**
-   - 设计一个用户表
-   - 分析查询需求
-   - 为合适的列创建索引
-   - 使用 EXPLAIN 验证索引使用
+1.  **为用户表设计索引**：
+    假设你有一个 `users` 表，包含 `id` (主键), `username` (唯一), `email` (唯一), `city`, `age`, `created_at` 字段。常见的查询有：
+    -   通过 `username` 登录。
+    -   按 `city` 和 `age` 筛选用户。
+    -   查找某一天 (`created_at`) 注册的所有用户。
+    请为这个表设计一套合理的索引方案，并写出 `CREATE INDEX` 语句。
 
-2. **复合索引设计**
-   - 设计一个订单表
-   - 分析多列查询需求
-   - 设计复合索引
-   - 验证最左前缀原则
+2.  **复合索引优化**：
+    一个 `products` 表有 `category_id` 和 `brand_id` 两个字段。现在需要支持两个查询场景，一个是通过 `category_id` 查找商品，另一个是同时通过 `category_id` 和 `brand_id` 查找。请问以下哪个索引方案更好，并说明为什么？
+    -   方案A：创建两个单列索引 `idx_cat(category_id)` 和 `idx_brand(brand_id)`。
+    -   方案B：创建一个复合索引 `idx_cat_brand(category_id, brand_id)`。
 
-3. **索引优化**
-   - 分析现有表的索引
-   - 识别慢查询
-   - 优化索引设计
-   - 验证性能提升
-
-4. **索引维护**
-   - 监控索引使用情况
-   - 识别无用索引
-   - 删除无用索引
-   - 重建和优化索引
-
-5. **全文索引应用**
-   - 设计一个文章表
-   - 创建全文索引
-   - 实现全文搜索功能
-   - 优化搜索性能
-
----
-
-**相关章节**：
-
-- [6.1.1 数据库设计原则](section-01-design-principles.md)
-- [6.1.2 范式与反范式](section-02-normalization.md)
-- [6.2 PDO 入门与高安全模式](../chapter-02-pdo/readme.md)
+3.  **分析索引失效**：
+    分析以下查询，并解释为什么它可能无法有效利用 `order_date` 列上的索引。你应该如何改写这个查询以进行优化？
+    ```sql
+    SELECT *
+    FROM sales_orders
+    WHERE DATE_FORMAT(order_date, '%Y-%m') = '2026-01';
+    ```

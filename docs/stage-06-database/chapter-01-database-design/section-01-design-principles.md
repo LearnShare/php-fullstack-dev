@@ -2,741 +2,143 @@
 
 ## 概述
 
-数据库设计原则是设计高质量数据库的基础。本节介绍数据库设计的基本原则，包括实体关系、完整性约束等，帮助零基础学员掌握数据库设计方法。
+数据库设计是构建任何数据驱动应用的第一步，也是决定系统长期健康状况的关键。良好的数据库设计遵循一系列核心原则，旨在确保数据的**准确性 (Accuracy)**、**一致性 (Consistency)** 和**高效性 (Efficiency)**。这些原则不是孤立的规则，而是一个系统性的方法论，用于指导我们如何组织数据，从而最小化冗余、避免数据异常，并简化数据操作。
 
-**章节类型**：概念性章节
+本节将详细阐述数据库设计的四大核心原则：
+1.  **数据的独立性 (Data Independence)**
+2.  **数据的完整性 (Data Integrity)**
+3.  **数据的最小冗余 (Minimal Redundancy)**
+4.  **设计的可扩展性与性能平衡 (Scalability and Performance Balance)**
 
-**主要内容**：
-- 数据库设计概述
-- 设计原则（规范化、完整性、性能、可扩展性）
-- 实体关系设计（ER 图）
-- 完整性约束（主键、外键、唯一约束、检查约束）
-- 命名规范
-- 完整示例
+理解并应用这些原则，是设计出高质量、高性能且易于维护的数据库的基础。
 
 ---
 
-## 数据库设计概述
+## 核心原则详解
 
-### 什么是数据库设计
+### 1. 数据的独立性 (Data Independence)
 
-数据库设计是指根据业务需求，设计数据库结构、表结构、字段类型、约束条件等，以满足数据存储、查询、更新等操作需求的过程。
+数据的独立性是关系型数据库模型的重要概念，它指的是应用程序与数据库的物理存储和逻辑结构相互分离，使得其中一方的变更不影响另一方。这种解耦带来了极大的灵活性和可维护性。
 
-数据库设计是软件开发的重要环节，直接影响系统的性能、可维护性和可扩展性。
+数据的独立性分为两个层面：
 
-### 设计的目标
+-   **物理数据独立性 (Physical Data Independence)**
+    -   **定义**：指用户的应用程序与数据在磁盘上的物理存储方式相互独立。当数据的物理存储结构（如使用的存储设备、文件组织方式、索引策略）发生改变时，上层的应用程序（逻辑结构）无需任何修改。
+    -   **示例**：数据库管理员决定将某个数据文件从机械硬盘迁移到固态硬盘（SSD），或者重建了某个表的索引。这些操作改变了数据的物理位置或访问路径，但对于执行 `SELECT * FROM users WHERE id = 1;` 的应用程序来说，是完全透明的，代码无需任何变更。
+    -   **价值**：允许DBA根据性能需求自由优化底层存储，而无需担心会破坏现有的业务逻辑。
 
-数据库设计的主要目标包括：
+-   **逻辑数据独立性 (Logical Data Independence)**
+    -   **定义**：指用户的应用程序与数据库的逻辑结构（即数据表的结构定义）相互独立。当数据库的逻辑结构发生变化（如在表中增加新字段、合并表）时，只要不影响应用程序所访问的数据，应用程序本身就不需要修改。
+    -   **示例**：业务发展需要在 `users` 表中增加一个 `last_login_ip` 字段。对于那些只查询 `id`, `name`, `email` 字段的已有程序来说，这个变更并不会产生任何影响。通过使用视图（View），我们可以向应用程序暴露一个稳定的数据结构，而底层表结构的变化则被视图所屏蔽。
+    -   **价值**：使得数据库的演进成为可能。随着业务需求的变化，数据库结构需要不断调整，逻辑数据独立性确保了这种演进的平滑过渡。
 
-1. **数据完整性**：确保数据的准确性、一致性和完整性
-2. **性能优化**：设计合理的表结构和索引，提高查询性能
-3. **可维护性**：设计清晰、规范的结构，便于维护和扩展
-4. **可扩展性**：考虑未来业务变化，设计可扩展的结构
+### 2. 数据的完整性 (Data Integrity)
 
-### 设计的重要性
+数据完整性要求在任何时候，数据库中存储的数据都必须是准确、有效和一致的。为了保证这一点，关系型数据库提供了多种约束（Constraints）机制。
 
-良好的数据库设计能够：
+主要的完整性约束类型包括：
 
-- 提高系统性能，减少查询时间
-- 保证数据一致性，避免数据冗余和不一致
-- 降低维护成本，便于后续开发和维护
-- 支持业务扩展，适应业务变化
+-   **实体完整性 (Entity Integrity)**
+    -   **定义**：要求关系表中的每一行（即每个实体）都是可唯一标识的。这是通过**主键 (Primary Key)** 来实现的。
+    -   **规则**：主键的取值必须是唯一的，且不能为空（`NOT NULL`）。
+    -   **示例**：在 `products` 表中，`product_id` 字段被定义为主键。这意味着不允许存在两条 `product_id` 相同的记录，也不允许 `product_id` 的值为空。这确保了每个产品都有一个独一无二的身份标识。
+
+-   **域完整性 (Domain Integrity)**
+    -   **定义**：保证数据表中某个字段的取值必须在预先设定的有效范围内。
+    -   **规则**：通过数据类型、`CHECK` 约束、`FOREIGN KEY` 约束、`DEFAULT` 值和 `NOT NULL` 约束等来强制实现。
+    -   **示例**：
+        -   **数据类型**：为 `age` 字段设置 `TINYINT UNSIGNED` 类型，其取值范围自然被限制在 0-255 之间。
+        -   `CHECK` **约束**：`ALTER TABLE products ADD CONSTRAINT chk_price CHECK (price >= 0);` 确保产品价格不能为负数。
+        -   `NOT NULL` **约束**：`email` 字段必须有值，不能为空。
+
+-   **参照完整性 (Referential Integrity)**
+    -   **定义**：也称为引用完整性，它确保了关系表中两个关联表之间数据的一致性。这是通过**外键 (Foreign Key)** 来实现的。
+    -   **规则**：外键的值必须是其引用的父表中某个主键的值，或者为 `NULL`（如果该字段允许）。
+    -   **示例**：有一个 `orders` 表，其中 `customer_id` 是一个外键，引用了 `customers` 表的主键。参照完整性确保了 `orders` 表中的每一笔订单都必须对应一个真实存在的客户。你无法创建一个指向不存在客户的订单，也无法删除一个已经有关联订单的客户（除非设置了级联操作）。
+
+-   **用户自定义完整性 (User-Defined Integrity)**
+    -   **定义**：针对特定业务规则设定的约束。
+    -   **示例**：在一个银行转账的场景中，“转出账户的余额必须大于转账金额”就是一个业务规则。这通常通过数据库的触发器（Triggers）或在应用程序逻辑中实现。
+
+### 3. 数据的最小冗余 (Minimal Redundancy)
+
+数据冗余是指同一份数据在数据库中被多次存储。虽然在某些特定场景下（如为了性能而进行的反范式设计）可以接受冗余，但在大多数情况下，冗余是有害的，它会导致：
+
+-   **存储空间浪费**：同一份数据占用多份存储空间。
+-   **数据不一致风险**：当数据更新时，如果只更新了其中一份拷贝而遗漏了其他，就会导致数据不一致，破坏数据的准确性。
+-   **维护成本增加**：插入、更新、删除数据时，需要对所有冗余数据进行同步操作，增加了复杂性。
+
+**如何实现最小冗余？**
+
+实现最小冗余的核心手段是**规范化 (Normalization)**，也称为范式设计。范式是一系列的设计准则，用于指导如何将数据组织到不同的表中，以减少数据冗余和依赖。我们将在下一节 **[6.1.2 范式与反范式](section-02-normalization.md)** 中详细学习。
+
+**示例**：
+-   **冗余设计（不推荐）**：`orders` 表中存储了完整的客户信息。
+| order_id | customer_id | customer_name | customer_address | order_date |
+|----------|-------------|---------------|------------------|------------|
+| 101      | 1           | 张三          | 北京市朝阳区...  | 2026-01-01 |
+| 102      | 1           | 张三          | 北京市朝阳区...  | 2026-01-02 |
+    如果客户张三搬家，需要更新所有与他相关的订单记录，极易出错。
+
+-   **规范化设计（推荐）**：将客户信息和订单信息分离。
+    `customers` 表:
+| customer_id | customer_name | customer_address |
+|-------------|---------------|------------------|
+| 1           | 张三          | 北京市朝阳区...  |
+
+    `orders` 表:
+| order_id | customer_id | order_date |
+|----------|-------------|------------|
+| 101      | 1           | 2026-01-01 |
+| 102      | 1           | 2026-01-02 |
+    现在，如果客户张三搬家，只需更新 `customers` 表中的一条记录即可。
+
+### 4. 设计的可扩展性与性能平衡
+
+一个好的数据库设计不仅要满足当前的需求，还要能够适应未来的业务发展。同时，它必须在规范化（保证数据质量）和性能（保证查询速度）之间取得平衡。
+
+-   **可扩展性 (Scalability)**
+    -   **定义**：指数据库结构能够轻松适应业务需求的变化，如增加新功能、扩展数据量等。
+    -   **实践**：
+        -   在设计表时预留一些“未来可能使用”的字段（但要谨慎，避免过度设计）。
+        -   使用逻辑数据独立性原则，多采用视图或抽象层来隔离应用和物理表。
+        -   采用模块化的设计，将不同业务领域的数据划分到不同的表甚至不同的数据库中。
+
+-   **性能 (Performance)**
+    -   **定义**：指数据库能够快速地响应数据查询和操作请求。
+    -   **实践**：
+        -   **合理使用索引**：索引是提升查询性能最有效的手段。
+        -   **选择正确的数据类型**：更小的数据类型意味着更少的磁盘I/O和更快的内存处理。
+        -   **反范式设计 (Denormalization)**：在某些读多写少的场景下，为了减少查询时的多表连接（JOIN），可以故意引入少量数据冗余，用空间换时间。这是一种在理解了规范化之后的高级优化技巧。
+
+**平衡之道**：
+数据库设计的过程，本质上就是在“减少冗余、保证一致性”和“提升查询性能”之间进行权衡。通常的建议是：**先从高规范化（如第三范式）的设计开始，然后根据实际的性能瓶颈，有针对性地进行反范式优化。**
 
 ---
 
-## 设计原则
+## 总结
 
-### 规范化原则
+数据库设计的四大核心原则是相互关联、相辅相成的。
 
-规范化是数据库设计的基本原则，通过消除数据冗余和依赖关系，提高数据一致性和完整性。
+-   **数据独立性**是架构层面的指导思想，它保证了系统的灵活性和可维护性。
+-   **数据完整性**是数据质量的基石，通过约束机制确保了数据的准确和有效。
+-   **最小冗余**是规范化设计的核心目标，它通过消除重复数据来避免数据不一致和维护困难。
+-   **可扩展性与性能的平衡**是设计的终极目标，要求我们在保证数据质量的同时，兼顾当前和未来的性能需求。
 
-**规范化级别**：
-
-- **第一范式（1NF）**：每个字段都是原子值，不可再分
-- **第二范式（2NF）**：在 1NF 基础上，消除部分函数依赖
-- **第三范式（3NF）**：在 2NF 基础上，消除传递依赖
-
-**示例**：
-
-```sql
--- 不符合 1NF（字段包含多个值）
-CREATE TABLE users (
-    id INT PRIMARY KEY,
-    name VARCHAR(100),
-    hobbies VARCHAR(200)  -- 包含多个爱好，如"阅读,游泳,旅行"
-);
-
--- 符合 1NF
-CREATE TABLE users (
-    id INT PRIMARY KEY,
-    name VARCHAR(100)
-);
-
-CREATE TABLE user_hobbies (
-    id INT PRIMARY KEY,
-    user_id INT,
-    hobby VARCHAR(50),
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
-```
-
-### 完整性原则
-
-完整性约束确保数据的准确性和一致性，包括：
-
-1. **实体完整性**：主键唯一且非空
-2. **参照完整性**：外键引用必须存在
-3. **域完整性**：字段值符合定义的数据类型和约束
-4. **用户定义完整性**：业务规则约束
-
-**示例**：
-
-```sql
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,  -- 实体完整性
-    username VARCHAR(50) UNIQUE NOT NULL,  -- 唯一约束
-    email VARCHAR(100) UNIQUE NOT NULL,
-    age INT CHECK (age >= 0 AND age <= 150),  -- 域完整性
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE posts (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    title VARCHAR(200) NOT NULL,
-    content TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id)  -- 参照完整性
-);
-```
-
-### 性能原则
-
-性能原则关注查询效率和存储效率：
-
-1. **合理使用索引**：为经常查询的字段创建索引
-2. **避免过度规范化**：适当冗余以提高查询性能
-3. **数据类型选择**：选择合适的数据类型，减少存储空间
-4. **分区策略**：大表考虑分区，提高查询性能
-
-**示例**：
-
-```sql
--- 为经常查询的字段创建索引
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_username (username),  -- 索引
-    INDEX idx_email (email),
-    INDEX idx_created_at (created_at)
-);
-```
-
-### 可扩展性原则
-
-可扩展性原则考虑未来业务变化：
-
-1. **预留扩展字段**：为未来可能的需求预留字段
-2. **灵活的表结构**：使用 JSON 字段存储灵活数据
-3. **版本控制**：考虑表结构的版本管理
-4. **分表策略**：大表考虑分表，支持水平扩展
-
-**示例**：
-
-```sql
--- 使用 JSON 字段存储灵活数据
-CREATE TABLE products (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(200) NOT NULL,
-    price DECIMAL(10,2) NOT NULL,
-    attributes JSON,  -- 灵活存储产品属性
-    metadata JSON,  -- 元数据
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
-
----
-
-## 实体关系设计
-
-### 实体识别
-
-实体是数据库中需要存储的对象，如用户、订单、商品等。
-
-**识别实体的方法**：
-
-1. **名词识别**：从业务需求中提取名词
-2. **业务对象**：识别业务中的核心对象
-3. **数据需求**：分析需要存储的数据
-
-**示例**：
-
-在博客系统中，实体包括：
-- 用户（User）
-- 文章（Post）
-- 评论（Comment）
-- 分类（Category）
-- 标签（Tag）
-
-### 关系识别
-
-关系是实体之间的关联，包括：
-
-1. **一对一（1:1）**：一个实体对应另一个实体的一个实例
-2. **一对多（1:N）**：一个实体对应另一个实体的多个实例
-3. **多对多（M:N）**：一个实体的多个实例对应另一个实体的多个实例
-
-**示例**：
-
-```sql
--- 一对一：用户与用户资料
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) UNIQUE NOT NULL
-);
-
-CREATE TABLE user_profiles (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT UNIQUE NOT NULL,  -- 一对一关系
-    bio TEXT,
-    avatar VARCHAR(255),
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
--- 一对多：用户与文章
-CREATE TABLE posts (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,  -- 一对多关系
-    title VARCHAR(200) NOT NULL,
-    content TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-);
-
--- 多对多：文章与标签
-CREATE TABLE post_tags (
-    post_id INT NOT NULL,
-    tag_id INT NOT NULL,
-    PRIMARY KEY (post_id, tag_id),
-    FOREIGN KEY (post_id) REFERENCES posts(id),
-    FOREIGN KEY (tag_id) REFERENCES tags(id)
-);
-```
-
-### ER 图绘制
-
-ER 图（实体关系图）是数据库设计的可视化工具，用于表示实体、属性和关系。
-
-**ER 图元素**：
-
-- **矩形**：表示实体
-- **椭圆**：表示属性
-- **菱形**：表示关系
-- **直线**：连接实体和属性、实体和关系
-
-**示例 ER 图描述**：
-
-```
-用户 (User)
-├── id (主键)
-├── username
-├── email
-└── created_at
-
-文章 (Post)
-├── id (主键)
-├── user_id (外键 -> User.id)
-├── title
-├── content
-└── created_at
-
-关系：
-User 1:N Post (一个用户有多篇文章)
-```
-
----
-
-## 完整性约束
-
-### 主键约束
-
-主键（Primary Key）唯一标识表中的每一行，必须唯一且非空。
-
-**主键的特点**：
-
-- 唯一性：每个主键值在表中唯一
-- 非空性：主键字段不能为 NULL
-- 不可变性：主键值不应改变
-
-**示例**：
-
-```sql
--- 单字段主键
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) UNIQUE NOT NULL
-);
-
--- 复合主键
-CREATE TABLE order_items (
-    order_id INT NOT NULL,
-    product_id INT NOT NULL,
-    quantity INT NOT NULL,
-    PRIMARY KEY (order_id, product_id),
-    FOREIGN KEY (order_id) REFERENCES orders(id),
-    FOREIGN KEY (product_id) REFERENCES products(id)
-);
-```
-
-### 外键约束
-
-外键（Foreign Key）建立表之间的关联，确保参照完整性。
-
-**外键的作用**：
-
-- 确保引用完整性：外键值必须在被引用表中存在
-- 级联操作：支持级联更新和删除
-- 数据一致性：防止孤立数据
-
-**示例**：
-
-```sql
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) UNIQUE NOT NULL
-);
-
-CREATE TABLE posts (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    title VARCHAR(200) NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-        ON DELETE CASCADE  -- 级联删除
-        ON UPDATE CASCADE  -- 级联更新
-);
-```
-
-### 唯一约束
-
-唯一约束（UNIQUE）确保字段值在表中唯一。
-
-**唯一约束的特点**：
-
-- 唯一性：字段值不能重复
-- 允许 NULL：唯一约束允许 NULL 值（但只能有一个 NULL）
-
-**示例**：
-
-```sql
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) UNIQUE NOT NULL,  -- 唯一约束
-    email VARCHAR(100) UNIQUE NOT NULL,
-    phone VARCHAR(20) UNIQUE  -- 允许 NULL
-);
-```
-
-### 检查约束
-
-检查约束（CHECK）确保字段值符合指定条件。
-
-**检查约束的用途**：
-
-- 数据验证：确保数据符合业务规则
-- 范围限制：限制字段值的范围
-- 格式验证：验证数据格式
-
-**示例**：
-
-```sql
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    age INT CHECK (age >= 0 AND age <= 150),  -- 年龄范围
-    status VARCHAR(20) CHECK (status IN ('active', 'inactive', 'suspended'))  -- 状态值
-);
-```
-
-### 非空约束
-
-非空约束（NOT NULL）确保字段值不能为 NULL。
-
-**非空约束的用途**：
-
-- 必填字段：确保重要字段必须有值
-- 数据完整性：防止缺失关键数据
-
-**示例**：
-
-```sql
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) UNIQUE NOT NULL,  -- 非空约束
-    email VARCHAR(100) UNIQUE NOT NULL,
-    password_hash VARCHAR(255) NOT NULL,
-    bio TEXT  -- 允许 NULL
-);
-```
-
----
-
-## 命名规范
-
-### 表命名规范
-
-**建议规范**：
-
-- 使用小写字母和下划线
-- 使用复数形式（如 `users`、`posts`）
-- 名称清晰、有意义
-- 避免使用保留字
-
-**示例**：
-
-```sql
--- 好的命名
-CREATE TABLE users (...);
-CREATE TABLE user_profiles (...);
-CREATE TABLE order_items (...);
-
--- 不好的命名
-CREATE TABLE User (...);  -- 使用了大写
-CREATE TABLE user (...);  -- 单数形式
-CREATE TABLE tbl_user (...);  -- 不必要的前缀
-```
-
-### 字段命名规范
-
-**建议规范**：
-
-- 使用小写字母和下划线
-- 名称清晰、有意义
-- 布尔字段使用 `is_`、`has_` 前缀
-- 时间字段使用 `_at`、`_on` 后缀
-
-**示例**：
-
-```sql
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    is_active BOOLEAN DEFAULT TRUE,  -- 布尔字段
-    has_verified_email BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- 时间字段
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-```
-
-### 索引命名规范
-
-**建议规范**：
-
-- 使用 `idx_` 前缀
-- 包含表名和字段名
-- 名称清晰、有意义
-
-**示例**：
-
-```sql
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_username (username),
-    INDEX idx_email (email),
-    INDEX idx_created_at (created_at)
-);
-```
-
----
-
-## 完整示例
-
-### 博客系统数据库设计
-
-**实体识别**：
-
-- 用户（User）
-- 文章（Post）
-- 评论（Comment）
-- 分类（Category）
-- 标签（Tag）
-
-**关系识别**：
-
-- User 1:N Post（一个用户有多篇文章）
-- Post 1:N Comment（一篇文章有多个评论）
-- Post N:1 Category（多篇文章属于一个分类）
-- Post M:N Tag（文章和标签多对多）
-
-**完整 SQL**：
-
-```sql
--- 用户表
-CREATE TABLE users (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    password_hash VARCHAR(255) NOT NULL,
-    is_active BOOLEAN DEFAULT TRUE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    INDEX idx_username (username),
-    INDEX idx_email (email)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 分类表
-CREATE TABLE categories (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) UNIQUE NOT NULL,
-    slug VARCHAR(50) UNIQUE NOT NULL,
-    description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 文章表
-CREATE TABLE posts (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    category_id INT NOT NULL,
-    title VARCHAR(200) NOT NULL,
-    slug VARCHAR(200) UNIQUE NOT NULL,
-    content TEXT NOT NULL,
-    excerpt TEXT,
-    is_published BOOLEAN DEFAULT FALSE,
-    published_at TIMESTAMP NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE RESTRICT,
-    INDEX idx_user_id (user_id),
-    INDEX idx_category_id (category_id),
-    INDEX idx_slug (slug),
-    INDEX idx_published_at (published_at)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 标签表
-CREATE TABLE tags (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(50) UNIQUE NOT NULL,
-    slug VARCHAR(50) UNIQUE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_slug (slug)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 文章标签关联表（多对多）
-CREATE TABLE post_tags (
-    post_id INT NOT NULL,
-    tag_id INT NOT NULL,
-    PRIMARY KEY (post_id, tag_id),
-    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
-    FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- 评论表
-CREATE TABLE comments (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    post_id INT NOT NULL,
-    user_id INT NULL,
-    parent_id INT NULL,
-    content TEXT NOT NULL,
-    is_approved BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
-    FOREIGN KEY (parent_id) REFERENCES comments(id) ON DELETE CASCADE,
-    INDEX idx_post_id (post_id),
-    INDEX idx_user_id (user_id),
-    INDEX idx_parent_id (parent_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-```
-
----
-
-## 使用场景
-
-### 新项目数据库设计
-
-在设计新项目时，遵循数据库设计原则：
-
-1. 分析业务需求，识别实体和关系
-2. 绘制 ER 图，可视化设计
-3. 应用规范化原则，设计表结构
-4. 建立完整性约束，确保数据一致性
-5. 考虑性能优化，设计索引
-
-### 数据库重构
-
-在重构现有数据库时：
-
-1. 分析现有结构的问题
-2. 应用设计原则，优化结构
-3. 保持数据迁移的兼容性
-4. 逐步迁移，避免影响业务
-
-### 数据库优化
-
-在优化数据库性能时：
-
-1. 分析查询模式，优化索引
-2. 考虑反范式设计，提高查询性能
-3. 优化数据类型，减少存储空间
-4. 考虑分区策略，提高查询效率
-
----
-
-## 注意事项
-
-### 设计的前瞻性
-
-数据库设计应考虑未来业务变化：
-
-- 预留扩展字段，但不要过度设计
-- 使用灵活的数据结构（如 JSON 字段）
-- 考虑版本管理和迁移策略
-
-### 性能考虑
-
-在设计时考虑性能：
-
-- 为经常查询的字段创建索引
-- 避免过度规范化，适当冗余
-- 选择合适的数据类型
-- 考虑分区和分表策略
-
-### 扩展性考虑
-
-设计应支持业务扩展：
-
-- 使用灵活的表结构
-- 预留扩展字段
-- 考虑水平扩展（分表、分库）
-- 支持垂直扩展（增加字段）
-
-### 命名规范
-
-遵循统一的命名规范：
-
-- 表名使用复数形式
-- 字段名清晰、有意义
-- 索引名包含表名和字段名
-- 避免使用保留字
-
----
-
-## 常见问题
-
-### 如何开始数据库设计？
-
-**步骤**：
-
-1. 分析业务需求，识别核心实体
-2. 识别实体之间的关系
-3. 绘制 ER 图，可视化设计
-4. 应用规范化原则，设计表结构
-5. 建立完整性约束
-6. 设计索引，优化性能
-
-### 如何识别实体和关系？
-
-**方法**：
-
-1. **名词识别**：从业务需求中提取名词作为实体
-2. **业务对象**：识别业务中的核心对象
-3. **数据需求**：分析需要存储的数据
-4. **关系分析**：分析实体之间的关联（一对一、一对多、多对多）
-
-### 如何设计完整性约束？
-
-**原则**：
-
-1. **主键约束**：为每个表设计主键
-2. **外键约束**：建立表之间的关联
-3. **唯一约束**：确保字段值唯一
-4. **检查约束**：验证数据符合业务规则
-5. **非空约束**：确保必填字段有值
-
-### 设计原则如何平衡？
-
-**平衡策略**：
-
-1. **规范化与性能**：在规范化和性能之间找到平衡
-2. **完整性与灵活性**：建立必要的约束，但保持灵活性
-3. **可扩展性与简洁性**：预留扩展空间，但不要过度设计
-
----
-
-## 最佳实践
-
-### 遵循设计原则
-
-- 应用规范化原则，消除数据冗余
-- 建立完整性约束，确保数据一致性
-- 考虑性能优化，设计合理的索引
-- 考虑可扩展性，支持业务变化
-
-### 使用 ER 图辅助设计
-
-- 绘制 ER 图，可视化数据库设计
-- 使用工具（如 MySQL Workbench、dbdiagram.io）绘制 ER 图
-- ER 图帮助识别实体、关系和约束
-
-### 建立完整的约束
-
-- 为每个表设计主键
-- 建立外键约束，确保参照完整性
-- 使用唯一约束，确保数据唯一性
-- 使用检查约束，验证数据符合业务规则
-
-### 遵循命名规范
-
-- 使用统一的命名规范
-- 表名使用复数形式
-- 字段名清晰、有意义
-- 索引名包含表名和字段名
+在后续的章节中，我们将学习如何通过范式、索引等具体技术来实现这些设计原则。
 
 ---
 
 ## 练习任务
 
-1. **设计用户系统数据库**
-   - 设计用户表、用户资料表、用户角色表
-   - 建立表之间的关系
-   - 设计完整性约束
-   - 绘制 ER 图
+1.  **分析现有应用**：
+    选择一个你熟悉的网站或应用（如电商网站、博客系统），思考其核心数据（如用户、商品、订单、评论）是如何组织的。尝试画出ER图，并分析其设计是否遵循了本节介绍的四大原则。
 
-2. **设计电商系统数据库**
-   - 设计商品表、订单表、订单项表
-   - 设计用户表、购物车表
-   - 建立表之间的关系
-   - 设计完整性约束和索引
+2.  **设计图书管理系统**：
+    为一个简单的图书馆设计数据库。至少应包含“图书（Books）”、“读者（Members）”和“借阅记录（Borrows）”三个核心实体。请设计表结构，并明确指出你如何通过主键、外键和数据类型来保证实体完整性、域完整性和参照完整性。
 
-3. **设计博客系统数据库**
-   - 参考本节完整示例
-   - 添加文章收藏功能
-   - 添加文章点赞功能
-   - 优化数据库设计
-
-4. **数据库设计优化**
-   - 分析现有数据库设计
-   - 识别设计问题
-   - 应用设计原则优化
-   - 设计迁移方案
-
-5. **ER 图绘制**
-   - 选择一个业务场景
-   - 识别实体和关系
-   - 绘制 ER 图
-   - 根据 ER 图设计表结构
-
----
-
-**相关章节**：
-
-- [6.1.2 范式与反范式](section-02-normalization.md)
-- [6.1.3 索引设计](section-03-index-design.md)
-- [6.2 PDO 入门与高安全模式](../chapter-02-pdo/readme.md)
+3.  **冗余与性能的思考**：
+    假设你在设计一个博客系统，文章表 (`posts`) 中需要显示作者的昵称。你有两种方案：
+    -   **方案A (规范化)**：`posts` 表中只存 `author_id`，每次查询文章列表时，通过 `JOIN users` 表来获取作者昵称。
+    -   **方案B (反范式)**：`posts` 表中同时存储 `author_id` 和 `author_nickname`。
+    请分析这两种方案的优缺点，并说明在什么情况下你会选择方案B？
